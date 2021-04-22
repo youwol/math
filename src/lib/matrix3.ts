@@ -1,4 +1,4 @@
-import { Vector3 } from "./vector"
+import { Vector3 } from "./vector3"
 
 /**
  * @category Matrix
@@ -62,6 +62,9 @@ export function transpose(m: Matrix3) {
 
 /**
  * @brief Rotate CCW (angle in degrees) along the provided axis.
+ * @param m The matrix
+ * @param angleInDeg The angle of rotation
+ * @param AXIS The axis of rotation/ Can be either `x`, `X`, `y`, `Y`, `z`, or `Z`.
  * @category Matrix
  */
  export function rotate(m: Matrix3, angleInDeg: number, AXIS: string) {
@@ -97,16 +100,15 @@ export function transpose(m: Matrix3) {
         R[2][2] = c ;
     }
 
-    return rotateInverseTensor(m, R)
+    return rotateInverse(m, R)
 }
 
 /**
- * Rotate inverse a matrix according to a rotation matrix
+ * Rotate inverse a [[Matrix3]] according to a rotation matrix
  * @param {Matrix3} rot The rotation matrix (antisymmetric)
- * @param {Matrix3} s The matrix3 to rotate
- * @returns {Matrix3} The provided s, but rotated inverse according to the rot matrix
+ * @param {Matrix3} m The matrix3 to rotate
  */
-function rotateInverseTensor(m: Matrix3, rot: Matrix3) {
+export function rotateInverse(m: Matrix3, rot: Matrix3) {
     const t = [[0,0,0], [0,0,0], [0,0,0]] as Matrix3
     t[0][0] = m[0][0] * rot[0][0] + m[0][1] * rot[1][0] + m[0][2] * rot[2][0] 
     t[0][1] = m[0][0] * rot[0][1] + m[0][1] * rot[1][1] + m[0][2] * rot[2][1] 
@@ -132,12 +134,11 @@ function rotateInverseTensor(m: Matrix3, rot: Matrix3) {
 }
 
 /**
- * Rotate forward a matrix according to a rotation matrix
+ * Rotate forward a [[Matrix3]] according to a rotation matrix
  * @param {Matrix3} rot The rotation matrix (antisymmetric)
- * @param {Matrix3} s The matrix3 to rotate
- * @returns {Matrix3} The provided s, but rotated forward according to the rot matrix
+ * @param {Matrix3} m The matrix3 to rotate
  */
-function rotateForwardTensor(m: Matrix3, rot: Matrix3) {
+export function rotateForward(m: Matrix3, rot: Matrix3) {
     // Operates: t = s.rot'
     const t = [[0,0,0], [0,0,0], [0,0,0]] as Matrix3
     t[0][0] = m[0][0] * rot[0][0] + m[0][1] * rot[0][1] + m[0][2] * rot[0][2] 

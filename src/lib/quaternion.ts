@@ -1,5 +1,5 @@
-import { Matrix3 } from './matrix';
-import { Vector3, scale, dot, norm, norm2, cross, Vector4 } from './vector'
+import { Matrix3 } from './matrix3';
+import { Vector3, scale, dot, norm, norm2, cross } from './vector3'
 
 const setRow = (m: Matrix3, i: number, v: Vector3) => {
     m[i][0] = v[0]; m[i][1] = v[1]; m[i][2] = v[2]; 

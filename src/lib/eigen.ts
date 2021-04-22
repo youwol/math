@@ -5,7 +5,6 @@ const xcpi = Math.cos(Math.PI / 4)
 const xspi = Math.sin(Math.PI / 4)
 
 /**
- * 
  * @param mat The symmetric matrix in a packed array of the form 
  * of 6 components [xx, xy, xz, yy, yz, zz] or 9 components
  * [xx, xy, xz, yx, yy, yz, zx, zy, zz]
@@ -210,9 +209,9 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
  * @param {number[]} mat Format: [00, 01, 02, 11, 12, 22]
  * @returns {{number[], Array.<Array.<number>>}} The eigen values and eigen vectors
  * @note Eigen -values and -vectors are ordered from the highest to the lowest
- * @example
- * const {values, vectors} = symmetricEigen3([1, 2, 3, 4, 5, 6])
+ * @see [[eigen]]
  * @category Eigen
+ * @ignore
  */
 export class Eigen {
     private eigenValues : Array<number> = []

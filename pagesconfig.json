@@ -1,0 +1,13 @@
+{
+    "groups": [
+        {
+            "title": "Info",
+            "pages": [
+                {
+                    "title": "Description",
+                    "source": "./documentation/description.md"
+                }
+            ]
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-import { Vector2, Vector3, Vector4 } from "./vector"
+import { Vector2, Vector3, Vector4 } from "./vector3"
 
 const dot2  = (a:Vector2, b: Vector2): number => a.reduce( (acc, cur, i) => acc+cur*b[i])
 const dot3  = (a:Vector3, b: Vector3): number => a.reduce( (acc, cur, i) => acc+cur*b[i])
