@@ -49,7 +49,7 @@ export function minMaxArray(array: IArray): Array<number> {
 /**
  * @category Array
  */
-export function normalize(array: IArray): IArray {
+export function normalizeArray(array: IArray): IArray {
     const m = minMaxArray(array)
     return array.map( v => (v-m[0])/(m[1]-m[0]) )
 }

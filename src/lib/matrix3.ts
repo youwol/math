@@ -1,4 +1,4 @@
-import { Vector3 } from "./vector3"
+import { Vector3 } from "./vectors"
 
 /**
  * @category Matrix
@@ -15,6 +15,22 @@ export function det(m: Matrix3) {
         m[0][1] * m[1][2] * m[2][0] + 
         m[0][2] * m[1][0] * m[2][1] - 
         m[0][2] * m[1][1] * m[2][0]
+}
+
+export function multVec(e: Matrix3, v: Vector3): Vector3 {
+    const x = v[0], y = v[1], z = v[2]
+    return [
+        e[0][0] * x + e[0][1] * y + e[0][2] * z,
+        e[1][0] * x + e[1][1] * y + e[1][2] * z,
+        e[2][0] * x + e[2][1] * y + e[2][2] * z]
+}
+
+export function multTVec(e: Matrix3, v: Vector3): Vector3 {
+    const x = v[0], y = v[1], z = v[2]
+    return [
+        e[0][0] * x + e[1][0] * y + e[2][0] * z,
+        e[0][1] * x + e[1][1] * y + e[2][1] * z,
+        e[0][2] * x + e[1][2] * y + e[2][2] * z]
 }
 
 /**

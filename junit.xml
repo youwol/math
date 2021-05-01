@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="9" failures="0" errors="0" time="4.571">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-04-22T06:19:03" time="3.072" tests="5">
+<testsuites name="jest tests" tests="9" failures="0" errors="0" time="1.735">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-05-01T09:42:07" time="0.56" tests="1">
+    <testcase classname=" Mat3 test " name=" Mat3 test " time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-05-01T09:42:07" time="0.569" tests="5">
     <testcase classname=" bilerp" name=" bilerp" time="0.002">
     </testcase>
     <testcase classname=" Test interpolate with scalar in INCREASING direction" name=" Test interpolate with scalar in INCREASING direction" time="0.001">
     </testcase>
-    <testcase classname=" Test interpolate with vector3 in INCREASING direction" name=" Test interpolate with vector3 in INCREASING direction" time="0.001">
+    <testcase classname=" Test interpolate with vector3 in INCREASING direction" name=" Test interpolate with vector3 in INCREASING direction" time="0">
     </testcase>
     <testcase classname=" Test interpolate with scalar in DECREASING direction" name=" Test interpolate with scalar in DECREASING direction" time="0.001">
     </testcase>
-    <testcase classname=" Test interpolate with vector3 in DECREASING direction" name=" Test interpolate with vector3 in DECREASING direction" time="0">
+    <testcase classname=" Test interpolate with vector3 in DECREASING direction" name=" Test interpolate with vector3 in DECREASING direction" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-04-22T06:19:03" time="3.074" tests="3">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-05-01T09:42:07" time="0.57" tests="3">
     <testcase classname=" Eigen 1" name=" Eigen 1" time="0.003">
     </testcase>
-    <testcase classname=" Eigen 2" name=" Eigen 2" time="0.001">
+    <testcase classname=" Eigen 2" name=" Eigen 2" time="0">
     </testcase>
     <testcase classname=" Eigen convention" name=" Eigen convention" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-04-22T06:19:03" time="3.142" tests="1">
-    <testcase classname=" Mat3 test " name=" Mat3 test " time="0.003">
     </testcase>
   </testsuite>
 </testsuites>

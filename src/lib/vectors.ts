@@ -1,8 +1,9 @@
-interface IVector {
+export interface IVector {
     [i: number]: number
     reduce(cb: Function, init: number): any
     map(cb: Function): IVector
     forEach(cb: Function): void
+    [Symbol.iterator]()
 }
 
 /**
@@ -19,6 +20,16 @@ export type Vector3 = [number,number,number]
  * @category Vector
  */
 export type Vector4 = [number,number,number,number]
+
+/**
+ * @category Vector
+ */
+ export type Vector6 = [number,number,number,number,number,number]
+
+ /**
+ * @category Vector
+ */
+  export type Vector9 = [number,number,number,number,number,number,number,number,number]
 
 /**
  * @category Vector
@@ -76,3 +87,13 @@ export const cross  = (v: Vector3, w: Vector3): Vector3 => {
     let z = v[0] * w[1] - v[1] * w[0]
     return [x, y, z]
 }
+
+/**
+ * @category Vector
+ */
+export const normalize = (v: IVector): IVector => {
+    const n = norm(v)
+    return [v[0]/n, v[1]/n, v[2]/n]
+}
+
+export const clone = (v: IVector): IVector => [...v]
