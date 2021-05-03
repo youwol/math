@@ -4,6 +4,7 @@ export interface IVector {
     map(cb: Function): IVector
     forEach(cb: Function): void
     [Symbol.iterator]()
+    readonly length: number
 }
 
 /**

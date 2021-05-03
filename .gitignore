@@ -1,4 +1,11 @@
 node_modules
-dist
+**/node_modules/**/*
+coverage/
+junit.xml
+src/auto_generated.ts
+
+dist/lib
+dist/@youwol
+dist/index.d.ts
+
 IDEAS.md
-coverage
