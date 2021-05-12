@@ -1,9 +1,10 @@
-interface IArray {
-    [i: number]: number
-    length: number
-    map(cb: Function): IArray
-    filter(cb: Function): IArray
-}
+import { IArray } from '@youwol/dataframe'
+// interface IArray {
+//     [i: number]: number
+//     length: number
+//     map(cb: Function): IArray
+//     filter(cb: Function): IArray
+// }
 
 /**
  * @category Array

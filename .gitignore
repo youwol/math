@@ -5,6 +5,7 @@ junit.xml
 src/auto_generated.ts
 
 dist/lib
+dist/src
 dist/@youwol
 dist/index.d.ts
 

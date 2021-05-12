@@ -1,13 +1,13 @@
-import { Matrix3, rotate } from '../lib'
+import { mat } from '../lib'
 
 test('Mat3 test ', () => {
     let m = [
         [1, 2, 3],
         [2, 4, 5],
         [3, 5, 6]
-    ] as Matrix3
+    ] as mat.Matrix3
   
-    m = rotate(m, 45, 'z')
+    m = mat.rotate(m, 45, 'z')
   
     const expected = [
       45 / 10,

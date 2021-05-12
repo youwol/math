@@ -1,4 +1,4 @@
-import { norm, Vector3 } from "./vectors"
+import { vec } from "./vectors"
 
 /**
  * Rotate a vector 
@@ -7,8 +7,8 @@ import { norm, Vector3 } from "./vectors"
  * @param v The vector to rotate
  * @returns The rotated vector (new instance)
  */
- export function rotateAxis(axis: Vector3, angle: number, v: Vector3) {
-    const nor = norm(axis)
+ export function rotateAxis(axis: vec.Vector3, angle: number, v: vec.Vector3) {
+    const nor = vec.norm(axis)
     const q = [0,0,0,1]
     if (nor > 1e-9) {
         const sha = Math.sin(angle*0.5)/nor

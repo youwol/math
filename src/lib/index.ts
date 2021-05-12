@@ -1,3 +1,5 @@
+export * from "./dataframe"
+
 export * from "./eigen"
 export * from "./barycentric"
 export * from "./interpolations"
@@ -6,5 +8,5 @@ export * from "./quaternion"
 export * from "./matrix3"
 export * from "./vectors"
 export * from "./arrays"
-export * from "./stats"
+//export * from "./stats"
 export * from "./rotateAxis"

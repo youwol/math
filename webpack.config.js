@@ -25,14 +25,15 @@ module.exports = {
         ]
     },
     externals: [{
-        'rxjs': "rxjs",
-        'rxjs/operators': {
-            commonjs:'rxjs/operators',
-            commonjs2:'rxjs/operators',
-            root:['rxjs','operators']
-        },
-        '@youwol/flux-lib-core': "@youwol/flux-lib-core",
-        '@youwol/flux-view': "@youwol/flux-view"
+        // 'rxjs': "rxjs",
+        // 'rxjs/operators': {
+        //     commonjs:'rxjs/operators',
+        //     commonjs2:'rxjs/operators',
+        //     root:['rxjs','operators']
+        // },
+        // '@youwol/flux-lib-core': "@youwol/flux-lib-core",
+        // '@youwol/flux-view': "@youwol/flux-view"
+        '@youwol/dataframe': '@youwol/dataframe'
     }],
     module: {
         rules: [
