@@ -37,7 +37,7 @@ export namespace vec {
     /**
      * @category Vector
      */
-    export const create = (v1: IVector, v2: IVector) => v2.map( (v,i) => v-v2[i] )
+    export const create = (v1: IVector, v2: IVector) => v2.map( (v,i) => v-v1[i] )
 
     /**
      * @category Vector
