@@ -19,6 +19,7 @@ export * from './tagNaN'
 export * from './rand'
 export * from './round'
 export * from './trunc'
+export * from './minMax'
 
 //export * from './interpolate'
 
