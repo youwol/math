@@ -1,13 +1,13 @@
-import { ASerie, createSerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @category Dataframe
  */
-export const invert = (s: ASerie): ASerie => {
+export const invert = (s: Serie): Serie => {
     if (s===undefined) throw new Error ('series is undefined')
 
-    return createSerie({
-        data: s.array.map( v => 1/v ),
+    return Serie.create({
+        array: s.array.map( v => 1/v ),
         itemSize: s.itemSize
     })
 }

@@ -1,9 +1,9 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @category Dataframe
  */
-export const mean = (s: ASerie): number|number[] => {
+export const mean = (s: Serie): number|number[] => {
     if (s===undefined) throw new Error ('series is undefined')
 
     const n = s.itemSize

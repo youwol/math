@@ -1,4 +1,4 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @example
@@ -9,7 +9,7 @@ import { ASerie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
-export const rand = (a: ASerie, min=0, max=1) => {
+export const rand = (a: Serie, min=0, max=1) => {
     const delta = max-min
     if (a.itemSize===1) {
         return a.map( v => min + delta*Math.random() )

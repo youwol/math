@@ -1,10 +1,10 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * Perform the sum of items of a Serie
  * @category Dataframe
  */
-export const sum = (a: ASerie): number | number[] => {
+export const sum = (a: Serie): number | number[] => {
     if (a.itemSize === 1) {
         let r = 0
         a.forEach( v => r += v )

@@ -1,11 +1,11 @@
-import { array, ASerie } from '@youwol/dataframe'
+import { array, Serie } from '@youwol/dataframe'
 
 /**
  * If itemSize is > 1, normalize each items, otherwize
  * normalize the serie (since itemSize=1)
  * @category Dataframe
  */
- export const normalize = (s: ASerie): ASerie => {
+ export const normalize = (s: Serie): Serie => {
     if (s===undefined) throw new Error ('series is undefined')
     
     if (s.itemSize ===1) {

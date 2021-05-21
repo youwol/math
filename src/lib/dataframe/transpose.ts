@@ -1,10 +1,10 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * Only transpose matrix in the form of arrays of size 9
  * @category Dataframe
  */
- export const transpose = (s: ASerie) => {
+ export const transpose = (s: Serie) => {
     if (s === undefined) return undefined
     if (s.itemSize!==9) throw new Error('items size should be 9 only (for now)')
 

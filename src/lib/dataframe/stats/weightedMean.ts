@@ -1,9 +1,9 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @category Dataframe
  */
-export const weightedMean = (s: ASerie, w: ASerie): number|number[] => {
+export const weightedMean = (s: Serie, w: Serie): number|number[] => {
     if (s===undefined) throw new Error ('s is undefined')
     if (w===undefined) throw new Error ('w is undefined')
     if (w.count !== s.count) throw new Error (`count mismatch for s (${s.count}) and w (${w.count})`)

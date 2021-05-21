@@ -1,4 +1,4 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 // See https://stackoverflow.com/questions/54328275/math-js-is-slow-to-multiply-2-big-matrices ?
 // See https://github.com/josdejong/mathjs
@@ -54,7 +54,7 @@ import { ASerie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
- export const mult = (s: ASerie, ...args: (ASerie|number)[]) => {
+ export const mult = (s: Serie, ...args: (Serie|number)[]) => {
     if (s === undefined) return undefined
     if (!args) throw new Error('cannot multiply undefined to s')
 

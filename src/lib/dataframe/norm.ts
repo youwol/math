@@ -1,16 +1,16 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @category Dataframe
  */
- export const norm = (s: ASerie) => {
+ export const norm = (s: Serie) => {
     return norm2(s).map( v => Math.sqrt(v) )
 }
 
 /**
  * @category Dataframe
  */
- export const norm2 = (s: ASerie) => {
+ export const norm2 = (s: Serie) => {
     if (s===undefined) throw new Error ('series is undefined')
 
     const r = s.image(s.count, 1)

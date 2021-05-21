@@ -1,9 +1,9 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @category Dataframe
  */
-export const trunc = (a: ASerie) => {
+export const trunc = (a: Serie) => {
     if (a.itemSize === 1) {
         return a.map( v => Math.trunc(v) )
     }

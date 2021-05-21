@@ -1,4 +1,4 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * Subtract several Series to generate a new one
@@ -12,7 +12,7 @@ import { ASerie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
- export const sub = (s: ASerie, ...others: (ASerie|number)[]) => {
+ export const sub = (s: Serie, ...others: (Serie|number)[]) => {
     if (s === undefined) throw new Error('serie s is undefined')
     if (!others) throw new Error('cannot subtract undefined to s')
 

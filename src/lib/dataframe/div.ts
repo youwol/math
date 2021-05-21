@@ -1,4 +1,4 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @example
@@ -8,7 +8,7 @@ import { ASerie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
- export const div = (s: ASerie, ...others: (ASerie|number)[]) => {
+ export const div = (s: Serie, ...others: (Serie|number)[]) => {
     if (s === undefined) return undefined
     if (!others) throw new Error('cannot divide undefined to s')
 

@@ -1,4 +1,4 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * Add several Series to generate a new one
@@ -21,7 +21,7 @@ import { ASerie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
-export const add = (series: ASerie[]) => {
+export const add = (series: Serie[]) => {
     if (series.length <= 1) throw new Error('nb series should be greater than 1')
 
     const r = series[0].clone(true)
@@ -44,7 +44,7 @@ export const add = (series: ASerie[]) => {
  * ```
  * @category Dataframe
  */
-export const addNumber = (serie: ASerie, a: number) => {
+export const addNumber = (serie: Serie, a: number) => {
     const r = serie.clone(false)
     if (a===0) return r
     

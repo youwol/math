@@ -1,5 +1,5 @@
 import { sub, mult } from "../"
-import { ASerie } from "@youwol/dataframe"
+import { Serie } from "@youwol/dataframe"
 import { mean } from "./mean"
 
 /**
@@ -19,7 +19,7 @@ import { mean } from "./mean"
  * by its magnitude the strength of the linear relation.
  * @category Dataframe
  */
-export const covariance = (x: ASerie, y: ASerie): number => {
+export const covariance = (x: Serie, y: Serie): number => {
     if (x.length!==y.length) throw new Error('x and y must have the same length')
     if (x.itemSize !==1) throw new Error('x must have itemSize = 1')
     if (y.itemSize !==1) throw new Error('y must have itemSize = 1')

@@ -1,4 +1,4 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 
 /**
@@ -9,7 +9,7 @@ import { ASerie } from '@youwol/dataframe'
  * </ul>
  * @category Dataframe
  */
- export function trace(s: ASerie) {
+ export function trace(s: Serie) {
     if (s === undefined) throw new Error ('series is undefined')
     if (s.itemSize!==1 && s.itemSize!==6 && s.itemSize!==9) throw new Error ('item size should be 1, 6 or 9')
 

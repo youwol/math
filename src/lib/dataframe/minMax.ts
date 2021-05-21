@@ -1,4 +1,4 @@
-import { array, ASerie } from '@youwol/dataframe'
+import { array, Serie } from '@youwol/dataframe'
 
 /**
  * Get the min and max of a Serie.
@@ -6,7 +6,7 @@ import { array, ASerie } from '@youwol/dataframe'
  * is the itemSize.
  * @category Dataframe
  */
- export const minMax = (s: ASerie): number[] => {
+ export const minMax = (s: Serie): number[] => {
     if (s===undefined) throw new Error ('series is undefined')
     
     if (s.itemSize ===1) {

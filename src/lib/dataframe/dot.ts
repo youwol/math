@@ -1,10 +1,10 @@
-import { vector, ASerie, Serie, map } from '@youwol/dataframe'
+import { vector, Serie, map } from '@youwol/dataframe'
 import { vec } from '../vectors'
 
 /**
  * @category Dataframe
  */
-export const dot = (a: ASerie, b: ASerie | vec.IVector) => {
+export const dot = (a: Serie, b: Serie | vec.IVector) => {
     if (a===undefined) throw new Error ('serie a is undefined')
     if (b===undefined) throw new Error ('serie or Vector b is undefined')
 

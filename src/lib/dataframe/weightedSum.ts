@@ -1,9 +1,9 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 import { add } from "./add"
 import { mult } from "./mult"
 
 /**
- * Return a weighted sum of [[ASerie]]s
+ * Return a weighted sum of [[Serie]]s
  * @example
  * ```ts
  * // performs: 1*S1 + 2*S2 + 3*S3
@@ -22,7 +22,7 @@ import { mult } from "./mult"
  * ```
  * @category Dataframe
  */
-export const weightedSum = (data: ASerie[], alpha: number[]): ASerie => {
+export const weightedSum = (data: Serie[], alpha: number[]): Serie => {
     if (alpha.length !== data.length) throw new Error(`data length (${data.length}) should be equal to alpha length (${alpha.length})`)
     return add( data.map( (d,i) => mult(d, alpha[i])) )
 }

@@ -1,4 +1,4 @@
-import { ASerie } from '@youwol/dataframe'
+import { Serie } from '@youwol/dataframe'
 
 /**
  * @example
@@ -9,7 +9,7 @@ import { ASerie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
-export const tagNaN = (a: ASerie, fn: Function) => {
+export const tagNaN = (a: Serie, fn: Function) => {
     if (a.itemSize === 1) {
         return a.map( (item,i) => fn(item,i,a) ? Number.NaN : item)
     }
