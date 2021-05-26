@@ -29,27 +29,32 @@ import { Serie } from '@youwol/dataframe'
 
 /**
  * @example
- * Perform: `a = b + c + d` where b, c and d are vectors of size 3
+ * Perform: `a = b * c` where b, c and d are vectors of size 3
  * ```ts
- * let df = new DataFrame()
- *      .set('b', createSerie(new Array(20).fill(2), 3))
- *      .set('c', createSerie(new Array(20).fill(3), 3))
- *      .set('d', createSerie(new Array(20).fill(3), 3))
+ * let df = DataFrame.create({
+ *      series: {
+ *          b: createSerie(new Array(20).fill(2), 3)),
+ *          c: createSerie(new Array(20).fill(3), 3))
+ *      }
+ * })
  * 
- * const a = mult( df.get('b'), df.get('c'), df.get('d') )
+ * const a = mult( df.series['b'], df.series['c'] )
  * ```
  * @example
  * Perform: `a = 0.1*b + 0.3*c + 0.7*d`
  * ```ts
- * let df = new DataFrame()
- *      .set('b', createSerie(new Array(20).fill(2), 6))
- *      .set('c', createSerie(new Array(20).fill(3), 6))
- *      .set('d', createSerie(new Array(20).fill(3), 6))
+ * let df = DataFrame.create({
+ *      series: {
+ *          b: createSerie(new Array(20).fill(2), 3)),
+ *          c: createSerie(new Array(20).fill(3), 3)),
+ *          c: createSerie(new Array(20).fill(4), 3))
+ *      }
+ * })
  * 
  * const a = add(
- *     mult( df.get('b'), 0.1),
- *     mult( df.get('c'), 0.3),
- *     mult( df.get('d'), 0.7)
+ *     mult( df.series['b'], 0.1),
+ *     mult( df.series['c'], 0.3),
+ *     mult( df.series['d'], 0.7)
  * )
  * ```
  * @category Dataframe

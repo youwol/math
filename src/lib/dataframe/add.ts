@@ -5,19 +5,19 @@ import { Serie } from '@youwol/dataframe'
  * @example
  * ```ts
  * // perform: a = b + c
- * const a = add(
+ * const a = add([
  *     df.get('b'),
  *     df.get('c'),
- * )
+ * ])
  * ```
  * @example
  * ```ts
  * // perform: a = 0.1*b + 0.3*c + 0.7*d
- * const a = add(
+ * const a = add([
  *     mult( df.get('b'), 0.1),
  *     mult( df.get('c'), 0.3),
  *     mult( df.get('d'), 0.7)
- * )
+ * ])
  * ```
  * @category Dataframe
  */
