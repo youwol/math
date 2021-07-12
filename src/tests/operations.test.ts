@@ -6,8 +6,11 @@ import {
 import {
     dot, add, mult, eigenValue, trace, sub, norm, div, transpose, 
     eigenVector, square, abs, normalize, cross, addNumber, weightedSum,
-    sum
+    sum,
+    unitInterval,
+    closeTo
 } from '../lib/dataframe'
+import { equals } from '../lib/dataframe/equals'
 
 test('operation add', () => {
     let df = DataFrame.create({
@@ -277,17 +280,27 @@ test('operation square', () => {
     expect( t.itemAt(1) ).toEqual([16,25])
 })
 
-test('operation normalize', () => {
+test('operation unitInterval', () => {
     let s = Serie.create( {array: [1,2,3], itemSize: 3})
-    let t = normalize( s )
+    let t = unitInterval( s )
     expect( t.itemAt(0) ).toEqual([0, 1/2, 1])
     
 
     s = Serie.create( {array: [1, 2, 3], itemSize: 1})
-    t = normalize( s )
+    t = unitInterval( s )
     expect( t.itemAt(0) ).toEqual(0)
     expect( t.itemAt(1) ).toEqual(1/2)
     expect( t.itemAt(2) ).toEqual(1)
+})
+
+test('operation normalize', () => {
+    let s = Serie.create( {array: [1,2,3], itemSize: 3})
+    let t = normalize( s )
+    const r = t.itemAt(0)
+    const L = Math.sqrt(1+4+9)
+    expect( r[0] ).toBeCloseTo(1/L)
+    expect( r[1] ).toBeCloseTo(2/L)
+    expect( r[2] ).toBeCloseTo(3/L)
 })
 
 test('operation cross', () => {
@@ -410,4 +423,41 @@ test('weightedSum', () => {
     const r = weightedSum(S, [1,2,3])
     // Note the r.forEach and not the r.array.forEach as above
     r.forEach( (v,i) => expect(v).toEqual(sol[i]) )
+})
+
+test('equals', () => {
+    {
+        const S1 = Serie.create( {array: [1,2,3], itemSize: 1})
+        const S2 = Serie.create( {array: [1,2,3], itemSize: 1})
+        expect( equals(S1,S2) ).toBeTruthy()
+    }
+    {
+        const S1 = Serie.create( {array: [1,2,3], itemSize: 1})
+        const S2 = Serie.create( {array: [0,2,3], itemSize: 1})
+        expect( equals(S1,S2) ).toBeFalsy()
+    }
+    {
+        const S1 = Serie.create( {array: [1,2,3,4], itemSize: 1})
+        const S2 = Serie.create( {array: [0,2,3], itemSize: 1})
+        expect( equals(S1,S2) ).toBeFalsy()
+    }
+    {
+        const S1 = Serie.create( {array: [1,2,3], itemSize: 3})
+        const S2 = Serie.create( {array: [0,2,3], itemSize: 1})
+        expect( equals(S1,S2) ).toBeFalsy()
+    }
+})
+
+test('closeTo', () => {
+    {
+        const S1 = Serie.create( {array: [1.01, 2, 3], itemSize: 1})
+        const S2 = Serie.create( {array: [1   , 2, 3], itemSize: 1})
+        expect( closeTo(S1,S2, 0.02) ).toBeTruthy()
+        expect( closeTo(S1,S2, 0.001) ).toBeFalsy()
+    }
+    {
+        const S1 = Serie.create( {array: [1.01, 2, 3], itemSize: 3})
+        const S2 = Serie.create( {array: [1   , 2, 3], itemSize: 1})
+        expect( closeTo(S1,S2) ).toBeFalsy()
+    }
 })

@@ -1,8 +1,8 @@
 import { array, Serie } from '@youwol/dataframe'
 
 /**
- * If itemSize is > 1, normalize each items, otherwize
- * normalize the serie (since itemSize=1)
+ * If itemSize is > 1, normalize each item independently, otherwize
+ * normalize the serie (since itemSize=1).
  * @category Dataframe
  */
  export const normalize = (s: Serie): Serie => {
@@ -16,9 +16,7 @@ import { array, Serie } from '@youwol/dataframe'
     }
 
     return s.map( item => {
-        const mM = array.minMax(item)
-        const m = mM[0]
-        const l = 1/(mM[1]-m)
-        return item.map( v => l*(v-m) )
+        const l = 1 / Math.sqrt( item.reduce( (acc,v) => acc+v*v ) )
+        return item.map( v => v*l )
     })
 }
