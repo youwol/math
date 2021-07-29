@@ -16,7 +16,7 @@ import { array, Serie } from '@youwol/dataframe'
     }
 
     return s.map( item => {
-        const l = 1 / Math.sqrt( item.reduce( (acc,v) => acc+v*v ) )
+        const l = 1 / Math.sqrt( item.reduce( (acc,v) => acc+v*v, 0 ) )
         return item.map( v => v*l )
     })
 }

@@ -294,7 +294,7 @@ test('operation unitInterval', () => {
 })
 
 test('operation normalize', () => {
-    let s = Serie.create( {array: [1,2,3], itemSize: 3})
+    let s = Serie.create( {array: [1,2,3, 1,2,3, 1,2,3], itemSize: 3})
     let t = normalize( s )
     const r = t.itemAt(0)
     const L = Math.sqrt(1+4+9)
