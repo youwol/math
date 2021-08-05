@@ -1,5 +1,7 @@
 import { covariance, mean, weightedMean } from '../lib/dataframe/stats'
 import { Serie } from '@youwol/dataframe'
+import { IQR, isOutliers, notOutliers, outliers, q25, q75 } from '../lib/dataframe/stats/quantile'
+import { describe as statDescribe } from '../lib/dataframe/stats'
 
 test('operation mean itemSize=3', () => {
     const serie = Serie.create( {array: new Array(9).fill(0).map ( (_,i) => i), itemSize: 3})
@@ -45,4 +47,64 @@ test('stats cov', () => {
     c = covariance(x,y)
     expect(c).toBeCloseTo(-0.011238)
     
+})
+
+test('stats quantile', () => {
+    const s = Serie.create({
+        array: [57, 57, 57, 58, 63, 66, 66, 67, 67, 68, 69, 70, 70, 70, 70, 72, 73, 75, 75, 76, 76, 78, 79, 81],
+        itemSize:1
+    })
+
+    const Q1 = q25(s)
+    const Q3 = q75(s)
+    expect( q25(s) ).toEqual(66)
+    expect( q75(s) ).toEqual(75)
+})
+
+test('stats outliers', () => {
+    const s = Serie.create({
+        array: [57, 57, 57, 57, 58, 58, 59, 63, 66, 66, 67, 67, 68, 69, 70, 70, 70, 70, 72, 73, 75, 75, 76, 76, 78, 79, 81],
+        itemSize:1
+    })
+
+    expect( q25(s) ).toEqual(61)
+    expect( q75(s) ).toEqual(74)
+    expect( IQR(s) ).toEqual(13)
+
+    expect(outliers(s, 0).array).toEqual([
+        57, 57, 57, 57, 58, 58,
+        59, 75, 75, 76, 76, 78,
+        79, 81
+    ])
+    expect(notOutliers(s, 0).array).toEqual([
+        63, 66, 66, 67, 67, 68,
+        69, 70, 70, 70, 70, 72,
+        73
+    ])
+    expect(isOutliers(s, 0).array).toEqual([
+        true,  true,  true,  true,  true,
+        true,  true,  false, false, false,
+        false, false, false, false, false,
+        false, false, false, false, false,
+        true,  true,  true,  true,  true,
+        true,  true
+    ])
+})
+
+test('stats describe', () => {
+    const s = Serie.create({
+        array: [57, 57, 57, 57, 58, 58, 59, 63, 66, 66, 67, 67, 68, 69, 70, 70, 70, 70, 72, 73, 75, 75, 76, 76, 78, 79, 81],
+        itemSize:1
+    })
+    const d = statDescribe(s)
+    console.log(d)
+
+    expect(d.count).toEqual(27)
+    expect(d.mean).toBeCloseTo( 67.92592592592592)
+    expect(d.std).toBeCloseTo( 7.529051048213826)
+    expect(d.min).toEqual( 57)
+    expect(d.q25).toEqual( 61)
+    expect(d.q50).toEqual( 69)
+    expect(d.q75).toEqual( 74)
+    expect(d.max).toEqual( 81)
 })

@@ -23,6 +23,7 @@ export * from './trunc'
 export * from './minMax'
 export * from './equals'
 export * from './closeTo'
+export * from './getNaN'
 
 //export * from './interpolate'
 

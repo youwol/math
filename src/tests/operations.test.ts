@@ -293,16 +293,6 @@ test('operation unitInterval', () => {
     expect( t.itemAt(2) ).toEqual(1)
 })
 
-test('operation normalize', () => {
-    let s = Serie.create( {array: [1,2,3, 1,2,3, 1,2,3], itemSize: 3})
-    let t = normalize( s )
-    const r = t.itemAt(0)
-    const L = Math.sqrt(1+4+9)
-    expect( r[0] ).toBeCloseTo(1/L)
-    expect( r[1] ).toBeCloseTo(2/L)
-    expect( r[2] ).toBeCloseTo(3/L)
-})
-
 test('operation cross', () => {
     let a = Serie.create( {array: [2,3,4], itemSize: 3})
     let b = Serie.create( {array: [5,6,7], itemSize: 3})

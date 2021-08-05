@@ -23,3 +23,45 @@ import { array, Serie } from '@youwol/dataframe'
     })
     return [...m, ...M]
 }
+
+/**
+ * Get the min of a Serie.
+ * The returned type is the min or an array of mins (if itemSize>1)
+ * @category Dataframe
+ */
+ export const min = (s: Serie): number | number[] => {
+    if (s===undefined) throw new Error ('series is undefined')
+    
+    if (s.itemSize ===1) {
+        return array.min(s.array)
+    }
+
+    const m = new Array(s.itemSize).fill(Number.POSITIVE_INFINITY)
+    s.forEach( item => {
+        item.forEach( (v,i) => {
+            if (v < m[i]) m[i] = v
+        })
+    })
+    return m
+}
+
+/**
+ * Get the max of a Serie.
+ * The returned type is the max or an array of maxs (if itemSize>1)
+ * @category Dataframe
+ */
+ export const max = (s: Serie): number | number[] => {
+    if (s===undefined) throw new Error ('series is undefined')
+    
+    if (s.itemSize ===1) {
+        return array.max(s.array)
+    }
+
+    const m = new Array(s.itemSize).fill(Number.POSITIVE_INFINITY)
+    s.forEach( item => {
+        item.forEach( (v,i) => {
+            if (v > m[i]) m[i] = v
+        })
+    })
+    return m
+}
