@@ -24,6 +24,7 @@ export * from './minMax'
 export * from './equals'
 export * from './closeTo'
 export * from './getNaN'
+export * from './inv'
 
 //export * from './interpolate'
 
