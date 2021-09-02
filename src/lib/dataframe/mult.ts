@@ -28,6 +28,9 @@ import { Serie } from '@youwol/dataframe'
 */
 
 /**
+ * Multiply series between them, item component  by item component.
+ * Do not confuse with [[multMat]]
+ * @see [[multMat]]
  * @example
  * Perform: `a = b * c` where b, c and d are vectors of size 3
  * ```ts
@@ -59,25 +62,23 @@ import { Serie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
- export const mult = (s: Serie, ...args: (Serie|number)[]) => {
+export const mult = (s: Serie, ...args: (Serie|number)[]) => {
     if (s === undefined) return undefined
     if (!args) throw new Error('cannot multiply undefined to s')
 
     const r = s.clone()
 
-    if (args) {
-        args.forEach (o => {
-            if (typeof(o) === 'number') {
-                r.array.forEach( (_,i) => r.array[i] *= o )
+    args.forEach (o => {
+        if (typeof(o) === 'number') {
+            r.array.forEach( (_,i) => r.array[i] *= o )
+        }
+        else {
+            if (o.length !== s.length) {
+                throw new Error(`size mistmatch. Cannot multiply 2 Series of different sizes (${o.length} != ${s.length})`)
             }
-            else {
-                if (o.length !== s.length) {
-                    throw new Error(`size mistmatch. Cannot multiply 2 Series of different sizes (${o.length} != ${s.length})`)
-                }
-                o.array.forEach( (v,i) => r.array[i] *= v )
-            }
-        })
-    }
+            o.array.forEach( (v,i) => r.array[i] *= v )
+        }
+    })
 
     return r
 }
