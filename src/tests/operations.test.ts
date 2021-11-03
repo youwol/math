@@ -1,6 +1,6 @@
 import { 
     createArray, createEmptySerie, Serie, DataFrame,
-    append, exists, map, reduce
+    append, exists, map, reduce, apply
 } from '@youwol/dataframe'
 
 import {
@@ -450,4 +450,23 @@ test('closeTo', () => {
         const S2 = Serie.create( {array: [1   , 2, 3], itemSize: 1})
         expect( closeTo(S1,S2) ).toBeFalsy()
     }
+})
+
+test('neutral stress points', () => {
+    const S1 = Serie.create( {array: [1.05, 2, 3], itemSize: 1})
+    const S2 = Serie.create( {array: [1   , 2, 3], itemSize: 1})
+    const S3 = Serie.create( {array: [1   , 2, 3], itemSize: 1})
+
+    const xp = 5 // 5%
+    const d2 = mult( abs(sub( abs(div(S1,S2)) , 1)), 100 )
+    const d3 = mult( abs(sub( abs(div(S1,S3)) , 1)), 100 )
+    const  d = apply( d2, (item, i) => (item<xp && d3.itemAt(i)<xp)?1:0 )
+    console.log(d)
+})
+
+test('', () => {
+    const s1 = Serie.create( {array: [1, 2, 3], itemSize: 1})
+    const s2 = Serie.create( {array: [4, 5, 6], itemSize: 1})
+    const s3 = Serie.create( {array: [7, 8, 9], itemSize: 1})
+    console.log( reduce([s1,s2,s3], ([s1, s2, s3]) => (s2-s3)/(s1-s3) ) )
 })
