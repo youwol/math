@@ -1,4 +1,4 @@
-import { vector, Serie, map } from '@youwol/dataframe'
+import { vector, Serie, map, IArray } from '@youwol/dataframe'
 import { vec } from '../vectors'
 
 /**
@@ -8,8 +8,9 @@ export const dot = (a: Serie, b: Serie | vec.IVector) => {
     if (a===undefined) throw new Error ('serie a is undefined')
     if (b===undefined) throw new Error ('serie or Vector b is undefined')
 
-    if (b instanceof Serie) {
-        return map( [a, b], ([v1, v2]) => vector(v1).dot( vector(v2) ) )
+    if (Serie.isSerie(b) === true) {
+    //if ('array' in b) {
+        return map( [a, b as Serie], ([v1, v2]) => vector(v1).dot( vector(v2) ) )
     }
     return map( a, v1 => vector(v1).dot( vector(b as number[]) ) )
 }
