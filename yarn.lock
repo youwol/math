@@ -807,9 +807,9 @@
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
 "@youwol/dataframe@0.x":
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/@youwol/dataframe/-/dataframe-0.0.26.tgz#eb2b2947d1bf4e760886a215502cd93beb8da4b9"
-  integrity sha512-ISzEKtMLKyzuxN7qaFM6p+N2034OH5jbPMgKijXli6PWkqv6EhBH2AtbU9ZMijgYegh1tcJd/E1NhKKPO00FYw==
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@youwol/dataframe/-/dataframe-0.0.28.tgz#11db03aee56a202096c27312c9d99cbbc0af08ea"
+  integrity sha512-mH4Lzi548UAdn2jnkRQwiPjfhA6kAWCsH61ZRrhNcq4BNx+yv2xXNsbxqwZcEBX8qpdW8Z5aYJxjqCDCtBGf3g==
 
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"

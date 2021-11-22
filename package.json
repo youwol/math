@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "14.14.16",
-    "@youwol/dataframe": "0.0.27",
+    "@youwol/dataframe": "0.x",
     "awesome-typescript-loader": "5.2.1",
     "eslint": "7.16.0",
     "eslint-loader": "4.0.2",

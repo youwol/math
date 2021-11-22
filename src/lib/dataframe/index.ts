@@ -32,3 +32,4 @@ export * from './determinant'
 //export * from './interpolate'
 
 export * from './stats'
+export * from './decomposers'
