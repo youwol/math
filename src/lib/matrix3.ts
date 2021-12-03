@@ -8,6 +8,59 @@ export namespace mat {
     export type Matrix3 = [vec.Vector3, vec.Vector3, vec.Vector3]
 
     /**
+     * Unpack a linearized matrix (components in a vector) and return
+     * a double array matrix
+     * @example
+     * ```ts
+     * // sym matrix3
+     * const m = [1, 2, 3, 
+     *               4, 5, 
+     *                  6]
+     * const n = unpack(m)
+     * // will give
+     * // [
+     * //   [1, 2, 3],
+     * //   [2, 4, 5],
+     * //   [3, 5, 6]
+     * // ]
+     * ```
+     */
+    export function unpack(m: vec.Vector6 | vec.Vector9): Matrix3 {
+        if (m.length === 6) {
+            return [
+                [m[0], m[1], m[2]],
+                [m[1], m[3], m[4]],
+                [m[2], m[4], m[5]]
+            ]
+        }
+        return [
+            [m[0], m[1], m[2]],
+            [m[3], m[4], m[5]],
+            [m[6], m[7], m[8]]
+        ]
+    }
+
+    /**
+     * Pack a a double array matrix, i.e. return
+     * components in a vector
+     * @see [[unpack]]
+     */
+    export function pack(m: Matrix3, isSym = true): vec.Vector6 | vec.Vector9 {
+        if (isSym) {
+            return [
+                m[0][0], m[0][1], m[0][2], 
+                         m[1][1], m[1][2], 
+                                  m[2][2]
+            ]
+        }
+        return [
+            m[0][0], m[0][1], m[0][2], 
+            m[1][0], m[1][1], m[1][2], 
+            m[2][0], m[2][1], m[2][2]
+        ]
+    }
+
+    /**
      * @category Matrix
      */
     export function det(m: Matrix3) {

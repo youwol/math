@@ -175,18 +175,46 @@ export class Quaternion {
     // --------------------------------------------
 
     /**
-     * @return [xx,xy,xz,yy,yz,zz] the rotation matrix (symm)
+     * @return [xx,xy,xz,yy,yz,zz] the rotation matrix (symm) (?? should be antisym)
      */
-    toMatrix() {
+    toMatrix(): mat.Matrix3 {
         this.normalize()
         let q = this.q
-        let M = [0, 0, 0, 0, 0, 0]
-        M[0] = 1 - 2 * q[1] ** 2 - 2 * q[2] ** 2
-        M[1] = 2 * q[0] * q[1] - 2 * q[2] * q[3]
-        M[2] = 2 * q[0] * q[2] + 2 * q[1] * q[3]
-        M[3] = 1 - 2 * q[0] ** 2 - 2 * q[2] ** 2
-        M[4] = 2 * q[1] * q[2] - 2 * q[0] * q[3]
-        M[5] = 1 - 2 * q[0] ** 2 - 2 * q[1] ** 2
+        
+        const M = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ] as mat.Matrix3
+
+        // M[0] = 1 - 2 * q[1] ** 2 - 2 * q[2] ** 2
+        // M[1] = 2 * q[0] * q[1] - 2 * q[2] * q[3]
+        // M[2] = 2 * q[0] * q[2] + 2 * q[1] * q[3]
+        // M[3] = 1 - 2 * q[0] ** 2 - 2 * q[2] ** 2
+        // M[4] = 2 * q[1] * q[2] - 2 * q[0] * q[3]
+        // M[5] = 1 - 2 * q[0] ** 2 - 2 * q[1] ** 2
+        // return M
+
+        const q0 = q[0]
+        const q1 = q[1]
+        const q2 = q[2]
+        const q3 = q[3]
+
+        // First row of the rotation matrix
+        M[0][0] = 2 * (q0 * q0 + q1 * q1) - 1
+        M[0][1] = 2 * (q1 * q2 - q0 * q3)
+        M[0][2] = 2 * (q1 * q3 + q0 * q2)
+        
+        // Second row of the rotation matrix
+        M[1][0] = 2 * (q1 * q2 + q0 * q3)
+        M[1][1] = 2 * (q0 * q0 + q2 * q2) - 1
+        M[1][2] = 2 * (q2 * q3 - q0 * q1)
+        
+        // Third row of the rotation matrix
+        M[2][0] = 2 * (q1 * q3 - q0 * q2)
+        M[2][1] = 2 * (q2 * q3 + q0 * q1)
+        M[2][2] = 2 * (q0 * q0 + q3 * q3) - 1
+        
         return M
     }
 

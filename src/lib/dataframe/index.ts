@@ -27,6 +27,8 @@ export * from './closeTo'
 export * from './getNaN'
 export * from './inv'
 export * from './rotate'
+export * from './translate'
+export * from './scale'
 export * from './determinant'
 
 //export * from './interpolate'

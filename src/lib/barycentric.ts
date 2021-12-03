@@ -1,7 +1,7 @@
 import { vec } from "./vectors"
 
-const dot2  = (a:vec.Vector2, b: vec.Vector2): number => a.reduce( (acc, cur, i) => acc+cur*b[i])
-const dot3  = (a:vec.Vector3, b: vec.Vector3): number => a.reduce( (acc, cur, i) => acc+cur*b[i])
+const dot2  = (a:vec.Vector2, b: vec.Vector2): number => a.reduce( (acc, cur, i) => acc+cur*b[i], 0)
+const dot3  = (a:vec.Vector3, b: vec.Vector3): number => a.reduce( (acc, cur, i) => acc+cur*b[i], 0)
 const from2 = (a:vec.Vector2, b: vec.Vector2):vec.Vector2      => [b[0]-a[0], b[1]-a[1]]
 const from3 = (a:vec.Vector3, b: vec.Vector3):vec.Vector3      => [b[0]-a[0], b[1]-a[1], b[2]-a[2]]
 
@@ -11,18 +11,54 @@ const from3 = (a:vec.Vector3, b: vec.Vector3):vec.Vector3      => [b[0]-a[0], b[
 export function barycentric2(p: vec.Vector2, a: vec.Vector2, b: vec.Vector2, c: vec.Vector2): vec.Vector3 {
     const v0 = from2(a, b)
     const v1 = from2(a, c)
-    const Vector2 = from2(a, p)
+    const v3 = from2(a, p)
     const d00 = dot2(v0,v0)
     const d01 = dot2(v0,v1)
     const d11 = dot2(v1,v1)
-    const d20 = dot2(Vector2,v0)
-    const d21 = dot2(Vector2,v1)
+    const d20 = dot2(v3,v0)
+    const d21 = dot2(v3,v1)
     const denom = 1 / (d00 * d11 - d01 * d01)
     const v = (d11 * d20 - d01 * d21)*denom
     const w = (d00 * d21 - d01 * d20)*denom
     const u = 1 - v - w
     return [u, v, w]
 }
+
+// class vec2 {
+//     static add(a, b) { return [ a[0] + b[0], a[1] + b[1] ] }
+//     static sub(a, b) { return [ a[0] - b[0], a[1] - b[1] ] }
+//     static scale(v, k) { return [ v[0] * k, v[1] * k ] }
+//     static l(v) { return Math.sqrt(v[0]*v[0] + v[1]*v[1]) }
+//     static distance(a, b) {
+//         const dx = b[0] - a[0]
+//         const dy = b[1] - a[1]
+//         return Math.sqrt(dx*dx + dy*dy)
+//     }
+//     static dot(a, b) { return a[0]*b[0] + a[1]*b[1] }
+//     static normalize(v) {
+//         var d = Math.sqrt(v[0]*v[0] + v[1]*v[1])
+//         return d > 0 ? [ v[0] / d, v[1] / d ] : v
+//     }
+//     static area(a, b) { return a[0]*b[1] - b[0]*a[1] }
+//     static angle(a, b) { return Math.acos(vec2.dot(a, b) / (vec2.l(a) * vec2.l(b))) }
+// }
+
+// export function _barycentric2(p: vec.Vector2, a: vec.Vector2, b: vec.Vector2, c: vec.Vector2) {
+//     var v0 = vec2.sub(b, a)
+//     var v1 = vec2.sub(b, a)
+//     var v2 = vec2.sub(p, a)
+//     //console.log(v0, v1, v2)
+//     var d00 = vec2.dot(v0, v0)
+//     var d01 = vec2.dot(v0, v1)
+//     var d11 = vec2.dot(v1, v1)
+//     var d20 = vec2.dot(v2, v0)
+//     var d21 = vec2.dot(v2, v1)
+//     var denom = d00 * d11 - d01 * d01
+//     var v = (d11 * d20 - d01 * d21) / denom
+//     var w = (d00 * d21 - d01 * d20) / denom
+//     var u = 1 - v - w
+//     return [u, v, w]
+// }
 
 /**
  * @category Barycentric
