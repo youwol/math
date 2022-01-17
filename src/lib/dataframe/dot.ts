@@ -14,3 +14,11 @@ export const dot = (a: Serie, b: Serie | vec.IVector) => {
     }
     return map( a, v1 => vector(v1).dot( vector(b as number[]) ) )
 }
+
+// declare module "@youwol/dataframe/src/lib/serie" {
+//     export interface Serie {
+//         dot(a: Serie | vec.IVector)
+//     }
+// }
+// export {}
+// Serie.prototype.dot = function (b: Serie | vec.IVector) { return dot(this, b) }

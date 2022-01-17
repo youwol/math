@@ -30,8 +30,8 @@ export * from './rotate'
 export * from './translate'
 export * from './scale'
 export * from './determinant'
-
 //export * from './interpolate'
-
 export * from './stats'
 export * from './decomposers'
+
+export * from './extensions'

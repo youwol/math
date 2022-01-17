@@ -1,4 +1,4 @@
-import { Serie } from '@youwol/dataframe'
+import { Serie, IArray } from '@youwol/dataframe'
 
 /**
  * @category Dataframe
