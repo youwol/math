@@ -40,6 +40,13 @@ export class MinMax {
     get value() {
         return this.m_
     }
+
+    /**
+     * Normalize a value (lerp) according to the min/max of this
+     */
+    normalize(v: number): number {
+        return (v-this.min)/(this.max-this.min)
+    }
   
     add(values: any) {
         if (Array.isArray(values)) {
@@ -53,5 +60,5 @@ export class MinMax {
             if (v>this.m_[1]) this.m_[1] = v
         }
         return this
-    }  
+    }
 }

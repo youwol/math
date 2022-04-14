@@ -33,5 +33,6 @@ export class PositionDecomposer implements Decomposer {
                 case this.names_[2] : return apply(serie, item => item[2] )//.setName(this.names_[2])
             }
         }
+        return undefined
     }
 }
