@@ -1,7 +1,7 @@
 import { covariance, mean, weightedMean } from '../lib/dataframe/stats'
 import { Serie } from '@youwol/dataframe'
 import { IQR, isOutliers, notOutliers, outliers, q25, q75 } from '../lib/dataframe/stats/quantile'
-import { describe as statDescribe } from '../lib/dataframe/stats'
+import { describe as statDescribe, bins } from '../lib/dataframe/stats'
 
 test('operation mean itemSize=3', () => {
     const serie = Serie.create( {array: new Array(9).fill(0).map ( (_,i) => i), itemSize: 3})
@@ -107,4 +107,30 @@ test('stats describe', () => {
     expect(d.q50).toEqual( 69)
     expect(d.q75).toEqual( 74)
     expect(d.max).toEqual( 81)
+})
+
+test('stats bons', () => {
+    const s = Serie.create({
+        array: [57, 57, 57, 58, 63, 66, 66, 67, 67, 68, 69, 70, 70, 70, 70, 72, 73, 75, 75, 76, 76, 78, 79, 81],
+        itemSize:1
+    })
+    
+    {
+        const a = bins(s, {nb: 10})
+        const nb = s.count
+        const sol = [4, 0, 1, 2, 3, 5, 2, 4, 1, 2]
+
+        expect(a.array).toEqual(sol)
+        expect(nb).toEqual(sol.reduce( (cur,v) => cur+v, 0))
+    }
+
+    {
+        const a = bins(s, {nb: 10, start: 0, stop: 100})
+        const nb = s.count
+        const sol = [0, 0,  0, 0, 0, 4, 7, 12, 1, 0]
+        
+        expect(a.array).toEqual(sol)
+        expect(nb).toEqual(sol.reduce( (cur,v) => cur+v, 0))
+    }
+
 })
