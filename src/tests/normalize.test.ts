@@ -9,7 +9,7 @@ test('operation normalize', () => {
 
     let s = Serie.create( {array: [1,1,1, 1,2,3, 1,0,0], itemSize: 3})
     let t = normalize( s )
-    console.log(t)
+    // console.log(t)
 
     r = t.itemAt(0)
     expect( r[0] ).toBeCloseTo(R1)

@@ -97,7 +97,7 @@ test('stats describe', () => {
         itemSize:1
     })
     const d = statDescribe(s)
-    console.log(d)
+    // console.log(d)
 
     expect(d.count).toEqual(27)
     expect(d.mean).toBeCloseTo( 67.92592592592592)

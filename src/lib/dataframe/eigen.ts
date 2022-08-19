@@ -7,7 +7,9 @@ import { eigen } from '../'
  */
 export const eigenValue = (s: Serie) => {
     if (s===undefined)    throw new Error ('series is undefined')
-    if (s.itemSize !== 6 && s.itemSize!==9) throw new Error('Series does not have itemSize = 6 or 9 (symmetric tensor [xx,xy,xz,yy,yz,zz] or [xx,xy,xz,yx,yy,yz,zx,zy,zz])')
+    if (s.itemSize !== 6 && s.itemSize!==9) {
+        throw new Error(`Series does not have itemSize = 6 or 9 (symmetric tensor [xx,xy,xz,yy,yz,zz] or [xx,xy,xz,yx,yy,yz,zx,zy,zz]). Got ${s.itemSize}`)
+    }
 
     const r     = s.image(s.count, 3)
     const count = s.count
@@ -31,7 +33,9 @@ export const eigenValue = (s: Serie) => {
  */
  export const eigenVector = (s: Serie) => {
     if (s===undefined)    throw new Error ('series is undefined')
-    if (s.itemSize !== 6 && s.itemSize!==9) throw new Error('Series does not have itemSize = 6 or 9 (symmetric tensor [xx,xy,xz,yy,yz,zz] or [xx,xy,xz,yx,yy,yz,zx,zy,zz])')
+    if (s.itemSize !== 6 && s.itemSize!==9) {
+        throw new Error(`Series does not have itemSize = 6 or 9 (symmetric tensor [xx,xy,xz,yy,yz,zz] or [xx,xy,xz,yx,yy,yz,zx,zy,zz]). Got ${s.itemSize}`)
+    }
 
     const r     = s.image(s.count, 9)
     const count = s.count

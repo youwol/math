@@ -46,7 +46,7 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
         a[5] = mat[8]
     } else {
         throw new Error(`matrix-array should be of size 6 (xx,xy,xz,yy,yz,zz)
-        or 9 (xx,xy,xz,yx,yy,yz,zx,zy,zz and symmetric)`)
+        or 9 (xx,xy,xz,yx,yy,yz,zx,zy,zz and symmetric). Got ${mat.length}`)
     }
 
     const nn = (n * (n + 1)) / 2
