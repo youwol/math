@@ -382,10 +382,7 @@ test('superposition', () => {
         80, 86, 92, 98, 104, 110
     ]
 
-    const r1 = reduce( [S1, S2, S3], (stresses) => stresses
-        .map( (s, i) => s.map( v => v*alpha[i] ) )
-        .reduce( (acc, stress) => stress.map( (v,j) => v+acc[j] ), [0,0,0,0,0,0])
-    )
+    const r1 = weightedSum([S1, S2, S3], alpha)
     r1.array.forEach( (v,i) => expect(v).toEqual(sol[i]) )
 
     const r2 = add([

@@ -1,7 +1,7 @@
 import { Serie } from '@youwol/dataframe'
 
 /**
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const weightedMean = (s: Serie, w: Serie): number|number[] => {
     if (s===undefined) throw new Error ('s is undefined')

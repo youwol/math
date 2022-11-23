@@ -17,7 +17,7 @@ import { mean } from "./mean"
  * interpret because it is not normalized and hence depends on the magnitudes of the variables.
  * The normalized version of the covariance, the correlation coefficient, however, shows
  * by its magnitude the strength of the linear relation.
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const covariance = (x: Serie, y: Serie): number => {
     if (x.length!==y.length) throw new Error('x and y must have the same length')

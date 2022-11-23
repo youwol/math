@@ -3,7 +3,7 @@ import { Serie, DataFrame, Decomposer, apply } from "@youwol/dataframe"
 /**
  * Make x, y and z coordinates accessible as serie if `position' is
  * present in the dataframe.
- * @category Decomposition
+ * @category Dataframe/decomposers
  */
 export class PositionDecomposer implements Decomposer {
     /**
@@ -12,7 +12,7 @@ export class PositionDecomposer implements Decomposer {
      * @default names = `['x', 'y', 'z']`
      */
     constructor(private readonly names_ = ['x', 'y', 'z']) {
-        if (names_.length!==3) throw new Error('names must be an array of 3 strings')
+        if (names_.length!==3) throw new Error('names must be an array of 3 strings (the dimension)')
     }
     /**
      * @hidden 
@@ -21,6 +21,7 @@ export class PositionDecomposer implements Decomposer {
         if (itemSize!==1 || name!=='positions') return []
         return this.names_
     }
+
     /**
      * @hidden 
      */
@@ -28,9 +29,9 @@ export class PositionDecomposer implements Decomposer {
         if (itemSize===1) {
             const serie = df.series['positions']
             switch(name) {
-                case this.names_[0] : return apply(serie, item => item[0] )//.setName(this.names_[0])
-                case this.names_[1] : return apply(serie, item => item[1] )//.setName(this.names_[1])
-                case this.names_[2] : return apply(serie, item => item[2] )//.setName(this.names_[2])
+                case this.names_[0] : return apply(serie, item => item[0] )
+                case this.names_[1] : return apply(serie, item => item[1] )
+                case this.names_[2] : return apply(serie, item => item[2] )
             }
         }
         return undefined

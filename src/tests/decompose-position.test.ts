@@ -8,9 +8,12 @@ const df = DataFrame.create({
 })
 
 test('test position decomposer', () => {
-    const mng = new Manager(df, [
-        new PositionDecomposer() // default names are ['x', 'y', 'z']
-    ])
+    const mng = new Manager(df, {
+        decomposers: [
+            new PositionDecomposer() // default names are ['x', 'y', 'z']
+        ],
+        dimension: 3
+    })
     
     expect( mng.names(1) ).toEqual( ['x', 'y', 'z'] )
     expect( mng.serie(1, 'x').array ).toEqual( [1,6,9] )
@@ -19,9 +22,12 @@ test('test position decomposer', () => {
 })
 
 test('test position decomposer with renaming', () => {
-    const mng = new Manager(df, [
-        new PositionDecomposer(['X0', 'X1', 'X2'])
-    ])
+    const mng = new Manager(df, {
+        decomposers: [
+            new PositionDecomposer(['X0', 'X1', 'X2'])
+        ],
+        dimension: 3
+    })
     
     expect( mng.names(1) ).toEqual( ['X0', 'X1', 'X2'] )
     expect( mng.serie(1, 'X0').array ).toEqual( [1,6,9] )

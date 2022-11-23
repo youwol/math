@@ -8,6 +8,7 @@ import { Serie } from '@youwol/dataframe'
     
     return Serie.create({
         array: s.array.map( v => v**2 ),
-        itemSize: s.itemSize
+        itemSize: s.itemSize,
+        dimension: s.dimension
     })
 }

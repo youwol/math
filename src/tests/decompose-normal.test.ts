@@ -9,9 +9,12 @@ test('test normals on AttributeManager', () => {
         }
     })
 
-    const mng = new Manager(df, [
-        new NormalsDecomposer('n')
-    ])
+    const mng = new Manager(df, {
+        decomposers: [
+            new NormalsDecomposer('n')
+        ],
+        dimension: 3
+    })
     
     expect(mng.names(3)).toEqual(['n'])
 

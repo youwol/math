@@ -2,7 +2,7 @@ import { Serie, createTyped, DataFrame, Decomposer, exists } from "@youwol/dataf
 
 /**
  * Get the valence for each node (nb of incident triangles)
- * @category Decomposition
+ * @category Dataframe/decomposers
  */
 export class ValenceDecomposer implements Decomposer {
     constructor(private readonly name: string = 'valence') {

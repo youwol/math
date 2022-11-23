@@ -41,13 +41,13 @@ function compare(o: {h1: Array<number>, h2: Array<number>}) {
     o.h1.forEach( (v1, index) => {
         const v2 = o.h2[index]
         a.push(Math.abs(v2*100/v1).toFixed(1)+'%')
-        // expect(v1).toBeCloseTo(v2, 1)
+        expect(v1).toBeCloseTo(v2, 1)
     })
-    console.log(a)
+    // console.log(a)
 }
 
 function perform(name: string, PDF: DistributionFunction, iCDF: DistributionFunction) {
-    console.log('----------------------------------', name)
+    // console.log('----------------------------------', name)
     compare(Test(PDF, iCDF))
     compare(TestPDFOnly(PDF))
 }

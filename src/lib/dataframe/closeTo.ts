@@ -10,6 +10,9 @@ import { array, reduce, Serie } from '@youwol/dataframe'
     
     if (s1.itemSize !== s2.itemSize) return false
     if (s1.count !== s2.count) return false
-    const reduced = reduce( [s1,s2], ([x,y]) => Math.abs(x-y)<eps )
-    return reduced.array.reduce( (acc, val) => acc&&val, true )
+
+    return reduce( [s1,s2], (acc, [x,y]) => acc && (Math.abs(x-y)<eps), true )
+    
+    // const reduced = reduce( [s1,s2], ([x,y]) => Math.abs(x-y)<eps, true )
+    // return reduced.array.reduce( (acc, val) => acc&&val, true )
 }

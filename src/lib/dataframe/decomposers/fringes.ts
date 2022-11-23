@@ -2,7 +2,7 @@ import { Serie, DataFrame, Decomposer, apply } from "@youwol/dataframe"
 
 /**
  * Transform a scalar attribute into multiple fringes
- * @category Decomposition
+ * @category Dataframe/decomposers
  */
 export class Fringes implements Decomposer {
     constructor(private readonly name: string, private readonly fringes: number) {

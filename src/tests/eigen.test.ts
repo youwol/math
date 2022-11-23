@@ -1,7 +1,23 @@
 import { eigen } from '../lib'
 //import './toBeEspilonTo'
 
-test('Eigen 1', () => {
+test('Eigen test-1 2D', () => {
+    const {values, vectors} = eigen([2, 7, 7, 3])
+
+    expect(values.length).toEqual(2)
+    expect(vectors.length).toEqual(4)
+
+    expect(values[0]).toBeCloseTo(9.52)
+    expect(values[1]).toBeCloseTo(-4.52)
+
+    expect(vectors[0]).toBeCloseTo(0.68)
+    expect(vectors[1]).toBeCloseTo(0.73)
+
+    expect(vectors[2]).toBeCloseTo(0.73)
+    expect(vectors[3]).toBeCloseTo(-0.68)    
+})
+
+test('Eigen test-1 3D', () => {
     const {values, vectors} = eigen([1, 2, 3, 3, 4, 5])
 
     expect(values[0]).toBeCloseTo(9.62346134)
@@ -21,7 +37,7 @@ test('Eigen 1', () => {
     expect(vectors[8]).toBeCloseTo(-0.54289440)
 })
 
-test('Eigen 2', () => {
+test('Eigen test-2 3D', () => {
     {
         const {values, vectors} = eigen([0.5, 0, 0, 0, 0.75, 0, 0, 0, 1])
         expect(values[0]).toBeCloseTo(1)

@@ -27,5 +27,9 @@ export function shuffle(serie: Serie) {
         [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]]
     }
   
-    return Serie.create({array: array.flatten(arr), itemSize: serie.itemSize})
+    return Serie.create({
+        array: array.flatten(arr), 
+        itemSize: serie.itemSize,
+        dimension: serie.dimension
+    })
 }

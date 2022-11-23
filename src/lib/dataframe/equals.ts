@@ -1,4 +1,5 @@
-import { array, reduce, Serie } from '@youwol/dataframe'
+// import { array, reduce, Serie } from '@youwol/dataframe'
+import { Serie, reduce } from '@youwol/dataframe'
 
 /**
  * Check if two series are strictly equals
@@ -10,6 +11,11 @@ import { array, reduce, Serie } from '@youwol/dataframe'
     
     if (s1.itemSize !== s2.itemSize) return false
     if (s1.count !== s2.count) return false
-    const reduced = reduce( [s1,s2], ([x,y]) => x===y )
-    return reduced.array.reduce( (acc, val) => acc&&val, true )
+
+    return reduce( [s1,s2], (acc, [x,y]) => acc && (x===y), true )
+
+    // Old impl:
+    // -----------------
+    // const reduced = reduce( [s1,s2], ([x,y]) => x===y, true )
+    // return reduced.array.reduce( (acc, val) => acc&&val, true )
 }

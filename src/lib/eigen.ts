@@ -17,20 +17,27 @@ const xspi = Math.sin(Math.PI / 4)
 export function eigen(mat: Array<number>): {values: number[], vectors: number[]} {
     let values : Array<number> = []
     let vectors: Array<number> = []
-    const n = 3
     const a: Array<number> = []
     const v: Array<number> = []
     const index: Array<number> = []
-    let thr_nn
-    let nb_iter = 0
-    let jj
-    let k, ik, im, iq, il
-    let a_ij, a_im, a_il
-    let v_ilv, v_imv
-    let x
-    let sinx, cosx
+    let nb_iter=0, thr_nn=0, jj=0, k=0, ik=0, im=0, iq=0, il=0, a_ij=0,
+        a_im=0, a_il=0, v_ilv=0, v_imv=0, x=0, sinx=0, cosx=0
 
-    if (mat.length===6) {
+    let n = 0
+    if (mat.length===3) {
+        n = 2
+        a[0] = mat[0]
+        a[1] = mat[1]
+        a[2] = mat[2]
+    }
+    else if (mat.length===4) {
+        n = 2
+        a[0] = mat[0]
+        a[1] = mat[1]
+        a[2] = mat[3]
+    }
+    else if (mat.length===6) {
+        n = 3
         a[0] = mat[0]
         a[1] = mat[1]
         a[2] = mat[3]
@@ -38,6 +45,7 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
         a[4] = mat[4]
         a[5] = mat[5]
     } else if (mat.length===9) {
+        n = 3
         a[0] = mat[0]
         a[1] = mat[1]
         a[2] = mat[4]
@@ -45,8 +53,9 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
         a[4] = mat[5]
         a[5] = mat[8]
     } else {
-        throw new Error(`matrix-array should be of size 6 (xx,xy,xz,yy,yz,zz)
-        or 9 (xx,xy,xz,yx,yy,yz,zx,zy,zz and symmetric). Got ${mat.length}`)
+        throw new Error(`matrix-array should be of size 2 (xx,xy,yy),
+        4 (xx,xy,yx,yy), 6 (xx,xy,xz,yy,yz,zz) or 9 (xx,xy,xz,yx,yy,yz,zx,zy,zz).
+        Got ${mat.length}`)
     }
 
     const nn = (n * (n + 1)) / 2
