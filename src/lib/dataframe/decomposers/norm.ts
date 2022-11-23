@@ -10,20 +10,28 @@ export class VectorNormDecomposer implements Decomposer {
      * @hidden 
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
+        if (name==='positions' || name==='indices') return []
         if (serie.itemSize<=1 || itemSize!==1) return []
-        return [name] // same name as the vector but will be a scalar (itemSize=1)
+        if ( (serie.dimension===2 && serie.itemSize===2) || (serie.dimension===3 && serie.itemSize===3) ) {
+            return [name] // same name as the vector but will be a scalar (itemSize=1)
+        }
+        return [] 
     }
     /**
      * @hidden 
      */
     serie(df: DataFrame, itemSize: number, name: string): Serie {
         if (itemSize!==1) return undefined
+        if (name==='positions' || name==='indices') return undefined
 
         let serie = df.series[name] // since same name
         if (serie === undefined)  return undefined
-
         if (serie.itemSize <=1 ) return undefined
 
-        return norm(serie)//.setName(name)
+        if ( (serie.dimension===2 && serie.itemSize===2) || (serie.dimension===3 && serie.itemSize===3) ) {
+            return norm(serie)
+        }
+        
+        return undefined
     }
 }

@@ -31,13 +31,13 @@ export class ComponentDecomposer implements Decomposer {
      * @hidden 
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
+        // Avoid using 'positions' and 'indices'
+        if (name==='positions' || name==='indices') return []
+        
         // Passed name is, e.g., 'U' && itemSize=3 && dimension=3
         const sname = nameOfSerie(df, serie)
         if (name===sname && serie.itemSize===1) return []
         if (itemSize>1) return []
-
-        // Avoid using 'positions' and 'indices'
-        if (name==='positions' || name==='indices') return []
 
         if (serie.dimension===2) {
             switch(serie.itemSize) {

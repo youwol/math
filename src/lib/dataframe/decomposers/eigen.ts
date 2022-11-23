@@ -10,6 +10,7 @@ export class EigenValuesDecomposer implements Decomposer {
      * @hidden
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
+        if (name==='positions' || name==='indices') return []
         if (serie.dimension===2 && (serie.itemSize!==3 || itemSize!==1) ) return []
         if (serie.dimension===3 && (serie.itemSize!==6 || itemSize!==1) ) return []
 
@@ -49,6 +50,7 @@ export class EigenVectorsDecomposer implements Decomposer {
      * @hidden 
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
+        if (name==='positions' || name==='indices') return []
         if (serie.dimension===2) {
             if (serie.itemSize!==3 || itemSize!==2) return []
             return [name+'1', name+'2']
@@ -63,8 +65,10 @@ export class EigenVectorsDecomposer implements Decomposer {
      */
     serie(df: DataFrame, itemSize: number, name: string): Serie {
         let newName = name.substring(0, name.length - 1)
-        let serie   = df.series[newName]
         let id = parseInt( name.charAt(name.length-1) )
+
+        let serie = df.series[newName]
+        if (serie === undefined) return undefined
 
         if (serie.dimension===2) {
             if (itemSize!==2)         return undefined
