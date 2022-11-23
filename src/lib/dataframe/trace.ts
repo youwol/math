@@ -11,7 +11,7 @@ import { Serie } from '@youwol/dataframe'
  */
  export function trace(s: Serie) {
     if (s === undefined) throw new Error ('series is undefined')
-    if (s.itemSize!==1 && s.itemSize!==6 && s.itemSize!==9) throw new Error ('item size should be 1, 6 or 9')
+    if (s.itemSize!==1 && s.itemSize!==3 && s.itemSize!==4 && s.itemSize!==6 && s.itemSize!==9) throw new Error ('item size should be 1, 3, 4, 6 or 9')
 
     if (s.itemSize === 1) {
         return s.clone()
@@ -21,7 +21,13 @@ import { Serie } from '@youwol/dataframe'
     const r = s.image(s.count, 1)
     for (let i=0; i<s.count; ++i) {
         let a = s.itemAt(i) as number[]
-        if (itemSize === 6) {
+        if (itemSize === 3) {
+            r.array[i] = a[0]+a[2]
+        }
+        else if (itemSize === 4) {
+            r.array[i] = a[0]+a[3]
+        }
+        else if (itemSize === 6) {
             r.array[i] = a[0]+a[3]+a[5]
         }
         else {

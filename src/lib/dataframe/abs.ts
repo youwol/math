@@ -8,6 +8,7 @@ export const abs = (s: Serie): Serie => {
     
     return Serie.create({
         array: s.array.map( v => Math.abs(v) ),
-        itemSize: s.itemSize
+        itemSize: s.itemSize,
+        dimension: s.dimension
     })
 }

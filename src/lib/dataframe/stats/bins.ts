@@ -11,6 +11,7 @@ import { minMax } from "../minMax";
  * const b2 = bins(serie, {nb: 18, start:0, stop: 90})
  * const b3 = bins(serie, {nb: 20})
  * ```
+ * @category Dataframe/stats
  */
 export function bins(serie: Serie, {size, nb, start, stop}:{size?: number, nb?: number, start?:number, stop?:number}): Serie {
     if (serie.itemSize !== 1) throw new Error('itemSize should be 1')

@@ -4,7 +4,7 @@ import { NormalsDecomposer } from "./normals"
 
 /**
  * Get the area of the triangles
- * @category Decomposition
+ * @category Dataframe/decomposers
  */
 export class AreaDecomposer implements Decomposer {
     constructor(private readonly name: string = 'area') {

@@ -5,7 +5,7 @@ import { q25, q50, q75 } from './quantile'
 import { std } from './std'
 
 /**
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const describe = (s: Serie): any => {
     if (s===undefined) throw new Error ('serie is undefined')

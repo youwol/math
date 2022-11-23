@@ -8,6 +8,7 @@ export const invert = (s: Serie): Serie => {
 
     return Serie.create({
         array: s.array.map( v => 1/v ),
-        itemSize: s.itemSize
+        itemSize: s.itemSize,
+        dimension: s.dimension
     })
 }

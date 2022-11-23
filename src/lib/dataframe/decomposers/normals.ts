@@ -3,7 +3,7 @@ import { vec } from "../../"
 
 /**
  * Get normals to the triangles of a mesh
- * @category Decomposition
+ * @category Dataframe/decomposers
  */
 export class NormalsDecomposer implements Decomposer {
     constructor(private readonly name: string = 'normals') {

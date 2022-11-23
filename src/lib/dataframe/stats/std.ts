@@ -4,7 +4,7 @@ import { mean } from './mean';
 
 /**
  * See https://en.wikipedia.org/wiki/Box_plot
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const std = (s: Serie): number => {
     if (s===undefined) throw new Error ('series is undefined')

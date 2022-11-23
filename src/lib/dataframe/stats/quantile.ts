@@ -2,7 +2,7 @@ import { check, cut, Serie, sort } from '@youwol/dataframe'
 
 /**
  * See https://en.wikipedia.org/wiki/Box_plot
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const quantile = (s: Serie, q: number): number => {
     if (s===undefined) throw new Error ('series is undefined')
@@ -23,27 +23,27 @@ export const quantile = (s: Serie, q: number): number => {
 }
 
 /**
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const q25 = (s: Serie): number => quantile(s, 0.25)
 
 /**
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const q50 = (s: Serie): number => quantile(s, 0.50)
 
 /**
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const q75 = (s: Serie): number => quantile(s, 0.75)
 
 /**
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const IQR = (s: Serie): number => quantile(s, 0.75)-quantile(s, 0.25)
 
 /**
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const outliers = (s: Serie, mustache: number): Serie => {
     const o = __ouliers__(s, mustache)
@@ -52,7 +52,7 @@ export const outliers = (s: Serie, mustache: number): Serie => {
 
 /**
  * Return a serie of boolean indicating if an item of the serie s is an outliers or not
- * @category Dataframe
+ * @category Dataframe/stats
  */
  export const isOutliers = (s: Serie, mustache: number): Serie => {
     const o = __ouliers__(s, mustache)
@@ -63,7 +63,7 @@ export const outliers = (s: Serie, mustache: number): Serie => {
  * @see https://en.wikipedia.org/wiki/Interquartile_range
  * @see https://en.wikipedia.org/wiki/Box_plot
  * @param mustache The statistical distance for which a point is considered as outlier. Default 1.5
- * @category Dataframe
+ * @category Dataframe/stats
  */
 export const notOutliers = (s: Serie, mustache = 1.5): Serie => {
     const o = __ouliers__(s, mustache)

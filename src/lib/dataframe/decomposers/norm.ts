@@ -3,7 +3,7 @@ import { norm } from '..'
 
 /**
  * Get the norm of any serie with itemSize > 1 (i.e., norm of any vector)
- * @category Decomposition
+ * @category Dataframe/decomposers
  */
 export class VectorNormDecomposer implements Decomposer {
     /**

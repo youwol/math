@@ -10,9 +10,12 @@ const df = DataFrame.create({
 const norm = ( p => Math.sqrt(p[0]**2+p[1]**2+p[2]**2) )
 
 test('test norm decomposer', () => {
-    const mng = new Manager(df, [
-        new VectorNormDecomposer()
-    ])
+    const mng = new Manager(df, {
+        decomposers: [
+            new VectorNormDecomposer()
+        ],
+        dimension: 3
+    })
     
     expect( mng.names(1) ).toEqual( ['U'] )
     expect( mng.serie(1, 'U').array ).toEqual( [norm([1,2,3]), norm([6,5,4]), norm([9,5,7])] )
