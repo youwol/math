@@ -168,12 +168,12 @@ test('operation eigen', () => {
     {
         const a = Serie.create( {array: new Array(12).fill(2), itemSize: 6})
         const ev = eigenValue( a )
-        expect( ev.array[0] ).toEqual(6)
-        expect( ev.array[1] ).toEqual(0)
-        expect( ev.array[2] ).toEqual(0)
-        expect( ev.array[3] ).toEqual(6)
-        expect( ev.array[4] ).toEqual(0)
-        expect( ev.array[5] ).toEqual(0)
+        expect( ev.array[0] ).toBeCloseTo(6)
+        expect( ev.array[1] ).toBeCloseTo(0)
+        expect( ev.array[2] ).toBeCloseTo(0)
+        expect( ev.array[3] ).toBeCloseTo(6)
+        expect( ev.array[4] ).toBeCloseTo(0)
+        expect( ev.array[5] ).toBeCloseTo(0)
 
         let vec = eigenVector( a )
         let sol = [
@@ -219,12 +219,12 @@ test('operation eigen', () => {
         })
 
         const ev = eigenValue( df.series.a )
-        expect( ev.array[0] ).toEqual(6)
-        expect( ev.array[1] ).toEqual(0)
-        expect( ev.array[2] ).toEqual(0)
-        expect( ev.array[3] ).toEqual(6)
-        expect( ev.array[4] ).toEqual(0)
-        expect( ev.array[5] ).toEqual(0)
+        expect( ev.array[0] ).toBeCloseTo(6)
+        expect( ev.array[1] ).toBeCloseTo(0)
+        expect( ev.array[2] ).toBeCloseTo(0)
+        expect( ev.array[3] ).toBeCloseTo(6)
+        expect( ev.array[4] ).toBeCloseTo(0)
+        expect( ev.array[5] ).toBeCloseTo(0)
     }
 })
 
@@ -358,9 +358,9 @@ test('operation composition', () => {
     ] ))
 
     //console.log(values)
-    expect(values.count).toEqual(3)
-    expect(values.itemSize).toEqual(3)
-    expect(values.length).toEqual(9)
+    expect(values.count).toBeCloseTo(3)
+    expect(values.itemSize).toBeCloseTo(3)
+    expect(values.length).toBeCloseTo(9)
 
     // values.forEach( item => {
     //     expect(item[0]).toEqual(0)
