@@ -166,65 +166,45 @@ test('operation superposition', () => {
 
 test('operation eigen', () => {
     {
-        const a = Serie.create( {array: new Array(12).fill(2), itemSize: 6})
+        // λ_1 ≈ -0.516
+        // λ_2 ≈  0.171
+        // λ_3 ≈ 11.345
+        const a = Serie.create( {array: [1,2,3,4,5,6], itemSize: 6})
         const ev = eigenValue( a )
-        expect( ev.array[0] ).toBeCloseTo(6)
-        expect( ev.array[1] ).toBeCloseTo(0)
-        expect( ev.array[2] ).toBeCloseTo(0)
-        expect( ev.array[3] ).toBeCloseTo(6)
-        expect( ev.array[4] ).toBeCloseTo(0)
-        expect( ev.array[5] ).toBeCloseTo(0)
+        
+        let solV = [11.345, 0.171, -0.516]
+        let sol = [
+             0.32798486199439997, 0.5910088626432869,   0.7369765631141895,
+            -0.5921129671392705,  0.7364838159057536,  -0.32709910280284965,
+             0.7360897801545975,  0.32908982540635984, -0.5914995539862797
+        ]
+
+        let vval = eigenValue ( a )
+        vval.array.forEach( (v,i) => expect(v).toBeCloseTo(solV[i]))
 
         let vec = eigenVector( a )
-        let sol = [
-            0.5773502691896257,   0.5773502691896258, 0.5773502691896257,
-            0.7071067811865476,  -0.7071067811865475, 0,
-           -0.40824829046386296, -0.408248290463863,  0.816496580927726,
-
-            0.5773502691896257,   0.5773502691896258, 0.5773502691896257,
-            0.7071067811865476,  -0.7071067811865475, 0,
-            -0.40824829046386296,-0.408248290463863,  0.816496580927726
-        ]
         vec.array.forEach( (v,i) => expect(v).toBeCloseTo(sol[i]))
 
-
         // Get the vector1
-        vec = eigenVector(a).map( v => [v[0], v[1], v[2]] )
         sol = [
-            0.5773502691896257,   0.5773502691896258, 0.5773502691896257,
-            0.5773502691896257,   0.5773502691896258, 0.5773502691896257
+            0.32798486199439997, 0.5910088626432869,   0.7369765631141895
         ]
+        vec = eigenVector(a).map( v => [v[0], v[1], v[2]] )
         vec.array.forEach( (v,i) => expect(v).toBeCloseTo(sol[i]))
 
         // Get the vector2
-        vec = eigenVector(a).map( v => [v[3], v[4], v[5]] )
         sol = [
-            0.7071067811865476,  -0.7071067811865475, 0,
-            0.7071067811865476,  -0.7071067811865475, 0
+            -0.5921129671392705,  0.7364838159057536,  -0.32709910280284965
         ]
+        vec = eigenVector(a).map( v => [v[3], v[4], v[5]] )
         vec.array.forEach( (v,i) => expect(v).toBeCloseTo(sol[i]))
 
         // Get the vector3
-        vec = eigenVector(a).map( v => [v[6], v[7], v[8]] )
         sol = [
-            -0.40824829046386296,-0.408248290463863,  0.816496580927726,
-            -0.40824829046386296,-0.408248290463863,  0.816496580927726
+            0.7360897801545975,  0.32908982540635984, -0.5914995539862797
         ]
+        vec = eigenVector(a).map( v => [v[6], v[7], v[8]] )
         vec.array.forEach( (v,i) => expect(v).toBeCloseTo(sol[i]))
-    }
-
-    {
-        let df =DataFrame.create({
-            series:{ 'a': Serie.create( {array: new Array(18).fill(2), itemSize: 9}) }
-        })
-
-        const ev = eigenValue( df.series.a )
-        expect( ev.array[0] ).toBeCloseTo(6)
-        expect( ev.array[1] ).toBeCloseTo(0)
-        expect( ev.array[2] ).toBeCloseTo(0)
-        expect( ev.array[3] ).toBeCloseTo(6)
-        expect( ev.array[4] ).toBeCloseTo(0)
-        expect( ev.array[5] ).toBeCloseTo(0)
     }
 })
 
