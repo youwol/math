@@ -8,17 +8,21 @@ import { std } from './std'
  * @category Dataframe/stats
  */
 export const describe = (s: Serie): any => {
-    if (s===undefined) throw new Error ('serie is undefined')
-    if (s.itemSize !== 1) throw new Error ('serie must have itemSize = 1')
+    if (s === undefined) {
+        throw new Error('serie is undefined')
+    }
+    if (s.itemSize !== 1) {
+        throw new Error('serie must have itemSize = 1')
+    }
 
     return {
         count: s.count,
         mean: mean(s),
-        std : std(s),
-        min : min(s),
-        q25 : q25(s),
-        q50 : q50(s),
-        q75 : q75(s),
-        max : max(s),
+        std: std(s),
+        min: min(s),
+        q25: q25(s),
+        q50: q50(s),
+        q75: q75(s),
+        max: max(s),
     }
 }

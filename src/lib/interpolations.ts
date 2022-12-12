@@ -1,11 +1,11 @@
-import { barycentric2, barycentric3, barycentric4 } from "./barycentric"
-import { minMaxArray, scaleArray } from "./arrays"
+import { barycentric2, barycentric3, barycentric4 } from './barycentric'
+import { minMaxArray, scaleArray } from './arrays'
 
 type V2 = [number, number]
 type V3 = [number, number, number]
 
 /**
- * 
+ *
  * @param x Where to evaluate
  * @param x1 min point
  * @param x2 max point
@@ -13,9 +13,15 @@ type V3 = [number, number, number]
  * @param q01 scalar value at x2
  * @category Interpolation
  */
-export function lerp(x: number, x1: number, x2: number, q00: number, q01: number) {
-    const d = 1/(x2 - x1)
-    return q00*(x2 - x)*d + q01*(x - x1)*d
+export function lerp(
+    x: number,
+    x1: number,
+    x2: number,
+    q00: number,
+    q01: number,
+) {
+    const d = 1 / (x2 - x1)
+    return q00 * (x2 - x) * d + q01 * (x - x1) * d
 }
 
 /**
@@ -29,7 +35,15 @@ export function lerp(x: number, x1: number, x2: number, q00: number, q01: number
  * @param q22 scalar value at (x2, y2)
  * @category Interpolation
  */
-export function biLerp(p: V2, p1: V2, p2: V2, q11: number, q12: number, q21: number, q22: number) {
+export function biLerp(
+    p: V2,
+    p1: V2,
+    p2: V2,
+    q11: number,
+    q12: number,
+    q21: number,
+    q22: number,
+) {
     const r1 = lerp(p[0], p1[0], p2[0], q11, q21)
     const r2 = lerp(p[0], p1[0], p2[0], q12, q22)
     return lerp(p[1], p1[1], p2[1], r1, r2)
@@ -50,13 +64,25 @@ export function biLerp(p: V2, p1: V2, p2: V2, q11: number, q12: number, q21: num
  * @param q111 scalar value at (1,1,1)
  * @category Interpolation
  */
-export function triLerp(p: V3, p1: V3, p2: V3, q000: number, q001: number, q010: number, q011: number, q100: number, q101: number, q110: number, q111: number) {
+export function triLerp(
+    p: V3,
+    p1: V3,
+    p2: V3,
+    q000: number,
+    q001: number,
+    q010: number,
+    q011: number,
+    q100: number,
+    q101: number,
+    q110: number,
+    q111: number,
+) {
     const x00 = lerp(p[0], p1[0], p2[0], q000, q100)
     const x10 = lerp(p[0], p1[0], p2[0], q010, q110)
     const x01 = lerp(p[0], p1[0], p2[0], q001, q101)
     const x11 = lerp(p[0], p1[0], p2[0], q011, q111)
-    const r0  = lerp(p[1], p1[1], p2[1], x00, x01)
-    const r1  = lerp(p[1], p1[1], p2[1], x10, x11)
+    const r0 = lerp(p[1], p1[1], p2[1], x00, x01)
+    const r1 = lerp(p[1], p1[1], p2[1], x10, x11)
     return lerp(p[2], p1[2], p2[2], r0, r1)
 }
 
@@ -66,12 +92,20 @@ export function triLerp(p: V3, p1: V3, p2: V3, q000: number, q001: number, q010:
  * @param q3 Either a number or an array of size 3, 6 or 9 defined at point p3
  * @category Interpolation
  */
-export function triangleLerp2D(p: V2, p1: V2, p2: V2, p3: V2, q1: any, q2: any, q3: any): any {
+export function triangleLerp2D(
+    p: V2,
+    p1: V2,
+    p2: V2,
+    p3: V2,
+    q1: any,
+    q2: any,
+    q3: any,
+): any {
     const uvw = barycentric2(p, p1, p2, p3)
     if (Array.isArray(q1)) {
-        return q1.map( (v1, i) => v1*uvw[0] + q2[i]*uvw[1] + q3[i]*uvw[2] )
+        return q1.map((v1, i) => v1 * uvw[0] + q2[i] * uvw[1] + q3[i] * uvw[2])
     }
-    return uvw[0]*q1 + uvw[1]*q2 + uvw[2]*q3
+    return uvw[0] * q1 + uvw[1] * q2 + uvw[2] * q3
 }
 
 /**
@@ -80,12 +114,20 @@ export function triangleLerp2D(p: V2, p1: V2, p2: V2, p3: V2, q1: any, q2: any, 
  * @param q3 Either a number or an array of size 3, 6 or 9 defined at point p3
  * @category Interpolation
  */
-export function triangleLerp3D(p: V3, p1: V3, p2: V3, p3: V3, q1: any, q2: any, q3: any): any {
+export function triangleLerp3D(
+    p: V3,
+    p1: V3,
+    p2: V3,
+    p3: V3,
+    q1: any,
+    q2: any,
+    q3: any,
+): any {
     const uvw = barycentric3(p, p1, p2, p3)
     if (Array.isArray(q1)) {
-        return q1.map( (v1, i) => v1*uvw[0] + q2[i]*uvw[1] + q3[i]*uvw[2] )
+        return q1.map((v1, i) => v1 * uvw[0] + q2[i] * uvw[1] + q3[i] * uvw[2])
     }
-    return uvw[0]*q1 + uvw[1]*q2 + uvw[2]*q3
+    return uvw[0] * q1 + uvw[1] * q2 + uvw[2] * q3
 }
 
 /**
@@ -95,15 +137,26 @@ export function triangleLerp3D(p: V3, p1: V3, p2: V3, p3: V3, q1: any, q2: any, 
  * @param q4 Either a number or an array of size 3, 6 or 9 defined at point p4
  * @category Interpolation
  */
-export function tetraLerp(p: V3, p1: V3, p2: V3, p3: V3, p4: V3, q1: any, q2: any, q3: any, q4: any): any {
+export function tetraLerp(
+    p: V3,
+    p1: V3,
+    p2: V3,
+    p3: V3,
+    p4: V3,
+    q1: any,
+    q2: any,
+    q3: any,
+    q4: any,
+): any {
     const uvw = barycentric4(p, p1, p2, p3, p4)
     if (Array.isArray(q1)) {
-        return q1.map( (v1, i) => v1*uvw[0] + q2[i]*uvw[1] + q3[i]*uvw[2] + q4[i]*uvw[3] )
+        return q1.map(
+            (v1, i) =>
+                v1 * uvw[0] + q2[i] * uvw[1] + q3[i] * uvw[2] + q4[i] * uvw[3],
+        )
     }
-    return uvw[0]*q1 + uvw[1]*q2 + uvw[2]*q3 + uvw[3]*q4
+    return uvw[0] * q1 + uvw[1] * q2 + uvw[2] * q3 + uvw[3] * q4
 }
-
-
 
 // -------------------------------------------------------------------------
 // INTERPOLATION multiple values using Topological information on a mesh
@@ -115,22 +168,22 @@ export function tetraLerp(p: V3, p1: V3, p2: V3, p3: V3, p4: V3, q1: any, q2: an
  */
 export enum InterpolateDirection {
     INCREASING,
-    DECREASING
+    DECREASING,
 }
 
 /**
  * Convert an attribute defined at combel of dim A to
  * a new attribute defined at a combel of dim B using a topological relationship.
  * If A<B, the direction is INCREASING (A -> B).
- * 
+ *
  * A combel made of 1 vertex (also called node) is of dim 0 (0-dimensional space).
- * 
+ *
  * A combel made of 2 connected vertices is a segment and is of dim 1 (1-dimensional space or line).
- * 
+ *
  * A combel made of 3 or more connected planar vertices (convex polygon) is of dim 2 (2-dimensional space or surface).
- * 
+ *
  * A combel made of 4 or more non-planar connected vertices is a tetrahedron and is of dim 3 (3-dimensional space or voluime).
- * 
+ *
  * @param attribute The starting attribute (combel A). An attribute can be an array of number or
  * an array of array of number (). For example:
  * <ul>
@@ -171,14 +224,17 @@ export enum InterpolateDirection {
  * ```
  * @category Interpolation
  */
-export function meshInterpolate({ attribute, topology, size=3, direction = InterpolateDirection.INCREASING}:
-    {
-        attribute : Array<any>, 
-        topology  : Array<any>,
-        size?: number,
-        direction?: InterpolateDirection
-    }): Array<any>
-{
+export function meshInterpolate({
+    attribute,
+    topology,
+    size = 3,
+    direction = InterpolateDirection.INCREASING,
+}: {
+    attribute: Array<any>
+    topology: Array<any>
+    size?: number
+    direction?: InterpolateDirection
+}): Array<any> {
     let topo = undefined
     if (attribute === undefined) {
         console.warn('Cannot meshInterpolate, attribute is undefined')
@@ -202,12 +258,14 @@ export function meshInterpolate({ attribute, topology, size=3, direction = Inter
         // Have to use size to know the chunk size in topology
         topo = []
         if (topology.length % size !== 0) {
-            throw new Error(`Cannot meshInterpolate, topology (of size ${topology.length}) is not divisable by ${size}`)
+            throw new Error(
+                `Cannot meshInterpolate, topology (of size ${topology.length}) is not divisable by ${size}`,
+            )
         }
-        for (let i=0; i<topology.length; i+= size) {
+        for (let i = 0; i < topology.length; i += size) {
             const a: Array<number> = []
-            for (let j=0; j<size; ++j) {
-                a.push(topology[i+j])
+            for (let j = 0; j < size; ++j) {
+                a.push(topology[i + j])
             }
             topo.push(a)
         }
@@ -215,23 +273,25 @@ export function meshInterpolate({ attribute, topology, size=3, direction = Inter
         topo = topology
     }
 
-    switch(direction) {
-        case InterpolateDirection.INCREASING: return interpolateIncreasingCombels({from: attribute, topology: topo})
-        case InterpolateDirection.DECREASING: return interpolateDecreasingCombels({from: attribute, topology: topo})
+    switch (direction) {
+        case InterpolateDirection.INCREASING:
+            return interpolateIncreasingCombels({
+                from: attribute,
+                topology: topo,
+            })
+        case InterpolateDirection.DECREASING:
+            return interpolateDecreasingCombels({
+                from: attribute,
+                topology: topo,
+            })
     }
 }
 
-
-
-
-
-
 // P R I V A T E  starting from here
-
 
 function getMinMax(topology: Array<Array<number>>) {
     const minMax = [Infinity, -Infinity]
-    topology.forEach( combel => {
+    topology.forEach((combel) => {
         const m = minMaxArray(combel)
         minMax[0] = Math.min(minMax[0], m[0])
         minMax[1] = Math.max(minMax[1], m[1])
@@ -239,20 +299,20 @@ function getMinMax(topology: Array<Array<number>>) {
     return minMax
 }
 
-function interpolateIncreasingCombels(
-    {from, topology}:
-    {
-        from     : Array<any>,
-        topology : Array<Array<number>>
-    }): Array<any>
-{
-    let minMax = getMinMax(topology)
-    if (minMax[0]<0) {
+function interpolateIncreasingCombels({
+    from,
+    topology,
+}: {
+    from: Array<any>
+    topology: Array<Array<number>>
+}): Array<any> {
+    const minMax = getMinMax(topology)
+    if (minMax[0] < 0) {
         throw new Error(`Topology contains negatif indices`)
     }
 
     let a = from[0]
-    if ( !(typeof a === 'number')) {
+    if (!(typeof a === 'number')) {
         a = a.slice().fill(0)
     } else {
         a = 0
@@ -261,76 +321,79 @@ function interpolateIncreasingCombels(
     const to = new Array(topology.length).fill(a)
 
     if (typeof a === 'number') {
-        topology.forEach( (combel, index) => {
-            to[index] = (combel.reduce( (v, i) => v + from[i]))/combel.length
+        topology.forEach((combel, index) => {
+            to[index] = combel.reduce((v, i) => v + from[i]) / combel.length
         })
-    }
-    else {
-        topology.forEach( (combel, index) => {
+    } else {
+        topology.forEach((combel, index) => {
             let sum = a.slice()
-            combel.forEach( index => {
+            combel.forEach((index) => {
                 const b = from[index]
-                sum = sum.map( (num:number, idx: number) => num + b[idx] )
+                sum = sum.map((num: number, idx: number) => num + b[idx])
             })
-            to[index] = scaleArray(sum, 1/combel.length)
+            to[index] = scaleArray(sum, 1 / combel.length)
         })
     }
 
     return to
 }
 
-function interpolateDecreasingCombels(
-    {from, topology}:
-    {
-        from     : Array<any>, 
-        topology : Array<Array<number>>
-    }): Array<any>
-{
-    let minMax = getMinMax(topology)
+function interpolateDecreasingCombels({
+    from,
+    topology,
+}: {
+    from: Array<any>
+    topology: Array<Array<number>>
+}): Array<any> {
+    const minMax = getMinMax(topology)
 
     //const minMax = topology.reduce( combel => minMaxArray(combel) )
-    if (minMax[0]<0) {
+    if (minMax[0] < 0) {
         throw new Error(`Topology contains negatif indices`)
     }
 
     let a = from[0]
     let size = 1
     let to: Array<any> = undefined
-    if ( !(typeof a === 'number')) {
+    if (!(typeof a === 'number')) {
         a = a.slice().fill(0)
         size = a.length
-        to = new Array(minMax[1]+1).fill(undefined).map(_ => a.slice())
+        to = new Array(minMax[1] + 1).fill(undefined).map((_) => a.slice())
     } else {
         a = 0
-        to = new Array(minMax[1]+1).fill(0)
+        to = new Array(minMax[1] + 1).fill(0)
     }
 
     const nbr = new Array(to.length).fill(0)
 
     if (typeof a === 'number') {
-        topology.forEach( (idNodes, idFace) => {
+        topology.forEach((idNodes, idFace) => {
             const v = from[idFace]
-            idNodes.forEach( id => {
+            idNodes.forEach((id) => {
                 to[id] += v
                 nbr[id]++
             })
         })
-        for (let i=0; i<to.length; ++i) {
+        for (let i = 0; i < to.length; ++i) {
             to[i] /= nbr[i]
         }
     } else {
         //console.log(to)
-        topology.forEach( (idNodes, idFace) => {
+        topology.forEach((idNodes, idFace) => {
             const v = from[idFace]
-            idNodes.forEach( id => {
+            idNodes.forEach((id) => {
                 const vv = to[id]
-                for (let i=0; i<size; ++i) vv[i] += v[i]
+                for (let i = 0; i < size; ++i) {
+                    vv[i] += v[i]
+                }
                 nbr[id]++
                 //console.log(id, to)
             })
         })
-        for (let j=0; j<to.length; ++j) {
-            for (let i=0; i<size; ++i) to[j][i] /= nbr[j]
+        for (let j = 0; j < to.length; ++j) {
+            for (let i = 0; i < size; ++i) {
+                to[j][i] /= nbr[j]
+            }
         }
         //console.log(to)
     }

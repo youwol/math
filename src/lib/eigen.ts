@@ -1,42 +1,56 @@
-
 const EPS = 0.00001
 const MAX_ITER = 100
 const xcpi = Math.cos(Math.PI / 4)
 const xspi = Math.sin(Math.PI / 4)
 
 /**
- * @param mat The symmetric matrix in a packed array of the form 
+ * @param mat The symmetric matrix in a packed array of the form
  * of 6 components [xx, xy, xz, yy, yz, zz] or 9 components
  * [xx, xy, xz, yx, yy, yz, zx, zy, zz]
  * @returns {values, vectors} where values=[v1, v2, v3] and
  * vectors=[v1x, v1y, v1z,  v2x, v2y, v2z,  v3x, v3y, v3z]
  * @note Eigen values and vectors are ordered from the highest to the lowest
- * 
+ *
  * @category Eigen
  */
-export function eigen(mat: Array<number>): {values: number[], vectors: number[]} {
-    let values : Array<number> = []
-    let vectors: Array<number> = []
+export function eigen(mat: Array<number>): {
+    values: number[]
+    vectors: number[]
+} {
+    const values: Array<number> = []
+    const vectors: Array<number> = []
     const a: Array<number> = []
     const v: Array<number> = []
     const index: Array<number> = []
-    let nb_iter=0, thr_nn=0, jj=0, k=0, ik=0, im=0, iq=0, il=0, a_ij=0,
-        a_im=0, a_il=0, v_ilv=0, v_imv=0, x=0, sinx=0, cosx=0
+    let nb_iter = 0,
+        thr_nn = 0,
+        jj = 0,
+        k = 0,
+        ik = 0,
+        im = 0,
+        iq = 0,
+        il = 0,
+        a_ij = 0,
+        a_im = 0,
+        a_il = 0,
+        v_ilv = 0,
+        v_imv = 0,
+        x = 0,
+        sinx = 0,
+        cosx = 0
 
     let n = 0
-    if (mat.length===3) {
+    if (mat.length === 3) {
         n = 2
         a[0] = mat[0]
         a[1] = mat[1]
         a[2] = mat[2]
-    }
-    else if (mat.length===4) {
+    } else if (mat.length === 4) {
         n = 2
         a[0] = mat[0]
         a[1] = mat[1]
         a[2] = mat[3]
-    }
-    else if (mat.length===6) {
+    } else if (mat.length === 6) {
         n = 3
         a[0] = mat[0]
         a[1] = mat[1]
@@ -44,7 +58,7 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
         a[3] = mat[2]
         a[4] = mat[4]
         a[5] = mat[5]
-    } else if (mat.length===9) {
+    } else if (mat.length === 9) {
         n = 3
         a[0] = mat[0]
         a[1] = mat[1]
@@ -91,21 +105,21 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
             thr_nn = thr / nn
             for (let l = 1; l < n; ++l) {
                 for (let m = l + 1; m <= n; ++m) {
-                    let lq = (l * l - l) / 2
-                    let mq = (m * m - m) / 2
-                    let lm = l + mq
-                    let a_lm = a[lm - 1]
-                    let a_lm_2 = a_lm * a_lm
+                    const lq = (l * l - l) / 2
+                    const mq = (m * m - m) / 2
+                    const lm = l + mq
+                    const a_lm = a[lm - 1]
+                    const a_lm_2 = a_lm * a_lm
 
                     if (a_lm_2 < thr_nn) {
                         continue
                     }
 
-                    let ll = l + lq
-                    let mm = m + mq
-                    let a_ll = a[ll - 1]
-                    let a_mm = a[mm - 1]
-                    let delta = a_ll - a_mm
+                    const ll = l + lq
+                    const mm = m + mq
+                    const a_ll = a[ll - 1]
+                    const a_mm = a[mm - 1]
+                    const delta = a_ll - a_mm
 
                     if (delta === 0.0) {
                         x = -Math.PI / 4
@@ -117,9 +131,9 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
                         cosx = Math.cos(x)
                     }
 
-                    let sinx_2 = sinx * sinx
-                    let cosx_2 = cosx * cosx
-                    let sincos = sinx * cosx
+                    const sinx_2 = sinx * sinx
+                    const cosx_2 = cosx * cosx
+                    const sincos = sinx * cosx
                     let ilv = n * (l - 1)
                     let imv = n * (m - 1)
 
@@ -190,28 +204,22 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
         }
     }
 
-    return {values, vectors}
+    return { values, vectors }
 }
-
-
-
-
-
-
 
 // ------------------------------------------------------------------
 // For compatibility reason...
 // ------------------------------------------------------------------
 
 // Array of 6 elements
-    //      Order is [11, 12, 13, 22, 23, 33]
-    // Array of 9 elements
-    //      Order is [11, 12, 13, 21, 22, 23, 31, 32, 33]
-    // if we consider the matrix
-    // | 11 12 13 |
-    // | 12 22 23 |
-    // | 13 23 33 |
-    //
+//      Order is [11, 12, 13, 22, 23, 33]
+// Array of 9 elements
+//      Order is [11, 12, 13, 21, 22, 23, 31, 32, 33]
+// if we consider the matrix
+// | 11 12 13 |
+// | 12 22 23 |
+// | 13 23 33 |
+//
 
 /**
  * Computes the eigen values and eigen vectors of a semi definite symmetric matrix
@@ -223,7 +231,7 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
  * @ignore
  */
 export class Eigen {
-    private eigenValues : Array<number> = []
+    private eigenValues: Array<number> = []
     private eigenVectors: Array<number> = []
 
     constructor() {
@@ -235,7 +243,7 @@ export class Eigen {
      */
     compute(mat: Array<number>): any {
         const r = eigen(mat)
-        this.eigenValues  = r.values
+        this.eigenValues = r.values
         this.eigenVectors = r.vectors
         return r
     }
@@ -245,7 +253,7 @@ export class Eigen {
         return [
             this.eigenVectors[3 * i],
             this.eigenVectors[3 * i + 1],
-            this.eigenVectors[3 * i + 2]
+            this.eigenVectors[3 * i + 2],
         ]
     }
 

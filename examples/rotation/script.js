@@ -1,26 +1,24 @@
 const math = require('../../dist/@youwol/math')
-const df   = require('../../../dataframe/dist/@youwol/dataframe')
+const df = require('../../../dataframe/dist/@youwol/dataframe')
 
-const s   = 0.707
+const s = 0.707
 const rot = math.getRotationAxis('z', 45)
 console.log(rot)
 
-const M = df.Serie.create( {array: [9, 8, 7, 6, 5, 4], itemSize: 6})
+const M = df.Serie.create({ array: [9, 8, 7, 6, 5, 4], itemSize: 6 })
 
 console.log(M.array)
-console.log( math.mat.unpack(M.array) )
-console.log( math.mat.pack( math.mat.unpack(M.array) ) )
+console.log(math.mat.unpack(M.array))
+console.log(math.mat.pack(math.mat.unpack(M.array)))
 
 const R = math.rotate(M, rot)
 console.log(R.array)
 
 // ----------------------------
 
-const V = df.Serie.create( {array: [9, 8, 7, 6, 5, 4], itemSize: 3})
+const V = df.Serie.create({ array: [9, 8, 7, 6, 5, 4], itemSize: 3 })
 const S = math.rotate(V, rot)
 console.log(S.array)
-
-
 
 /*
     15.4953   -1.4995    8.4840

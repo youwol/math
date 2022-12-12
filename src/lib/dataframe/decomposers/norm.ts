@@ -1,4 +1,4 @@
-import { Serie, DataFrame, Decomposer } from "@youwol/dataframe"
+import { Serie, DataFrame, Decomposer } from '@youwol/dataframe'
 import { norm } from '..'
 
 /**
@@ -7,31 +7,49 @@ import { norm } from '..'
  */
 export class VectorNormDecomposer implements Decomposer {
     /**
-     * @hidden 
+     * @hidden
      */
-    names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
-        if (name==='positions' || name==='indices') return []
-        if (serie.itemSize<=1 || itemSize!==1) return []
-        if ( (serie.dimension===2 && serie.itemSize===2) || (serie.dimension===3 && serie.itemSize===3) ) {
+    names(df: DataFrame, itemSize: number, serie: Serie, name: string) {
+        if (name === 'positions' || name === 'indices') {
+            return []
+        }
+        if (serie.itemSize <= 1 || itemSize !== 1) {
+            return []
+        }
+        if (
+            (serie.dimension === 2 && serie.itemSize === 2) ||
+            (serie.dimension === 3 && serie.itemSize === 3)
+        ) {
             return [name] // same name as the vector but will be a scalar (itemSize=1)
         }
-        return [] 
+        return []
     }
     /**
-     * @hidden 
+     * @hidden
      */
     serie(df: DataFrame, itemSize: number, name: string): Serie {
-        if (itemSize!==1) return undefined
-        if (name==='positions' || name==='indices') return undefined
+        if (itemSize !== 1) {
+            return undefined
+        }
+        if (name === 'positions' || name === 'indices') {
+            return undefined
+        }
 
-        let serie = df.series[name] // since same name
-        if (serie === undefined)  return undefined
-        if (serie.itemSize <=1 ) return undefined
+        const serie = df.series[name] // since same name
+        if (serie === undefined) {
+            return undefined
+        }
+        if (serie.itemSize <= 1) {
+            return undefined
+        }
 
-        if ( (serie.dimension===2 && serie.itemSize===2) || (serie.dimension===3 && serie.itemSize===3) ) {
+        if (
+            (serie.dimension === 2 && serie.itemSize === 2) ||
+            (serie.dimension === 3 && serie.itemSize === 3)
+        ) {
             return norm(serie)
         }
-        
+
         return undefined
     }
 }

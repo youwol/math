@@ -1,10 +1,10 @@
-import { sub, mult } from "../"
-import { Serie } from "@youwol/dataframe"
-import { mean } from "./mean"
+import { sub, mult } from '../'
+import { Serie } from '@youwol/dataframe'
+import { mean } from './mean'
 
 /**
  * Compute covariance with Series.
- * 
+ *
  * Except from Wikipedia:
  * > In probability theory and statistics, covariance is a measure of the joint variability
  * of two random variables. If the greater values of one variable mainly correspond with
@@ -20,12 +20,21 @@ import { mean } from "./mean"
  * @category Dataframe/stats
  */
 export const covariance = (x: Serie, y: Serie): number => {
-    if (x.length!==y.length) throw new Error('x and y must have the same length')
-    if (x.itemSize !==1) throw new Error('x must have itemSize = 1')
-    if (y.itemSize !==1) throw new Error('y must have itemSize = 1')
+    if (x.length !== y.length) {
+        throw new Error('x and y must have the same length')
+    }
+    if (x.itemSize !== 1) {
+        throw new Error('x must have itemSize = 1')
+    }
+    if (y.itemSize !== 1) {
+        throw new Error('y must have itemSize = 1')
+    }
 
     const N = x.length
     const xb = mean(x) as number
     const yb = mean(y) as number
-    return mult(sub(x,xb), sub(y,yb)).array.reduce( (acc, value) => acc+value/N, 0 )
+    return mult(sub(x, xb), sub(y, yb)).array.reduce(
+        (acc, value) => acc + value / N,
+        0,
+    )
 }

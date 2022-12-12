@@ -1,4 +1,9 @@
-import { Matrix, Serie, squaredMatrix, symSquaredMatrix, Vector } from '@youwol/dataframe'
+import {
+    Serie,
+    squaredMatrix,
+    symSquaredMatrix,
+    Vector,
+} from '@youwol/dataframe'
 import { mult } from './mult'
 
 // NOTE
@@ -21,45 +26,58 @@ import { mult } from './mult'
  * ```
  * @category Dataframe
  */
-export const multMat = (s1: Serie, s2: Serie|number): Serie => {
-    if (s1 === undefined) throw new Error('s1 is undefined')
-    if (s2 === undefined) throw new Error('s2 is undefined')
+export const multMat = (s1: Serie, s2: Serie | number): Serie => {
+    if (s1 === undefined) {
+        throw new Error('s1 is undefined')
+    }
+    if (s2 === undefined) {
+        throw new Error('s2 is undefined')
+    }
 
     if (typeof s2 === 'number') {
-        const s = s2 as number
-        return mult(s1, s2)  //s1.map( v => v*s)
+        const s = s2
+        return mult(s1, s2) //s1.map( v => v*s)
     }
-    if (s2.itemSize===1) {
-        return s1.map( (v,i) => v*(s2.itemAt(i) as number))
+    if (s2.itemSize === 1) {
+        return s1.map((v, i) => v * (s2.itemAt(i) as number))
     }
 
     if (s1.itemSize === 1) {
-        if (s2.itemSize!==1) throw new Error('s2 should have itemSize=1 (same as s1)')
-        return s1.map( (v,i) => v*(s2.itemAt(i) as number))
+        if (s2.itemSize !== 1) {
+            throw new Error('s2 should have itemSize=1 (same as s1)')
+        }
+        return s1.map((v, i) => v * (s2.itemAt(i) as number))
     }
 
     if (s1.itemSize === 3) {
-        if (s2.itemSize===3) {
-            return s1.map( (v, i) => {
+        if (s2.itemSize === 3) {
+            return s1.map((v, i) => {
                 const w = s2.itemAt(i)
-                return v[0]*w[0] + v[1]*w[1] + v[2]*w[2] // dot
+                return v[0] * w[0] + v[1] * w[1] + v[2] * w[2] // dot
             })
         }
-        throw new Error('since s1 has itemSize=3, s2 should have itemSize=1 or 3')
+        throw new Error(
+            'since s1 has itemSize=3, s2 should have itemSize=1 or 3',
+        )
     }
 
-    if (s1.itemSize === 6 || s1.itemSize===9) {
-        if (s2.itemSize===3) {
-            return s1.map( (v, i) => {
-                const A = s1.itemSize===6 ? symSquaredMatrix(v) : squaredMatrix(v)
+    if (s1.itemSize === 6 || s1.itemSize === 9) {
+        if (s2.itemSize === 3) {
+            return s1.map((v, i) => {
+                const A =
+                    s1.itemSize === 6 ? symSquaredMatrix(v) : squaredMatrix(v)
                 const b = new Vector(s2.itemAt(i) as number[])
                 return A.multVec(b).array
             })
         }
-        if (s2.itemSize===6 || s2.itemSize===9) {
-            return s1.map( (v, i) => {
-                const A = s1.itemSize===6 ? symSquaredMatrix(v) : squaredMatrix(v)
-                const b = s2.itemSize===6 ? symSquaredMatrix(s2.itemAt(i) as number[]) : squaredMatrix(s2.itemAt(i) as number[])
+        if (s2.itemSize === 6 || s2.itemSize === 9) {
+            return s1.map((v, i) => {
+                const A =
+                    s1.itemSize === 6 ? symSquaredMatrix(v) : squaredMatrix(v)
+                const b =
+                    s2.itemSize === 6
+                        ? symSquaredMatrix(s2.itemAt(i) as number[])
+                        : squaredMatrix(s2.itemAt(i) as number[])
                 return A.multMat(b).array
             })
         }

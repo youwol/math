@@ -13,10 +13,16 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
 export const switchConvention = (s: Serie) => {
-    if (s===undefined)    throw new Error ('series is undefined')
-    if (s.itemSize!==6 && s.itemSize!==3) throw new Error('Series does not have itemSize = 3 or 6 (symmetric tensor [xx,xy,yy] or [xx,xy,xz,yy,yz,zz])')
+    if (s === undefined) {
+        throw new Error('series is undefined')
+    }
+    if (s.itemSize !== 6 && s.itemSize !== 3) {
+        throw new Error(
+            'Series does not have itemSize = 3 or 6 (symmetric tensor [xx,xy,yy] or [xx,xy,xz,yy,yz,zz])',
+        )
+    }
 
-    return s.map( stress => {
-        return stress.map( v => -v )
+    return s.map((stress) => {
+        return stress.map((v) => -v)
     })
 }

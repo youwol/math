@@ -1,19 +1,19 @@
 import { vec } from '../lib/vectors'
 
 test('operation norm', () => {
-    const v = [1,2,3]
-    const a = vec.norm( v )
+    const v = [1, 2, 3]
+    const a = vec.norm(v)
     expect(a).toBeCloseTo(Math.sqrt(14))
 })
 
 function crossTest(v: vec.Vector3, w: vec.Vector3, result: vec.Vector3) {
-    let t = vec.cross(v, w)
-    expect( t[0] ).toEqual(result[0])
-    expect( t[1] ).toEqual(result[1])
-    expect( t[2] ).toEqual(result[2])
+    const t = vec.cross(v, w)
+    expect(t[0]).toEqual(result[0])
+    expect(t[1]).toEqual(result[1])
+    expect(t[2]).toEqual(result[2])
 }
 
 test('operation cross', () => {
-    crossTest([2, 3, 4], [5, 6, 7 ], [-3, 6, -3])
+    crossTest([2, 3, 4], [5, 6, 7], [-3, 6, -3])
     crossTest([5, 6, 7], [-1, 4, 2], [-16, -17, 26])
 })

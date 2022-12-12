@@ -1,45 +1,71 @@
 {
-  "name": "@youwol/math",
-  "version": "0.0.26",
-  "description": "",
-  "author": "fmaerten@youwol.com",
-  "keywords": [],
-  "main": "dist/@youwol/math.js",
-  "types": "src/index.ts",
-  "scripts": {
-    "build": "yarn build:dev",
-    "build:dev": "webpack --mode development",
-    "build:prod": "webpack --mode production",
-    "test": "jest -c ./jest.config.js --rootDir .",
-    "test-coverage": "jest -c ./jest.config.js --rootDir . --collect-coverage --collectCoverageFrom=./src/lib/**/*.ts ",
-    "doc": "rm -fr  dist/docs && typedoc src/ --exclude src/lib --exclude src/tests --categorizeByGroup true --disableSources --out dist/docs --includeVersion --hideGenerator --media ./media",
-    "publish-npm-public": "yarn build:prod && yarn test-coverage && yarn publish --access public"
-  },
-  "peerDependencies": {
-    "@youwol/dataframe": "0.x"
-  },
-  "devDependencies": {
-    "@types/node": "14.14.16",
-    "@youwol/dataframe": "0.0.37",
-    "eslint": "7.16.0",
-    "jest": "26.6.3",
-    "jest-junit": "12.0.0",
-    "ts-jest": "26.4.4",
-    "ts-loader": "8.1.0",
-    "tslib": "^2.3.0",
-    "typedoc": "0.22.11",
-    "typescript": "4.2.3",
-    "webpack": "^5.75.0",
-    "webpack-cli": "4.3.0"
-  },
-  "youwol": {
-    "pipeline": {
-      "name": "yw_pipeline_webpack_ts",
-      "version": "0.0.0"
+    "name": "@youwol/math",
+    "version": "0.0.26",
+    "description": "",
+    "author": "fmaerten@youwol.com",
+    "keywords": [],
+    "main": "dist/@youwol/math.js",
+    "types": "src/index.ts",
+    "scripts": {
+        "build": "yarn build:dev",
+        "build:dev": "webpack --mode development",
+        "build:prod": "webpack --mode production",
+        "test": "jest -c ./jest.config.js --rootDir .",
+        "test-coverage": "jest -c ./jest.config.js --rootDir . --collect-coverage --collectCoverageFrom=./src/lib/**/*.ts ",
+        "doc": "rm -fr  dist/docs && typedoc src/ --exclude src/lib --exclude src/tests --categorizeByGroup true --disableSources --out dist/docs --includeVersion --hideGenerator --media ./media",
+        "publish-npm-public": "yarn build:prod && yarn test-coverage && yarn publish --access public"
     },
-    "cdnDependencies": {
-      "@youwol/dataframe": "0.x"
+    "peerDependencies": {
+        "@youwol/dataframe": "0.x"
+    },
+    "devDependencies": {
+        "@types/node": "14.14.16",
+        "@typescript-eslint/eslint-plugin": "^5.46.0",
+        "@typescript-eslint/parser": "^5.46.0",
+        "@youwol/dataframe": "0.0.37",
+        "@youwol/eslint-config": "^0.0.4",
+        "@youwol/prettier-config": "^0.0.2",
+        "eslint": "8.22.0",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-jest": "^26.8.4",
+        "eslint-plugin-tsdoc": "^0.2.14",
+        "eslint-plugin-unused-imports": "^2.0.0",
+        "jest": "26.6.3",
+        "jest-junit": "12.0.0",
+        "prettier": "^2.7.1",
+        "prettier-plugin-properties": "^0.2.0",
+        "ts-jest": "26.4.4",
+        "ts-loader": "8.1.0",
+        "tslib": "^2.3.0",
+        "typedoc": "0.22.11",
+        "typescript": "4.2.3",
+        "webpack": "^5.75.0",
+        "webpack-cli": "4.3.0"
+    },
+    "youwol": {
+        "pipeline": {
+            "name": "yw_pipeline_webpack_ts",
+            "version": "0.0.0"
+        },
+        "cdnDependencies": {
+            "@youwol/dataframe": "0.x"
+        }
+    },
+    "dependencies": {},
+    "prettier": "@youwol/prettier-config",
+    "eslintConfig": {
+        "extends": [
+            "@youwol"
+        ],
+        "overrides": [
+            {
+                "files": "examples/**/*.js",
+                "env": {
+                    "node": true
+                }
+            }
+        ]
     }
-  },
-  "dependencies": {}
 }
