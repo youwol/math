@@ -107,7 +107,7 @@ export namespace mat {
      * @category Matrix
      */
     export function inv(me: Matrix3, throwOnDegenerate: boolean) {
-        var n11 = me[0][0], n21 = me[0][1], n31 = me[0][2],
+        const n11 = me[0][0], n21 = me[0][1], n31 = me[0][2],
             n12 = me[1][0], n22 = me[1][1], n32 = me[1][2],
             n13 = me[2][0], n23 = me[2][1], n33 = me[2][2],
             t11 = n33 * n22 - n32 * n23,
@@ -116,7 +116,7 @@ export namespace mat {
             det = n11 * t11 + n21 * t12 + n31 * t13
 
         if (det === 0) {
-            let msg = "Matrix3: .getInverse() can't invert matrix, determinant is 0"
+            const msg = "Matrix3: .getInverse() can't invert matrix, determinant is 0"
             if (throwOnDegenerate === true) {
                 throw new Error(msg)
             } else {
@@ -125,7 +125,7 @@ export namespace mat {
             return this.identity()
         }
 
-        let detInv = 1 / det
+        const detInv = 1 / det
         return [
             [t11 * detInv, (n31 * n23 - n33 * n21) * detInv, (n32 * n21 - n31 * n22) * detInv],
             [t12 * detInv, (n33 * n11 - n31 * n13) * detInv, (n31 * n12 - n32 * n11) * detInv],

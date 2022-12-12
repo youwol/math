@@ -7,7 +7,7 @@ import { array, Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const minMax = (s: Serie): number[] => {
-    if (s===undefined) throw new Error ('series is undefined')
+    if (s===undefined) {throw new Error ('series is undefined')}
     
     if (s.itemSize ===1) {
         return array.minMax(s.array)
@@ -17,8 +17,8 @@ import { array, Serie } from '@youwol/dataframe'
     const M = new Array(s.itemSize).fill(Number.NEGATIVE_INFINITY)
     s.forEach( item => {
         item.forEach( (v,i) => {
-            if (v < m[i]) m[i] = v
-            if (v > M[i]) M[i] = v
+            if (v < m[i]) {m[i] = v}
+            if (v > M[i]) {M[i] = v}
         })
     })
     return [...m, ...M]
@@ -30,7 +30,7 @@ import { array, Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const min = (s: Serie): number | number[] => {
-    if (s===undefined) throw new Error ('series is undefined')
+    if (s===undefined) {throw new Error ('series is undefined')}
     
     if (s.itemSize ===1) {
         return array.min(s.array)
@@ -39,7 +39,7 @@ import { array, Serie } from '@youwol/dataframe'
     const m = new Array(s.itemSize).fill(Number.POSITIVE_INFINITY)
     s.forEach( item => {
         item.forEach( (v,i) => {
-            if (v < m[i]) m[i] = v
+            if (v < m[i]) {m[i] = v}
         })
     })
     return m
@@ -51,7 +51,7 @@ import { array, Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const max = (s: Serie): number | number[] => {
-    if (s===undefined) throw new Error ('series is undefined')
+    if (s===undefined) {throw new Error ('series is undefined')}
     
     if (s.itemSize ===1) {
         return array.max(s.array)
@@ -60,7 +60,7 @@ import { array, Serie } from '@youwol/dataframe'
     const m = new Array(s.itemSize).fill(Number.POSITIVE_INFINITY)
     s.forEach( item => {
         item.forEach( (v,i) => {
-            if (v > m[i]) m[i] = v
+            if (v > m[i]) {m[i] = v}
         })
     })
     return m

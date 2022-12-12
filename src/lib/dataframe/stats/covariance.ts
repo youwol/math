@@ -20,9 +20,9 @@ import { mean } from "./mean"
  * @category Dataframe/stats
  */
 export const covariance = (x: Serie, y: Serie): number => {
-    if (x.length!==y.length) throw new Error('x and y must have the same length')
-    if (x.itemSize !==1) throw new Error('x must have itemSize = 1')
-    if (y.itemSize !==1) throw new Error('y must have itemSize = 1')
+    if (x.length!==y.length) {throw new Error('x and y must have the same length')}
+    if (x.itemSize !==1) {throw new Error('x must have itemSize = 1')}
+    if (y.itemSize !==1) {throw new Error('y must have itemSize = 1')}
 
     const N = x.length
     const xb = mean(x) as number

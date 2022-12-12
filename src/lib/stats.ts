@@ -50,11 +50,11 @@ export function rms(attribute: number[]) {
  * @category Stats
  */
 export function median(a: number[], doSort = true) {
-    if(a.length ===0) return 0
+    if(a.length ===0) {return 0}
   
-    if (doSort) a.sort( (a,b) => a-b )
+    if (doSort) {a.sort( (a,b) => a-b )}
     const half = Math.floor(a.length/2)
-    if (a.length % 2) return a[half]
+    if (a.length % 2) {return a[half]}
     return (a[half - 1] + a[half])/2
 }
 
@@ -85,7 +85,7 @@ export function iqr(arr: number[], mustache: number): boolean[] {
     const NaN_ = Number.NaN
     const q25 = percentile(array, 25)
     const q75 = percentile(array, 75)
-    if (q25==NaN_ || q75==NaN_) return []
+    if (q25==NaN_ || q75==NaN_) {return []}
 
     const IQR = (q75-q25)
     const outlier_min = q25 - mustache*IQR
@@ -110,7 +110,7 @@ export function percentile(arr: number[], percent: number): number {
     const    index = Math.trunc(position)
     const previous_element = values[index]
     const delta = position - index
-    if (Math.abs(delta) <= 1e-34) return previous_element
+    if (Math.abs(delta) <= 1e-34) {return previous_element}
     
     const next_index = index + 1
     const next_element = values[next_index]

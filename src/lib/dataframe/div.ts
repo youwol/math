@@ -9,8 +9,8 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const div = (s: Serie, ...others: (Serie|number)[]) => {
-    if (s === undefined) return undefined
-    if (!others) throw new Error('cannot divide undefined to s')
+    if (s === undefined) {return undefined}
+    if (!others) {throw new Error('cannot divide undefined to s')}
 
     const r = s.clone()
 

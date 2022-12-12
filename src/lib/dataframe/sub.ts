@@ -13,8 +13,8 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const sub = (s: Serie, ...others: (Serie|number)[]) => {
-    if (s === undefined) throw new Error('serie s is undefined')
-    if (!others) throw new Error('cannot subtract undefined to s')
+    if (s === undefined) {throw new Error('serie s is undefined')}
+    if (!others) {throw new Error('cannot subtract undefined to s')}
 
     const r = s.clone()
 

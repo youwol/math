@@ -1,11 +1,11 @@
 import { 
     createArray, createEmptySerie, Serie, DataFrame,
-    append, exists, map, reduce, apply
+    append, exists, apply
 } from '@youwol/dataframe'
 
 import {
     dot, add, mult, eigenValue, trace, sub, norm, div, transpose, 
-    eigenVector, square, abs, normalize, cross, addNumber, weightedSum,
+    eigenVector, square, abs, cross, addNumber, weightedSum,
     sum,
     unitInterval,
     closeTo
@@ -26,12 +26,12 @@ test('operation add', () => {
     // ---------------------------------
 
     let sum = add( [df.series.a, df.series.b] )
-    sum.array.forEach( _ => expect(_).toEqual(5) )
+    sum.array.forEach( _ => expect(_).toBe(5) )
 
     // ---------------------------------
 
     const aa = addNumber( df.series.a, 100 )
-    aa.array.forEach( _ => expect(_).toEqual(102) )
+    aa.array.forEach( _ => expect(_).toBe(102) )
 
     // ---------------------------------
     df = append(df, {
@@ -41,7 +41,7 @@ test('operation add', () => {
         ])
     })
     sum = df.series.sum
-    sum.array.forEach( _ => expect(_).toEqual(80) )
+    sum.array.forEach( _ => expect(_).toBe(80) )
 
     // ---------------------------------
 
@@ -53,12 +53,12 @@ test('operation add', () => {
         ])
     })
     sum = df.series.sum
-    sum.array.forEach( _ => expect(_).toEqual(82) )
+    sum.array.forEach( _ => expect(_).toBe(82) )
 
 })
 
 test('operation add multiple', () => {
-    let df = DataFrame.create({
+    const df = DataFrame.create({
         series:{
             'a': Serie.create( {array: new Array(20).fill(2), itemSize: 2}),
             'b': Serie.create( {array: new Array(20).fill(3), itemSize: 2}),
@@ -70,11 +70,11 @@ test('operation add multiple', () => {
 
     const all = [df.series.a, df.series.b, df.series.c, df.series.d, df.series.e]
     const a = add( all )
-    a.array.forEach( _ => expect(_).toEqual(20) )
+    a.array.forEach( _ => expect(_).toBe(20) )
 })
 
 test('operation mult', () => {
-    let df = DataFrame.create({
+    const df = DataFrame.create({
         series:{
             'a': Serie.create( {array: new Array(20).fill(2), itemSize: 2}),
             'b': Serie.create( {array: new Array(20).fill(3), itemSize: 2}),
@@ -86,18 +86,18 @@ test('operation mult', () => {
     expect( exists(df, 'b') ).toBeTruthy()
 
     const a = mult( df.series.a, 100 )
-    a.array.forEach( _ => expect(_).toEqual(200) )
+    a.array.forEach( _ => expect(_).toBe(200) )
 
     const b = mult( df.series.a, df.series.b )
-    b.array.forEach( _ => expect(_).toEqual(6) )
+    b.array.forEach( _ => expect(_).toBe(6) )
 
     const c = mult( df.series.b, df.series.a, df.series.c )
-    c.array.forEach( _ => expect(_).toEqual(24) )
+    c.array.forEach( _ => expect(_).toBe(24) )
     
 })
 
 test('operation div', () => {
-    let df = DataFrame.create({
+    const df = DataFrame.create({
         series:{
             'a': Serie.create( {array: new Array(20).fill(2), itemSize: 2}),
             'b': Serie.create( {array: new Array(20).fill(3), itemSize: 2}),
@@ -106,18 +106,18 @@ test('operation div', () => {
     })
 
     const a = div( df.series.b, df.series.a )
-    a.array.forEach( _ => expect(_).toEqual(1.5) )
+    a.array.forEach( _ => expect(_).toBe(1.5) )
 
     const b = div( df.series.a, 2 )
-    b.array.forEach( _ => expect(_).toEqual(1) )
+    b.array.forEach( _ => expect(_).toBe(1) )
 
     const c = div( df.series.b, df.series.a, df.series.c )
-    c.array.forEach( _ => expect(_).toEqual(0.75) )
+    c.array.forEach( _ => expect(_).toBe(0.75) )
     
 })
 
 test('operation sub', () => {
-    let df =DataFrame.create({
+    const df =DataFrame.create({
         series:{
             'a': Serie.create( {array: new Array(20).fill(2), itemSize: 1}),
             'b': Serie.create( {array: new Array(20).fill(3), itemSize: 1}),
@@ -127,11 +127,11 @@ test('operation sub', () => {
 
     {
         const a = sub( df.series.b, df.series.a )
-        a.array.forEach( _ => expect(_).toEqual(1) )
+        a.array.forEach( _ => expect(_).toBe(1) )
     }
     {
         const a = sub( df.series.b, 2 )
-        a.array.forEach( _ => expect(_).toEqual(1) )
+        a.array.forEach( _ => expect(_).toBe(1) )
     }
     {
         const a = sub( df.series.b, df.series.a, df.series.c )
@@ -140,7 +140,7 @@ test('operation sub', () => {
 })
 
 test('operation norm', () => {
-    let df = DataFrame.create({
+    const df = DataFrame.create({
         series:{ 'a': Serie.create( {array: new Array(9).fill(2), itemSize: 3}) }
     })
 
@@ -172,14 +172,14 @@ test('operation eigen', () => {
         const a = Serie.create( {array: [1,2,3,4,5,6], itemSize: 6})
         const ev = eigenValue( a )
         
-        let solV = [11.345, 0.171, -0.516]
+        const solV = [11.345, 0.171, -0.516]
         let sol = [
              0.32798486199439997, 0.5910088626432869,   0.7369765631141895,
             -0.5921129671392705,  0.7364838159057536,  -0.32709910280284965,
              0.7360897801545975,  0.32908982540635984, -0.5914995539862797
         ]
 
-        let vval = eigenValue ( a )
+        const vval = eigenValue ( a )
         vval.array.forEach( (v,i) => expect(v).toBeCloseTo(solV[i]))
 
         let vec = eigenVector( a )
@@ -210,37 +210,37 @@ test('operation eigen', () => {
 
 test('operation trace', () => {
     {
-        let df = DataFrame.create({
+        const df = DataFrame.create({
             series:{ 'a': Serie.create( {array: [1,2,3,4,5,6, 6,5,4,3,2,1], itemSize: 6}) }
         })
 
         const t = trace( df.series.a )
-        expect( t.array[0] ).toEqual(11)
-        expect( t.array[1] ).toEqual(10)
+        expect( t.array[0] ).toBe(11)
+        expect( t.array[1] ).toBe(10)
     }
     {
-        let df =DataFrame.create({
+        const df =DataFrame.create({
             series:{ 'a': Serie.create( {array: [1,2,3,4,5,6,7,8,9, 9,8,7,6,5,4,3,2,1], itemSize: 9}) }
         })
 
         const t = trace( df.series.a )
-        expect( t.array[0] ).toEqual(15)
-        expect( t.array[1] ).toEqual(15)
+        expect( t.array[0] ).toBe(15)
+        expect( t.array[1] ).toBe(15)
     }
     {
-        let df = DataFrame.create({
+        const df = DataFrame.create({
             series:{ 'a': Serie.create( {array: [1,2,3,4,5,6], itemSize:1}) }
         })
 
         const t = trace( df.series.a )
-        expect( t.array[0] ).toEqual(1)
-        expect( t.array[1] ).toEqual(2)
-        expect( t.array[5] ).toEqual(6)
+        expect( t.array[0] ).toBe(1)
+        expect( t.array[1] ).toBe(2)
+        expect( t.array[5] ).toBe(6)
     }
 })
 
 test('operation transpose', () => {
-    let df = DataFrame.create({
+    const df = DataFrame.create({
         series:{ 'a': Serie.create( {array: [1,2,3,4,5,6,7,8,9, 9,8,7,6,5,4,3,2,1], itemSize: 9}) }
     })
     const t = transpose( df.series.a )
@@ -251,8 +251,8 @@ test('operation transpose', () => {
 test('operation square', () => {
     let s = Serie.create( {array: [2,3], itemSize: 1})
     let t = square( s )
-    expect( t.itemAt(0) ).toEqual(4)
-    expect( t.itemAt(1) ).toEqual(9)
+    expect( t.itemAt(0) ).toBe(4)
+    expect( t.itemAt(1) ).toBe(9)
 
     s = Serie.create( {array: [2,3,4,5], itemSize: 2})
     t = square( s )
@@ -268,9 +268,9 @@ test('operation unitInterval', () => {
 
     s = Serie.create( {array: [1, 2, 3], itemSize: 1})
     t = unitInterval( s )
-    expect( t.itemAt(0) ).toEqual(0)
+    expect( t.itemAt(0) ).toBe(0)
     expect( t.itemAt(1) ).toEqual(1/2)
-    expect( t.itemAt(2) ).toEqual(1)
+    expect( t.itemAt(2) ).toBe(1)
 })
 
 test('operation cross', () => {
@@ -287,8 +287,8 @@ test('operation cross', () => {
 })
 
 test('operation sum', () => {
-    let a = Serie.create( {array: [2,3,4,5], itemSize: 1})
-    let b = Serie.create( {array: [2,3,4,5], itemSize: 2})
+    const a = Serie.create( {array: [2,3,4,5], itemSize: 1})
+    const b = Serie.create( {array: [2,3,4,5], itemSize: 2})
 
     expect( sum(a) ).toEqual(2+3+4+5)
     expect( sum(b) ).toEqual([2+4, 3+5])
@@ -298,8 +298,8 @@ test('operation sum', () => {
 test('operation abs', () => {
     let s = Serie.create( {array: [-2,-3], itemSize: 1})
     let t = abs( s )
-    expect( t.itemAt(0) ).toEqual(2)
-    expect( t.itemAt(1) ).toEqual(3)
+    expect( t.itemAt(0) ).toBe(2)
+    expect( t.itemAt(1) ).toBe(3)
 
     s = Serie.create( {array: [-2,-3,-4,-5], itemSize: 2})
     t = abs( s )
@@ -308,14 +308,14 @@ test('operation abs', () => {
 })
 
 test('operation dot', () => {
-    let s1 = Serie.create( {array: [1,2,3,4,5,6], itemSize: 3})
+    const s1 = Serie.create( {array: [1,2,3,4,5,6], itemSize: 3})
     const t = dot(s1, s1)
     expect( t.itemAt(0) ).toEqual(1+4+9)
     expect( t.itemAt(1) ).toEqual(16+25+36)
 })
 
 test('operation composition', () => {
-    let df = DataFrame.create({
+    const df = DataFrame.create({
         series:{
             'stress1': createEmptySerie({Type: Float32Array, count: 3, itemSize: 6, shared: true}),
             'stress2': createEmptySerie({Type: Float32Array, count: 3, itemSize: 6, shared: true}),
@@ -323,13 +323,13 @@ test('operation composition', () => {
         }
     })
     
-    let stress1 = df.series.stress1
-    let stress2 = df.series.stress2
-    let stress3 = df.series.stress3
+    const stress1 = df.series.stress1
+    const stress2 = df.series.stress2
+    const stress3 = df.series.stress3
 
-    expect(stress1.count).toEqual(3)
-    expect(stress1.itemSize).toEqual(6)
-    expect(stress1.length).toEqual(18)
+    expect(stress1.count).toBe(3)
+    expect(stress1.itemSize).toBe(6)
+    expect(stress1).toHaveLength(18)
 
     const values = eigenValue( add([
         mult( stress1, 0.1 ),

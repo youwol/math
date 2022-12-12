@@ -7,7 +7,7 @@ test('operation norm', () => {
 })
 
 function crossTest(v: vec.Vector3, w: vec.Vector3, result: vec.Vector3) {
-    let t = vec.cross(v, w)
+    const t = vec.cross(v, w)
     expect( t[0] ).toEqual(result[0])
     expect( t[1] ).toEqual(result[1])
     expect( t[2] ).toEqual(result[2])

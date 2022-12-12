@@ -6,7 +6,7 @@ import { array, Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const normalize = (s: Serie): Serie => {
-    if (s===undefined) throw new Error ('series is undefined')
+    if (s===undefined) {throw new Error ('series is undefined')}
     
     if (s.itemSize ===1) {
         const mM = array.minMax(s.array)

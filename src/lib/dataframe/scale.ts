@@ -4,8 +4,8 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
 export const scale = (s: Serie, t: number[] | number): Serie => {
-    if (s === undefined) throw new Error ('s is undefined')
-    if (t === undefined) throw new Error ('t is undefined')
+    if (s === undefined) {throw new Error ('s is undefined')}
+    if (t === undefined) {throw new Error ('t is undefined')}
 
     if (Array.isArray(t)) {
         if (s.itemSize === 1) {

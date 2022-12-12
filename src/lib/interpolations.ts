@@ -246,7 +246,7 @@ function interpolateIncreasingCombels(
         topology : Array<Array<number>>
     }): Array<any>
 {
-    let minMax = getMinMax(topology)
+    const minMax = getMinMax(topology)
     if (minMax[0]<0) {
         throw new Error(`Topology contains negatif indices`)
     }
@@ -286,7 +286,7 @@ function interpolateDecreasingCombels(
         topology : Array<Array<number>>
     }): Array<any>
 {
-    let minMax = getMinMax(topology)
+    const minMax = getMinMax(topology)
 
     //const minMax = topology.reduce( combel => minMaxArray(combel) )
     if (minMax[0]<0) {
@@ -324,13 +324,13 @@ function interpolateDecreasingCombels(
             const v = from[idFace]
             idNodes.forEach( id => {
                 const vv = to[id]
-                for (let i=0; i<size; ++i) vv[i] += v[i]
+                for (let i=0; i<size; ++i) {vv[i] += v[i]}
                 nbr[id]++
                 //console.log(id, to)
             })
         })
         for (let j=0; j<to.length; ++j) {
-            for (let i=0; i<size; ++i) to[j][i] /= nbr[j]
+            for (let i=0; i<size; ++i) {to[j][i] /= nbr[j]}
         }
         //console.log(to)
     }

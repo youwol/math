@@ -22,7 +22,7 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
 export const add = (series: Serie[]) => {
-    if (series.length <= 1) throw new Error('nb series should be greater than 1')
+    if (series.length <= 1) {throw new Error('nb series should be greater than 1')}
 
     const r = series[0].clone(true)
 
@@ -46,7 +46,7 @@ export const add = (series: Serie[]) => {
  */
 export const addNumber = (serie: Serie, a: number) => {
     const r = serie.clone(false)
-    if (a===0) return r
+    if (a===0) {return r}
     
     r.array.forEach( (v,i) => r.array[i] += a )
     return r

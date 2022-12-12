@@ -2,7 +2,7 @@ import { DataFrame, Serie, Manager } from '@youwol/dataframe'
 import { VectorNormDecomposer } from '../lib/dataframe/decomposers'
 
 
-test('test norm decomposer', () => {
+test('norm decomposer', () => {
     const df = DataFrame.create({
         series: {
             U: Serie.create( {array: [1,2,3, 6,5,4, 9,5,7], itemSize: 3} )
@@ -23,7 +23,7 @@ test('test norm decomposer', () => {
 
 })
 
-test('test norm decomposer excluding positions and indices', () => {
+test('norm decomposer excluding positions and indices', () => {
     const df = DataFrame.create({
         series: {
             positions: Serie.create( {array: [1,2,3, 6,5,4, 9,5,7], itemSize: 3} ),

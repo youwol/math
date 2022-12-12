@@ -1,4 +1,4 @@
-import { Matrix, Serie, squaredMatrix, symSquaredMatrix, Vector } from '@youwol/dataframe'
+import { Serie, squaredMatrix, symSquaredMatrix, Vector } from '@youwol/dataframe'
 import { mult } from './mult'
 
 // NOTE
@@ -22,11 +22,11 @@ import { mult } from './mult'
  * @category Dataframe
  */
 export const multMat = (s1: Serie, s2: Serie|number): Serie => {
-    if (s1 === undefined) throw new Error('s1 is undefined')
-    if (s2 === undefined) throw new Error('s2 is undefined')
+    if (s1 === undefined) {throw new Error('s1 is undefined')}
+    if (s2 === undefined) {throw new Error('s2 is undefined')}
 
     if (typeof s2 === 'number') {
-        const s = s2 as number
+        const s = s2 
         return mult(s1, s2)  //s1.map( v => v*s)
     }
     if (s2.itemSize===1) {
@@ -34,7 +34,7 @@ export const multMat = (s1: Serie, s2: Serie|number): Serie => {
     }
 
     if (s1.itemSize === 1) {
-        if (s2.itemSize!==1) throw new Error('s2 should have itemSize=1 (same as s1)')
+        if (s2.itemSize!==1) {throw new Error('s2 should have itemSize=1 (same as s1)')}
         return s1.map( (v,i) => v*(s2.itemAt(i) as number))
     }
 

@@ -11,18 +11,18 @@ export class ValenceDecomposer implements Decomposer {
      * @hidden 
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
-        if (itemSize !== 1) return []
-        if (!exists(df, 'positions') && !exists(df, 'indices')) return []
+        if (itemSize !== 1) {return []}
+        if (!exists(df, 'positions') && !exists(df, 'indices')) {return []}
         return [this.name]
     }
     /**
      * @hidden 
      */
     serie(df: DataFrame, itemSize: number, name: string): Serie {
-        if (name !== this.name) return undefined
+        if (name !== this.name) {return undefined}
         const positions = df.series['positions']
         const indices   = df.series['indices']
-        if (!positions || !indices) return undefined
+        if (!positions || !indices) {return undefined}
 
         const ids = new Array(positions.count).fill(0)
         indices.forEach( t => {

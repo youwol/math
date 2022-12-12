@@ -5,10 +5,10 @@ import { check, cut, Serie, sort } from '@youwol/dataframe'
  * @category Dataframe/stats
  */
 export const quantile = (s: Serie, q: number): number => {
-    if (s===undefined) throw new Error ('series is undefined')
-    if (s.itemSize !== 1) throw new Error('quantile algorithm: itemSize must be 1')
-    if (q<0) throw new Error ('quantile must be >= 0')
-    if (q>1) throw new Error ('quantile must be <= 1')
+    if (s===undefined) {throw new Error ('series is undefined')}
+    if (s.itemSize !== 1) {throw new Error('quantile algorithm: itemSize must be 1')}
+    if (q<0) {throw new Error ('quantile must be >= 0')}
+    if (q>1) {throw new Error ('quantile must be <= 1')}
 
     const newSerie = sort(s)
     const sorted = newSerie.array

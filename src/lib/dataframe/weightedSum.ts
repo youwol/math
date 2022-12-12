@@ -23,6 +23,6 @@ import { mult } from "./mult"
  * @category Dataframe
  */
 export const weightedSum = (data: Serie[], alpha: number[]): Serie => {
-    if (alpha.length !== data.length) throw new Error(`data length (${data.length}) should be equal to alpha length (${alpha.length})`)
+    if (alpha.length !== data.length) {throw new Error(`data length (${data.length}) should be equal to alpha length (${alpha.length})`)}
     return add( data.map( (d,i) => mult(d, alpha[i])) )
 }

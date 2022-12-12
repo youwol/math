@@ -1,5 +1,4 @@
-import { triangleLerp2D, biLerp, lerp, barycentric2 } from '../lib'
-import { meshInterpolate, InterpolateDirection } from '../lib'
+import { triangleLerp2D, biLerp, lerp , meshInterpolate, InterpolateDirection } from '../lib'
 
 /*
 
@@ -54,7 +53,7 @@ test('triangleLerp2D', () => {
 
 const topology = [[0,1,2], [0,2,3,4]]
 
-test('Test interpolate with scalar in INCREASING direction', () => {
+test('interpolate with scalar in INCREASING direction', () => {
     const attribute = [0, 1, 2, 3, 4]
 
     const faces = meshInterpolate({attribute, topology})
@@ -65,7 +64,7 @@ test('Test interpolate with scalar in INCREASING direction', () => {
     })
 })
 
-test('Test interpolate with vector3 in INCREASING direction', () => {
+test('interpolate with vector3 in INCREASING direction', () => {
     const attribute = [[0,0,0], [1,1,1], [2,2,2], [3,3,3], [4,4,4]]
 
     const faces = meshInterpolate({attribute, topology})
@@ -76,7 +75,7 @@ test('Test interpolate with vector3 in INCREASING direction', () => {
     })
 })
 
-test('Test interpolate with scalar in DECREASING direction', () => {
+test('interpolate with scalar in DECREASING direction', () => {
     const attribute = [1, 3]
 
     const nodes = meshInterpolate({attribute, topology, direction: InterpolateDirection.DECREASING})
@@ -87,7 +86,7 @@ test('Test interpolate with scalar in DECREASING direction', () => {
     })
 })
 
-test('Test interpolate with vector3 in DECREASING direction', () => {
+test('interpolate with vector3 in DECREASING direction', () => {
     const attribute = [[1,2,3], [4,5,6]]
 
     const nodes = meshInterpolate({attribute, topology, direction: InterpolateDirection.DECREASING})

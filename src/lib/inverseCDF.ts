@@ -22,7 +22,7 @@ export function inverseCDF(PDF: DistributionFunction, lutSize = 100) {
         if (y<lut[0]) {
             return y/lut[0]*d
         }
-        let i = lowerBound(lut, y)
+        const i = lowerBound(lut, y)
         return (i + (y - lut[i-1]) / (lut[i] - lut[i-1]))*d
     }
 }
@@ -31,12 +31,12 @@ export function inverseCDF(PDF: DistributionFunction, lutSize = 100) {
 
 // Implement the std::lower_bound function
 //
-let lowerBound = (A: Array<number>, T: number) => {
+const lowerBound = (A: Array<number>, T: number) => {
     let i = 0, j = A.length
     while (i < j) {
         const k = Math.floor((i + j) / 2)
-        if (A[k]<T) i = k+1
-        else j = k
+        if (A[k]<T) {i = k+1}
+        else {j = k}
     }
     return i
 }

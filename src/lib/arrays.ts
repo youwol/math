@@ -14,7 +14,7 @@ import { IArray } from '@youwol/dataframe'
     const n = array.length
     for (let i=0; i<n; ++i) {
         const a = array[i]
-        if (a < m) m = a
+        if (a < m) {m = a}
     }
     return m
 }
@@ -27,7 +27,7 @@ export function maxArray(array: IArray): number {
     const n = array.length
     for (let i=0; i<n; ++i) {
         const a = array[i]
-        if (a > m) m = a
+        if (a > m) {m = a}
     }
     return m
 }
@@ -41,8 +41,8 @@ export function minMaxArray(array: IArray): Array<number> {
     const n = array.length
     for (let i=0; i<n; ++i) {
         const a = array[i]
-        if (a < m) m = a
-        if (a > M) M = a
+        if (a < m) {m = a}
+        if (a > M) {M = a}
     }
     return [m, M]
 }

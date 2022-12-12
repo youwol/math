@@ -12,7 +12,7 @@ export class Fringes implements Decomposer {
      * @hidden
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
-        if (itemSize !== 1) return []
+        if (itemSize !== 1) {return []}
         return [this.name]
     }
 
@@ -20,10 +20,10 @@ export class Fringes implements Decomposer {
      * @hidden 
      */
     serie(df: DataFrame, itemSize: number, name: string): Serie {
-        if (name !== this.name) return undefined
+        if (name !== this.name) {return undefined}
 
         const u = df.series[this.name]
-        if (!u) return undefined
+        if (!u) {return undefined}
 
         const frac = (val: number) => val - Math.floor(val)
         return apply(u, v => Math.abs(this.fringes*frac(v/this.fringes)) )

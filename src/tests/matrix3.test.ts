@@ -1,7 +1,7 @@
 import { getRotationAxis, mat } from '../lib'
 
-test('rot 2 mat and compare ', () => {
-    let m = [
+test('rot 2 mat and compare', () => {
+    const m = [
         [1, 2, 3],
         [2, 4, 5],
         [3, 5, 6]
@@ -23,14 +23,14 @@ test('rot 2 mat and compare ', () => {
     }
 })
 
-test('multMat ', () => {
-    let m1 = [
+test('multMat', () => {
+    const m1 = [
         [1, 2, 3],
         [4, 4, 5],
         [6, 2, 24]
     ] as mat.Matrix3
 
-    let m2 = [
+    const m2 = [
         [4, 2, 1],
         [9, -1, 5],
         [-3, 2, 7]
@@ -49,8 +49,8 @@ test('multMat ', () => {
     expect(m3[2][2]).toBeCloseTo(184)
 })
 
-test('rot mat forward ', () => {
-    let m = [
+test('rot mat forward', () => {
+    const m = [
         [1, 0, 0],
         [0, 0, 0],
         [0, 0, 0]
@@ -88,8 +88,8 @@ test('rot mat forward ', () => {
     }
 })
 
-test('rot mat inverse ', () => {
-    let m = [
+test('rot mat inverse', () => {
+    const m = [
         [1, 0, 0],
         [0, 0, 0],
         [0, 0, 0]
@@ -129,7 +129,7 @@ test('rot mat inverse ', () => {
     }
 })
 
-test('rot mat 90 CW ', () => {
+test('rot mat 90 CW', () => {
     const m = [
         [1, 2, 3],
         [4, 5, 6],
@@ -151,8 +151,8 @@ test('rot mat 90 CW ', () => {
     ] as mat.Matrix3
 
     {
-        let m1 = mat.rotateForward(m, rotCCW)
-        let m2 = mat.rotateInverse(m, rotCW)
+        const m1 = mat.rotateForward(m, rotCCW)
+        const m2 = mat.rotateInverse(m, rotCW)
         for (let i=0; i<3; ++i) {
             for (let j=0; j<3; ++j) {
                 expect(m1[i][j]).toBeCloseTo(m2[i][j])
@@ -163,8 +163,8 @@ test('rot mat 90 CW ', () => {
     // --------------------------
 
     {
-        let m1 = mat.rotateForward(m, rotCW)
-        let m2 = mat.rotateInverse(m, rotCCW)
+        const m1 = mat.rotateForward(m, rotCW)
+        const m2 = mat.rotateInverse(m, rotCCW)
         for (let i=0; i<3; ++i) {
             for (let j=0; j<3; ++j) {
                 expect(m1[i][j]).toBeCloseTo(m2[i][j])

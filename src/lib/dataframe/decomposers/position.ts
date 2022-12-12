@@ -12,13 +12,13 @@ export class PositionDecomposer implements Decomposer {
      * @default names = `['x', 'y', 'z']`
      */
     constructor(private readonly names_ = ['x', 'y', 'z']) {
-        if (names_.length!==3) throw new Error('names must be an array of 3 strings (the dimension)')
+        if (names_.length!==3) {throw new Error('names must be an array of 3 strings (the dimension)')}
     }
     /**
      * @hidden 
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
-        if (itemSize!==1 || name!=='positions') return []
+        if (itemSize!==1 || name!=='positions') {return []}
         return this.names_
     }
 

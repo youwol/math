@@ -15,8 +15,8 @@ const xspi = Math.sin(Math.PI / 4)
  * @category Eigen
  */
 export function eigen(mat: Array<number>): {values: number[], vectors: number[]} {
-    let values : Array<number> = []
-    let vectors: Array<number> = []
+    const values : Array<number> = []
+    const vectors: Array<number> = []
     const a: Array<number> = []
     const v: Array<number> = []
     const index: Array<number> = []
@@ -91,21 +91,21 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
             thr_nn = thr / nn
             for (let l = 1; l < n; ++l) {
                 for (let m = l + 1; m <= n; ++m) {
-                    let lq = (l * l - l) / 2
-                    let mq = (m * m - m) / 2
-                    let lm = l + mq
-                    let a_lm = a[lm - 1]
-                    let a_lm_2 = a_lm * a_lm
+                    const lq = (l * l - l) / 2
+                    const mq = (m * m - m) / 2
+                    const lm = l + mq
+                    const a_lm = a[lm - 1]
+                    const a_lm_2 = a_lm * a_lm
 
                     if (a_lm_2 < thr_nn) {
                         continue
                     }
 
-                    let ll = l + lq
-                    let mm = m + mq
-                    let a_ll = a[ll - 1]
-                    let a_mm = a[mm - 1]
-                    let delta = a_ll - a_mm
+                    const ll = l + lq
+                    const mm = m + mq
+                    const a_ll = a[ll - 1]
+                    const a_mm = a[mm - 1]
+                    const delta = a_ll - a_mm
 
                     if (delta === 0.0) {
                         x = -Math.PI / 4
@@ -117,9 +117,9 @@ export function eigen(mat: Array<number>): {values: number[], vectors: number[]}
                         cosx = Math.cos(x)
                     }
 
-                    let sinx_2 = sinx * sinx
-                    let cosx_2 = cosx * cosx
-                    let sincos = sinx * cosx
+                    const sinx_2 = sinx * sinx
+                    const cosx_2 = cosx * cosx
+                    const sincos = sinx * cosx
                     let ilv = n * (l - 1)
                     let imv = n * (m - 1)
 

@@ -85,9 +85,9 @@ export namespace vec {
      * @category Vector
      */
     export const cross  = (v: Vector3, w: Vector3): Vector3 => {
-        let x = v[1] * w[2] - v[2] * w[1]
-        let y = v[2] * w[0] - v[0] * w[2]
-        let z = v[0] * w[1] - v[1] * w[0]
+        const x = v[1] * w[2] - v[2] * w[1]
+        const y = v[2] * w[0] - v[0] * w[2]
+        const z = v[0] * w[1] - v[1] * w[0]
         return [x, y, z]
     }
 

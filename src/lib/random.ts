@@ -32,7 +32,7 @@ export const randomMT = (ubound?: number, floor = false) => {
 // Create a length 624 array to store the state of the generator
 const MT  = []
 let index = 0
-let init  = false
+const init  = false
 
 // Initialize the generator from a seed
 function initializeGenerator(seed: number) {
@@ -64,7 +64,7 @@ function extractNumber() {
 // Generate an array of 624 untempered numbers
 function generateNumbers() {
     for (let i = 0; 624 > i; ++i) {
-        let y = (MT[i] & 0x80000000) | (MT[(i+1) % 624] & 0x7fffffff)
+        const y = (MT[i] & 0x80000000) | (MT[(i+1) % 624] & 0x7fffffff)
         MT[i] = MT[(i + 397) % 624] ^ (y >> 1)
         if (y % 2 == 1) {
             MT[i] ^= 0x9908b0df

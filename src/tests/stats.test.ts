@@ -1,7 +1,6 @@
-import { covariance, mean, weightedMean } from '../lib/dataframe/stats'
+import { covariance, mean, weightedMean , describe as statDescribe, bins } from '../lib/dataframe/stats'
 import { Serie } from '@youwol/dataframe'
 import { IQR, isOutliers, notOutliers, outliers, q25, q75 } from '../lib/dataframe/stats/quantile'
-import { describe as statDescribe, bins } from '../lib/dataframe/stats'
 
 test('operation mean itemSize=3', () => {
     const serie = Serie.create( {array: new Array(9).fill(0).map ( (_,i) => i), itemSize: 3})
@@ -40,7 +39,7 @@ test('stats cov', () => {
     x = Serie.create( {array: [1, 2, 3, 4], itemSize:1})
     y = Serie.create( {array: [5, 6, 7 ,8], itemSize:1})
     c = covariance(x,y)
-    expect(c).toEqual(1.25)
+    expect(c).toBe(1.25)
 
     x = Serie.create( {array: [0.90010907, 0.13484424, 0.62036035], itemSize:1})
     y = Serie.create( {array: [0.12528585, 0.26962463, 0.51111198], itemSize:1})
@@ -57,8 +56,8 @@ test('stats quantile', () => {
 
     const Q1 = q25(s)
     const Q3 = q75(s)
-    expect( q25(s) ).toEqual(66)
-    expect( q75(s) ).toEqual(75)
+    expect( q25(s) ).toBe(66)
+    expect( q75(s) ).toBe(75)
 })
 
 test('stats outliers', () => {
@@ -67,9 +66,9 @@ test('stats outliers', () => {
         itemSize:1
     })
 
-    expect( q25(s) ).toEqual(61)
-    expect( q75(s) ).toEqual(74)
-    expect( IQR(s) ).toEqual(13)
+    expect( q25(s) ).toBe(61)
+    expect( q75(s) ).toBe(74)
+    expect( IQR(s) ).toBe(13)
 
     expect(outliers(s, 0).array).toEqual([
         57, 57, 57, 57, 58, 58,
@@ -99,14 +98,14 @@ test('stats describe', () => {
     const d = statDescribe(s)
     // console.log(d)
 
-    expect(d.count).toEqual(27)
+    expect(d.count).toBe(27)
     expect(d.mean).toBeCloseTo( 67.92592592592592)
     expect(d.std).toBeCloseTo( 7.529051048213826)
-    expect(d.min).toEqual( 57)
-    expect(d.q25).toEqual( 61)
-    expect(d.q50).toEqual( 69)
-    expect(d.q75).toEqual( 74)
-    expect(d.max).toEqual( 81)
+    expect(d.min).toBe( 57)
+    expect(d.q25).toBe( 61)
+    expect(d.q50).toBe( 69)
+    expect(d.q75).toBe( 74)
+    expect(d.max).toBe( 81)
 })
 
 test('stats bons', () => {

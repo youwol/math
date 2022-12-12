@@ -6,9 +6,9 @@ import { eigen } from '../'
  * @category Dataframe
  */
 export const eigenValue = (s: Serie) => {
-    if (s===undefined)    throw new Error ('series is undefined')
+    if (s===undefined)    {throw new Error ('series is undefined')}
 
-    let dim = s.dimension
+    const dim = s.dimension
     if (s.dimension===2 && (s.itemSize === 3 || s.itemSize===4)) {}
     else if (s.dimension===3 && (s.itemSize === 6 || s.itemSize===9)) {}
     else {
@@ -20,9 +20,9 @@ export const eigenValue = (s: Serie) => {
     let k       = 0
 
     for (let i=0; i<count; ++i) {
-        let a = s.itemAt(i) as number[]
+        const a = s.itemAt(i) as number[]
         const e = eigen(a)
-        for (let j=0; j<dim; ++j) r.array[k++] = e.values[j]
+        for (let j=0; j<dim; ++j) {r.array[k++] = e.values[j]}
     }
 
     return r
@@ -34,9 +34,9 @@ export const eigenValue = (s: Serie) => {
  * @category Dataframe
  */
  export const eigenVector = (s: Serie) => {
-    if (s===undefined)    throw new Error ('series is undefined')
+    if (s===undefined)    {throw new Error ('series is undefined')}
 
-    let dim = s.dimension
+    const dim = s.dimension
     if (s.dimension===2 && (s.itemSize === 3 || s.itemSize===4)) {}
     else if (s.dimension===3 && (s.itemSize === 6 || s.itemSize===9)) {}
     else {
@@ -52,7 +52,7 @@ export const eigenValue = (s: Serie) => {
     let k       = 0
 
     for (let i=0; i<count; ++i) {
-        let a = s.itemAt(i) as number[]
+        const a = s.itemAt(i) as number[]
         const e = eigen(a)
         e.vectors.forEach( v => r.array[k++] = v)
     }

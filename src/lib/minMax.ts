@@ -51,13 +51,13 @@ export class MinMax {
     add(values: any) {
         if (Array.isArray(values)) {
             values.forEach( (v: number) => {
-                if (v<this.m_[0]) this.m_[0] = v
-                if (v>this.m_[1]) this.m_[1] = v
+                if (v<this.m_[0]) {this.m_[0] = v}
+                if (v>this.m_[1]) {this.m_[1] = v}
             })
         } else {
             const v = values
-            if (v<this.m_[0]) this.m_[0] = v
-            if (v>this.m_[1]) this.m_[1] = v
+            if (v<this.m_[0]) {this.m_[0] = v}
+            if (v>this.m_[1]) {this.m_[1] = v}
         }
         return this
     }

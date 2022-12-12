@@ -4,7 +4,7 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe/stats
  */
 export const mean = (s: Serie): number|number[] => {
-    if (s===undefined) throw new Error ('series is undefined')
+    if (s===undefined) {throw new Error ('series is undefined')}
 
     const n = s.itemSize
     if (n === 1) {

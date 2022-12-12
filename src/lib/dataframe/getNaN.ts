@@ -16,7 +16,7 @@ export const getNaN = (a: Serie) => {
 
     if (a.itemSize === 1) {
         a.forEach( (item, i) => {
-            if (Number.isNaN(item)) r.push(i)
+            if (Number.isNaN(item)) {r.push(i)}
         })
     }
     else {

@@ -13,17 +13,17 @@ export class AreaDecomposer implements Decomposer {
      * @hidden 
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
-        if (itemSize !== 1) return []
-        if (!exists(df, 'positions') && !exists(df, 'indices')) return []
+        if (itemSize !== 1) {return []}
+        if (!exists(df, 'positions') && !exists(df, 'indices')) {return []}
         return [this.name]
     }
     /**
      * @hidden 
      */
     serie(df: DataFrame, itemSize: number, name: string): Serie {
-        if (name !== this.name) return undefined
+        if (name !== this.name) {return undefined}
         const normals = (new NormalsDecomposer).serie(df, itemSize, 'normals')
-        if (normals) return div( norm( normals ), 2)//.setName(this.name)
+        if (normals) {return div( norm( normals ), 2)}//.setName(this.name)
         return undefined
     }
 }

@@ -14,8 +14,8 @@ import { minMax } from "../minMax";
  * @category Dataframe/stats
  */
 export function bins(serie: Serie, {size, nb, start, stop}:{size?: number, nb?: number, start?:number, stop?:number}): Serie {
-    if (serie.itemSize !== 1) throw new Error('itemSize should be 1')
-    if (size === undefined && nb === undefined) throw new Error('size or nb must be provided')
+    if (serie.itemSize !== 1) {throw new Error('itemSize should be 1')}
+    if (size === undefined && nb === undefined) {throw new Error('size or nb must be provided')}
 
     const m = minMax(serie)
     if (start === undefined) {
@@ -36,8 +36,8 @@ export function bins(serie: Serie, {size, nb, start, stop}:{size?: number, nb?: 
     const b = new Array(nb).fill(0)
     serie.forEach( v => {
         let i = Math.trunc((v-start)/size)
-        if (i>=nb) i = nb-1
-        if (i<0 || i>=nb) throw new Error(`index for bin (${i}) out of bounds (0, ${nb})`)
+        if (i>=nb) {i = nb-1}
+        if (i<0 || i>=nb) {throw new Error(`index for bin (${i}) out of bounds (0, ${nb})`)}
         b[i]++
     })
 

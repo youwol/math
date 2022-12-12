@@ -32,12 +32,12 @@ export class ComponentDecomposer implements Decomposer {
      */
     names(df:DataFrame, itemSize: number, serie: Serie, name: string) {
         // Avoid using 'positions' and 'indices'
-        if (name==='positions' || name==='indices') return []
+        if (name==='positions' || name==='indices') {return []}
         
         // Passed name is, e.g., 'U' && itemSize=3 && dimension=3
         const sname = nameOfSerie(df, serie)
-        if (name===sname && serie.itemSize===1) return []
-        if (itemSize>1) return []
+        if (name===sname && serie.itemSize===1) {return []}
+        if (itemSize>1) {return []}
 
         if (serie.dimension===2) {
             switch(serie.itemSize) {
@@ -54,15 +54,15 @@ export class ComponentDecomposer implements Decomposer {
             }
         }
 
-        let names = []
-        for (let i=0; i<itemSize; ++i) names.push(name+i)
+        const names = []
+        for (let i=0; i<itemSize; ++i) {names.push(name+i)}
         return names
     }
     /**
      * @hidden 
      */
     serie(df: DataFrame, itemSize: number, name: string): Serie {
-        if (itemSize>1) return undefined
+        if (itemSize>1) {return undefined}
 
         // vector2 / vector3
         let newName = name.substring(0, name.length - 1)

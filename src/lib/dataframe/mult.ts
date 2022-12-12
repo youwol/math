@@ -63,8 +63,8 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
 export const mult = (s: Serie, ...args: (Serie|number)[]) => {
-    if (s === undefined) return undefined
-    if (!args) throw new Error('cannot multiply undefined to s')
+    if (s === undefined) {return undefined}
+    if (!args) {throw new Error('cannot multiply undefined to s')}
 
     const r = s.clone()
 

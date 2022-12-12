@@ -47,10 +47,10 @@ export function getRotationAxis(axis: vec.Vector3 | string, angleInDeg: number):
     }
 
     let AXIS = 2 ;
-    if (axis === 'x' || axis === 'X') AXIS = 0
-    else if (axis === 'y' || axis === 'Y') AXIS = 1
+    if (axis === 'x' || axis === 'X') {AXIS = 0}
+    else if (axis === 'y' || axis === 'Y') {AXIS = 1}
 
-    let R = [[0,0,0], [0,0,0], [0,0,0]] as mat.Matrix3
+    const R = [[0,0,0], [0,0,0], [0,0,0]] as mat.Matrix3
     
     const c = Math.cos(angleInDeg * Math.PI / 180.0)
     const s = Math.sin(angleInDeg * Math.PI / 180.0)

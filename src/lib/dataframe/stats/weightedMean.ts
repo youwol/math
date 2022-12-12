@@ -4,10 +4,10 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe/stats
  */
 export const weightedMean = (s: Serie, w: Serie): number|number[] => {
-    if (s===undefined) throw new Error ('s is undefined')
-    if (w===undefined) throw new Error ('w is undefined')
-    if (w.count !== s.count) throw new Error (`count mismatch for s (${s.count}) and w (${w.count})`)
-    if (w.itemSize !== 1) throw new Error (`itemSize for w should be 1 (got ${w.itemSize})`)
+    if (s===undefined) {throw new Error ('s is undefined')}
+    if (w===undefined) {throw new Error ('w is undefined')}
+    if (w.count !== s.count) {throw new Error (`count mismatch for s (${s.count}) and w (${w.count})`)}
+    if (w.itemSize !== 1) {throw new Error (`itemSize for w should be 1 (got ${w.itemSize})`)}
 
     const W = w.array.reduce( (acc,v) => acc+v, 0)
 

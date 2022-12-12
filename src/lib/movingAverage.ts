@@ -52,8 +52,8 @@ export function movingAverage(
     const p = df.series.positions // positions
     const a = df.series[name]     // attribute
 
-    if (p === undefined) throw new Error(`positions is undefined`)
-    if (a === undefined) throw new Error(`attribute named ${name} is undefined`)
+    if (p === undefined) {throw new Error(`positions is undefined`)}
+    if (a === undefined) {throw new Error(`attribute named ${name} is undefined`)}
     // if (a.itemSize !== 1) throw new Error(`attribute named ${name} must have itemSize=1 (at least for now)`)
 
     const bbox = new BBox(lx, ly)

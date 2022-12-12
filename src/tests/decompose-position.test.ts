@@ -7,7 +7,7 @@ const df = DataFrame.create({
     }
 })
 
-test('test position decomposer', () => {
+test('position decomposer', () => {
     const mng = new Manager(df, {
         decomposers: [
             new PositionDecomposer() // default names are ['x', 'y', 'z']
@@ -21,7 +21,7 @@ test('test position decomposer', () => {
     expect( mng.serie(1, 'z').array ).toEqual( [3,4,7] )
 })
 
-test('test position decomposer with renaming', () => {
+test('position decomposer with renaming', () => {
     const mng = new Manager(df, {
         decomposers: [
             new PositionDecomposer(['X0', 'X1', 'X2'])

@@ -1,4 +1,4 @@
-import { Matrix, Serie, squaredMatrix, symSquaredMatrix } from '@youwol/dataframe'
+import { Serie, squaredMatrix, symSquaredMatrix } from '@youwol/dataframe'
 
 /**
  * Get the determinant of each item of a [[Serie]] (if matrix).
@@ -6,7 +6,7 @@ import { Matrix, Serie, squaredMatrix, symSquaredMatrix } from '@youwol/datafram
  * @category Dataframe
  */
  export function determinant(s: Serie) {
-    if (s === undefined) throw new Error ('series is undefined')
+    if (s === undefined) {throw new Error ('series is undefined')}
 
     if ((s.itemSize===3 || s.itemSize===4) && s.dimension===2) {
         const matrix = (v: number[]) => v.length===3 ? symSquaredMatrix(v) : squaredMatrix(v)

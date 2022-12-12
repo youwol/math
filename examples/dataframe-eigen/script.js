@@ -17,9 +17,9 @@ function check(stresses) {
         const c2 = math.vec.dot(S1, S3)
         const c3 = math.vec.dot(S2, S3)
 
-        if (Math.abs(c1)>tol) console.error('S1 and S2 are NOT ortho')
-        if (Math.abs(c2)>tol) console.error('S1 and S3 are NOT ortho')
-        if (Math.abs(c3)>tol) console.error('S2 and S3 are NOT ortho')
+        if (Math.abs(c1)>tol) {console.error('S1 and S2 are NOT ortho')}
+        if (Math.abs(c2)>tol) {console.error('S1 and S3 are NOT ortho')}
+        if (Math.abs(c3)>tol) {console.error('S2 and S3 are NOT ortho')}
     })
 }
 
@@ -53,9 +53,9 @@ for (let i=1; i<=6; ++i) {
         const c1 = math.vec.dot(S1.itemAt(i), S2.itemAt(i))
         const c2 = math.vec.dot(S1.itemAt(i), S3.itemAt(i))
         const c3 = math.vec.dot(S2.itemAt(i), S3.itemAt(i))
-        if (Math.abs(c1)>tol) console.error('S1 and S2 are NOT ortho')
-        if (Math.abs(c2)>tol) console.error('S1 and S3 are NOT ortho')
-        if (Math.abs(c3)>tol) console.error('S2 and S3 are NOT ortho')
+        if (Math.abs(c1)>tol) {console.error('S1 and S2 are NOT ortho')}
+        if (Math.abs(c2)>tol) {console.error('S1 and S3 are NOT ortho')}
+        if (Math.abs(c3)>tol) {console.error('S2 and S3 are NOT ortho')}
     }
 }
 
@@ -77,8 +77,8 @@ for (let i=1; i<=6; ++i) {
         const c1 = math.vec.dot(S1.itemAt(i), S2.itemAt(i))
         const c2 = math.vec.dot(S1.itemAt(i), S3.itemAt(i))
         const c3 = math.vec.dot(S2.itemAt(i), S3.itemAt(i))
-        if (Math.abs(c1)>tol) console.error('S1 and S2 are NOT ortho')
-        if (Math.abs(c2)>tol) console.error('S1 and S3 are NOT ortho')
-        if (Math.abs(c3)>tol) console.error('S2 and S3 are NOT ortho')
+        if (Math.abs(c1)>tol) {console.error('S1 and S2 are NOT ortho')}
+        if (Math.abs(c2)>tol) {console.error('S1 and S3 are NOT ortho')}
+        if (Math.abs(c3)>tol) {console.error('S2 and S3 are NOT ortho')}
     }
 }

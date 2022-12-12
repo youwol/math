@@ -7,8 +7,8 @@ test('operation normalize', () => {
     const L  = Math.sqrt(1+4+9)
     let r    = undefined
 
-    let s = Serie.create( {array: [1,1,1, 1,2,3, 1,0,0], itemSize: 3})
-    let t = normalize( s )
+    const s = Serie.create( {array: [1,1,1, 1,2,3, 1,0,0], itemSize: 3})
+    const t = normalize( s )
     // console.log(t)
 
     r = t.itemAt(0)

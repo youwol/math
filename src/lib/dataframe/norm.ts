@@ -11,7 +11,7 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const norm2 = (s: Serie) => {
-    if (s===undefined) throw new Error ('series is undefined')
+    if (s===undefined) {throw new Error ('series is undefined')}
 
     const r = s.image(s.count, 1)
     
@@ -20,7 +20,7 @@ import { Serie } from '@youwol/dataframe'
     }
 
     for (let i=0; i<s.count; ++i) {
-        let v = s.itemAt(i) as number[]
+        const v = s.itemAt(i) as number[]
         r.array[i] = v.reduce( (acc,v) => acc + v**2, 0)
     }
 

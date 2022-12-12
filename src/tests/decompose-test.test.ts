@@ -91,7 +91,7 @@ import {
 //     }
 // }
 
-test('test 1 on Manager with dimension=2', () => {
+test('1 on Manager with dimension=2', () => {
     const df = DataFrame.create({
         series: {
             positions: Serie.create( {array: [1,2,3, 4,5,6], itemSize: 3} ),
@@ -124,7 +124,7 @@ test('test 1 on Manager with dimension=2', () => {
     
 })
 
-test('test 1 on Manager with dimension=3', () => {
+test('1 on Manager with dimension=3', () => {
     const df = DataFrame.create({
         series: {
             positions: Serie.create( {array: [1,2,3, 4,5,6], itemSize: 3} ),
@@ -151,7 +151,7 @@ test('test 1 on Manager with dimension=3', () => {
     const sizes = [1, 3, 6, 9]
     sizes.forEach( (size,i) => expect(mng.names(size)).toEqual(sol[i]) )
 
-    let names = mng.names(1)
+    const names = mng.names(1)
     expect(mng.serie(1, 'x').array).toEqual([1,4])
     expect(mng.serie(1, 'y').array).toEqual([2,5])
     expect(mng.serie(1, 'z').array).toEqual([3,6])
@@ -175,7 +175,7 @@ test('test 1 on Manager with dimension=3', () => {
     expect(mng.serie(6, 'S').array).toEqual([10,11,12,13,14,15,16,17,18,19,20,21])
 })
 
-test('test 2 on Manager with dimension=3', () => {
+test('2 on Manager with dimension=3', () => {
     const df = DataFrame.create({
         series: {
             U: Serie.create( {array: [6,5,4, 3,2,1], itemSize: 3} ),

@@ -5,8 +5,8 @@ import { Serie } from '@youwol/dataframe'
  * @category Dataframe
  */
  export const transpose = (s: Serie) => {
-    if (s === undefined) return undefined
-    if (s.itemSize!==9) throw new Error('items size should be 9 only (for now)')
+    if (s === undefined) {return undefined}
+    if (s.itemSize!==9) {throw new Error('items size should be 9 only (for now)')}
 
     const r = s.clone()
     const a = r.array

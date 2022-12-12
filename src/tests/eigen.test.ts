@@ -4,8 +4,8 @@ import { eigen } from '../lib'
 test('Eigen test-1 2D', () => {
     const {values, vectors} = eigen([2, 7, 7, 3])
 
-    expect(values.length).toEqual(2)
-    expect(vectors.length).toEqual(4)
+    expect(values).toHaveLength(2)
+    expect(vectors).toHaveLength(4)
 
     expect(values[0]).toBeCloseTo(9.52)
     expect(values[1]).toBeCloseTo(-4.52)
