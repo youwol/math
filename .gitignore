@@ -4,10 +4,10 @@ coverage/
 junit.xml
 src/auto_generated.ts
 
-dist/lib
-dist/src
-dist/@youwol
-dist/index.d.ts
+/dist/*
+!/dist/docs
+!/dist/docs/*
+!/dist/docs/**/*
 
 IDEAS.md
 
