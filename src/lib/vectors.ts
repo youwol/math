@@ -1,5 +1,4 @@
 export namespace vec {
-
     export interface IVector {
         [i: number]: number
         reduce(cb: Function, init: number): any
@@ -12,79 +11,95 @@ export namespace vec {
     /**
      * @category Vector
      */
-    export type Vector2 = [number,number]
+    export type Vector2 = [number, number]
 
     /**
      * @category Vector
      */
-    export type Vector3 = [number,number,number]
+    export type Vector3 = [number, number, number]
 
     /**
      * @category Vector
      */
-    export type Vector4 = [number,number,number,number]
+    export type Vector4 = [number, number, number, number]
 
     /**
      * @category Vector
      */
-    export type Vector6 = [number,number,number,number,number,number]
+    export type Vector6 = [number, number, number, number, number, number]
 
     /**
      * @category Vector
      */
-    export type Vector9 = [number,number,number,number,number,number,number,number,number]
+    export type Vector9 = [
+        number,
+        number,
+        number,
+        number,
+        number,
+        number,
+        number,
+        number,
+        number,
+    ]
 
     /**
      * @category Vector
      */
-    export const create = (v1: IVector, v2: IVector) => v2.map( (v,i) => v-v1[i] )
+    export const create = (v1: IVector, v2: IVector) =>
+        v2.map((v, i) => v - v1[i])
 
     /**
      * @category Vector
      */
-    export const norm2  = (v: IVector) => v.reduce( (acc,w) => acc+w**2, 0)
+    export const norm2 = (v: IVector) => v.reduce((acc, w) => acc + w ** 2, 0)
 
     /**
      * @category Vector
      */
-    export const norm   = (v: IVector) => Math.sqrt( norm2(v) )
+    export const norm = (v: IVector) => Math.sqrt(norm2(v))
 
     /**
      * Perform (a+b)
      * @category Vector
      */
-    export const add = (a: IVector, b: IVector): IVector => a.map( (v,i) => v+b[i] )
+    export const add = (a: IVector, b: IVector): IVector =>
+        a.map((v, i) => v + b[i])
 
     /**
      * Perform (a-b)
      * @category Vector
      */
-    export const sub = (a: IVector, b: IVector): IVector => a.map( (v,i) => v-b[i] )
-    
-    /**
-     * @category Vector
-     */
-    export const scale  = (v: IVector, s: number) => v.map( w => w*s )
+    export const sub = (a: IVector, b: IVector): IVector =>
+        a.map((v, i) => v - b[i])
 
     /**
      * @category Vector
      */
-    export const setCoord  = (v: IVector, i: number, value: number) => v[i]=value
+    export const scale = (v: IVector, s: number) => v.map((w) => w * s)
 
     /**
      * @category Vector
      */
-    export const set = (v: IVector, v1: IVector) => v1.forEach( (value,i) => v[i]=v1[i] )
+    export const setCoord = (v: IVector, i: number, value: number) =>
+        (v[i] = value)
 
     /**
      * @category Vector
      */
-    export const dot    = (a:IVector, b: IVector): number => a.reduce( (acc, cur, i) => acc+cur*b[i], 0)
+    export const set = (v: IVector, v1: IVector) =>
+        v1.forEach((value, i) => (v[i] = v1[i]))
 
     /**
      * @category Vector
      */
-    export const cross  = (v: Vector3, w: Vector3): Vector3 => {
+    export const dot = (a: IVector, b: IVector): number =>
+        a.reduce((acc, cur, i) => acc + cur * b[i], 0)
+
+    /**
+     * @category Vector
+     */
+    export const cross = (v: Vector3, w: Vector3): Vector3 => {
         const x = v[1] * w[2] - v[2] * w[1]
         const y = v[2] * w[0] - v[0] * w[2]
         const z = v[0] * w[1] - v[1] * w[0]
@@ -96,7 +111,7 @@ export namespace vec {
      */
     export const normalize = (v: IVector): IVector => {
         const n = norm(v)
-        return v.map( w => w/n)
+        return v.map((w) => w / n)
         //return [v[0]/n, v[1]/n, v[2]/n]
     }
 

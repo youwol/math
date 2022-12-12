@@ -1,12 +1,14 @@
-import { mat } from './matrix3';
+import { mat } from './matrix3'
 import { vec } from './vectors'
 
 const setRow = (m: mat.Matrix3, i: number, v: vec.Vector3) => {
-    m[i][0] = v[0]; m[i][1] = v[1]; m[i][2] = v[2]; 
+    m[i][0] = v[0]
+    m[i][1] = v[1]
+    m[i][2] = v[2]
 }
 
 export class Quaternion {
-    private q: Array<number> = [0,0,0,1]
+    private q: Array<number> = [0, 0, 0, 1]
 
     /**
      *
@@ -22,10 +24,26 @@ export class Quaternion {
     // prod 2 quaternions
     static fromProd(a: Quaternion, b: Quaternion) {
         const q = new Quaternion()
-        q.q[0] = a.q[3] * b.q[0] + b.q[3] * a.q[0] + a.q[1] * b.q[2] - a.q[2] * b.q[1]
-        q.q[1] = a.q[3] * b.q[1] + b.q[3] * a.q[1] + a.q[2] * b.q[0] - a.q[0] * b.q[2]
-        q.q[2] = a.q[3] * b.q[2] + b.q[3] * a.q[2] + a.q[0] * b.q[1] - a.q[1] * b.q[0]
-        q.q[3] = a.q[3] * b.q[3] - b.q[0] * a.q[0] - a.q[1] * b.q[1] - a.q[2] * b.q[2]
+        q.q[0] =
+            a.q[3] * b.q[0] +
+            b.q[3] * a.q[0] +
+            a.q[1] * b.q[2] -
+            a.q[2] * b.q[1]
+        q.q[1] =
+            a.q[3] * b.q[1] +
+            b.q[3] * a.q[1] +
+            a.q[2] * b.q[0] -
+            a.q[0] * b.q[2]
+        q.q[2] =
+            a.q[3] * b.q[2] +
+            b.q[3] * a.q[2] +
+            a.q[0] * b.q[1] -
+            a.q[1] * b.q[0]
+        q.q[3] =
+            a.q[3] * b.q[3] -
+            b.q[0] * a.q[0] -
+            a.q[1] * b.q[1] -
+            a.q[2] * b.q[2]
         return q
     }
 
@@ -59,20 +77,26 @@ export class Quaternion {
     get axis(): vec.Vector3 {
         const res = [this.q[0], this.q[1], this.q[2]] as vec.Vector3
         const sinus = vec.norm(res)
-        if (sinus > 1e-8) {vec.scale(res, 1/sinus)}
-        return (Math.acos(this.q[3]) <= Math.PI / 2.0) ? res : vec.scale(res, -1) as vec.Vector3
+        if (sinus > 1e-8) {
+            vec.scale(res, 1 / sinus)
+        }
+        return Math.acos(this.q[3]) <= Math.PI / 2.0
+            ? res
+            : (vec.scale(res, -1) as vec.Vector3)
     }
 
     get angle() {
         const angle = 2.0 * Math.acos(this.q[3])
-        return (angle <= Math.PI) ? angle : 2.0 * Math.PI - angle
+        return angle <= Math.PI ? angle : 2.0 * Math.PI - angle
     }
 
     // ------------------------------------
 
     equals(q: Quaternion) {
         for (let i = 0; i < 4; ++i) {
-            if (this.q[i] !== q.q[i]) {return false}
+            if (this.q[i] !== q.q[i]) {
+                return false
+            }
         }
         return true
     }
@@ -110,7 +134,9 @@ export class Quaternion {
 
     normalize() {
         const q = this.q
-        const norm = Math.sqrt(q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3])
+        const norm = Math.sqrt(
+            q[0] * q[0] + q[1] * q[1] + q[2] * q[2] + q[3] * q[3],
+        )
         for (let i = 0; i < 4; ++i) {
             q[i] /= norm
         }
@@ -121,7 +147,7 @@ export class Quaternion {
     dot(A: Quaternion, B: Quaternion) {
         const a = A.q
         const b = B.q
-        return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
+        return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3]
     }
 
     /**
@@ -144,7 +170,7 @@ export class Quaternion {
         return [
             (1.0 - q11 - q22) * v[0] + (q01 + q23) * v[1] + (q02 - q13) * v[2],
             (q01 - q23) * v[0] + (1.0 - q22 - q00) * v[1] + (q12 + q03) * v[2],
-            (q02 + q13) * v[0] + (q12 - q03) * v[1] + (1.0 - q11 - q00) * v[2]
+            (q02 + q13) * v[0] + (q12 - q03) * v[1] + (1.0 - q11 - q00) * v[2],
         ] as vec.Vector3
     }
 
@@ -168,7 +194,7 @@ export class Quaternion {
         return [
             (1.0 - q11 - q22) * v[0] + (q01 - q23) * v[1] + (q02 + q13) * v[2],
             (q01 + q23) * v[0] + (1.0 - q22 - q00) * v[1] + (q12 - q03) * v[2],
-            (q02 - q13) * v[0] + (q12 + q03) * v[1] + (1.0 - q11 - q00) * v[2]
+            (q02 - q13) * v[0] + (q12 + q03) * v[1] + (1.0 - q11 - q00) * v[2],
         ]
     }
 
@@ -180,11 +206,11 @@ export class Quaternion {
     toMatrix(): mat.Matrix3 {
         this.normalize()
         const q = this.q
-        
+
         const M = [
             [0, 0, 0],
             [0, 0, 0],
-            [0, 0, 0]
+            [0, 0, 0],
         ] as mat.Matrix3
 
         // M[0] = 1 - 2 * q[1] ** 2 - 2 * q[2] ** 2
@@ -204,22 +230,24 @@ export class Quaternion {
         M[0][0] = 2 * (q0 * q0 + q1 * q1) - 1
         M[0][1] = 2 * (q1 * q2 - q0 * q3)
         M[0][2] = 2 * (q1 * q3 + q0 * q2)
-        
+
         // Second row of the rotation matrix
         M[1][0] = 2 * (q1 * q2 + q0 * q3)
         M[1][1] = 2 * (q0 * q0 + q2 * q2) - 1
         M[1][2] = 2 * (q2 * q3 - q0 * q1)
-        
+
         // Third row of the rotation matrix
         M[2][0] = 2 * (q1 * q3 - q0 * q2)
         M[2][1] = 2 * (q2 * q3 + q0 * q1)
         M[2][2] = 2 * (q0 * q0 + q3 * q3) - 1
-        
+
         return M
     }
 
     setFrom(q: Quaternion) {
-        for (let i = 0; i < 4; ++i) {this.q[i] = q.q[i]}
+        for (let i = 0; i < 4; ++i) {
+            this.q[i] = q.q[i]
+        }
         return this
     }
 
@@ -238,9 +266,9 @@ export class Quaternion {
             this.q[3] = 1.0
         } else {
             const sha = Math.sin(angle / 2.0)
-            this.q[0] = sha * v[0] / nor
-            this.q[1] = sha * v[1] / nor
-            this.q[2] = sha * v[2] / nor
+            this.q[0] = (sha * v[0]) / nor
+            this.q[1] = (sha * v[1]) / nor
+            this.q[2] = (sha * v[2]) / nor
             this.q[3] = Math.cos(angle / 2.0)
         }
         return this
@@ -254,18 +282,24 @@ export class Quaternion {
         const axisSqNorm = vec.norm2(axis)
         const q = this.q
         const test = vec.dot(from, to) / Math.sqrt(fromSqNorm * toSqNorm)
-        if (test < 0 && (1 - Math.abs(test)) < epsilon) {
+        if (test < 0 && 1 - Math.abs(test) < epsilon) {
             q[0] = q[1] = q[2] = 0.0
             q[3] = 1.0
             return this
         }
 
-        if ((fromSqNorm < epsilon) || (toSqNorm < epsilon) || (axisSqNorm < epsilon)) {
+        if (
+            fromSqNorm < epsilon ||
+            toSqNorm < epsilon ||
+            axisSqNorm < epsilon
+        ) {
             q[0] = q[1] = q[2] = 0.0
             q[3] = 1.0
         } else {
             let angle = Math.asin(Math.sqrt(axisSqNorm / fromSqNorm / toSqNorm))
-            if (vec.dot(from, to) < 0.0) {angle = Math.PI - angle}
+            if (vec.dot(from, to) < 0.0) {
+                angle = Math.PI - angle
+            }
             this.setAxisAngle(axis, angle)
         }
         return this
@@ -278,7 +312,15 @@ export class Quaternion {
     setFromRotationMatrix(m: mat.Matrix3) {
         //const m = r.data
         let i = 2
-        if (m[0][0] > m[1][1]) {if (m[0][0] > m[2][2]) {i = 0}} else {if (m[1][1] > m[2][2]) {i = 1}}
+        if (m[0][0] > m[1][1]) {
+            if (m[0][0] > m[2][2]) {
+                i = 0
+            }
+        } else {
+            if (m[1][1] > m[2][2]) {
+                i = 1
+            }
+        }
         if (m[0][0] + m[1][1] + m[2][2] > m[i][i]) {
             this.q[3] = Math.sqrt(m[0][0] + m[1][1] + m[2][2] + 1.0) / 2.0
             this.q[0] = (m[2][1] - m[1][2]) / (4.0 * this.q[3])
@@ -296,7 +338,11 @@ export class Quaternion {
     }
 
     setFromBase(X: vec.Vector3, Y: vec.Vector3, Z: vec.Vector3) {
-        const m = [[0,0,0],[0,0,0],[0,0,0]] as mat.Matrix3
+        const m = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+        ] as mat.Matrix3
         const normX = vec.norm(X)
         const normY = vec.norm(Y)
         const normZ = vec.norm(Z)
@@ -306,5 +352,4 @@ export class Quaternion {
         }
         return this.setFromRotationMatrix(m)
     }
-
 }

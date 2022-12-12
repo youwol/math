@@ -11,7 +11,9 @@ import { Serie } from '@youwol/dataframe'
  */
 export const tagNaN = (a: Serie, fn: Function) => {
     if (a.itemSize === 1) {
-        return a.map( (item,i) => fn(item,i,a) ? Number.NaN : item)
+        return a.map((item, i) => (fn(item, i, a) ? Number.NaN : item))
     }
-    return a.map( (item,i) => fn(item,i,a) ? new Array(a.itemSize).fill(Number.NaN) : item)
+    return a.map((item, i) =>
+        fn(item, i, a) ? new Array(a.itemSize).fill(Number.NaN) : item,
+    )
 }

@@ -9,12 +9,14 @@ import { IArray } from '@youwol/dataframe'
 /**
  * @category Array
  */
- export function minArray(array: IArray): number {
+export function minArray(array: IArray): number {
     let m = Number.POSITIVE_INFINITY
     const n = array.length
-    for (let i=0; i<n; ++i) {
+    for (let i = 0; i < n; ++i) {
         const a = array[i]
-        if (a < m) {m = a}
+        if (a < m) {
+            m = a
+        }
     }
     return m
 }
@@ -25,9 +27,11 @@ import { IArray } from '@youwol/dataframe'
 export function maxArray(array: IArray): number {
     let m = Number.NEGATIVE_INFINITY
     const n = array.length
-    for (let i=0; i<n; ++i) {
+    for (let i = 0; i < n; ++i) {
         const a = array[i]
-        if (a > m) {m = a}
+        if (a > m) {
+            m = a
+        }
     }
     return m
 }
@@ -39,10 +43,14 @@ export function minMaxArray(array: IArray): Array<number> {
     let m = Number.POSITIVE_INFINITY
     let M = Number.NEGATIVE_INFINITY
     const n = array.length
-    for (let i=0; i<n; ++i) {
+    for (let i = 0; i < n; ++i) {
         const a = array[i]
-        if (a < m) {m = a}
-        if (a > M) {M = a}
+        if (a < m) {
+            m = a
+        }
+        if (a > M) {
+            M = a
+        }
     }
     return [m, M]
 }
@@ -52,14 +60,14 @@ export function minMaxArray(array: IArray): Array<number> {
  */
 export function normalizeArray(array: IArray): IArray {
     const m = minMaxArray(array)
-    return array.map( v => (v-m[0])/(m[1]-m[0]) )
+    return array.map((v) => (v - m[0]) / (m[1] - m[0]))
 }
 
 /**
  * @category Array
  */
 export function scaleArray(array: IArray, s: number): IArray {
-    return array.map( v => v*s )
+    return array.map((v) => v * s)
 }
 
 /**
@@ -68,9 +76,11 @@ export function scaleArray(array: IArray, s: number): IArray {
  * @category Array
  */
 export function dectectNan(array: IArray): IArray {
-    const values = array.map( (value,i) => {return {value, i}})
-    const idx = values.filter( a => Number.isNaN(a.value))
-    return idx.map( v => v.i)
+    const values = array.map((value, i) => {
+        return { value, i }
+    })
+    const idx = values.filter((a) => Number.isNaN(a.value))
+    return idx.map((v) => v.i)
 }
 
 /**
@@ -78,6 +88,6 @@ export function dectectNan(array: IArray): IArray {
  */
 export function flatten(array: Array<Array<number>>): Array<number> {
     const r: Array<number> = []
-    array.forEach( a => r.push(...a) )
+    array.forEach((a) => r.push(...a))
     return r
 }

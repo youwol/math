@@ -13,7 +13,7 @@ import { Serie } from '@youwol/dataframe'
  * let df = new DataFrame()
  *      .set('M', createSerie(new Array(20).fill(2), 6))
  *      .set('v', createSerie(new Array(20).fill(3), 3))
- * 
+ *
  * const w = mult( df.get('M'), df.get('v') )
  * ```
  * @example
@@ -22,10 +22,10 @@ import { Serie } from '@youwol/dataframe'
  * let df = new DataFrame()
  *      .set('M1', createSerie(new Array(20).fill(2), 9))
  *      .set('M2', createSerie(new Array(20).fill(3), 9))
- * 
+ *
  * const M = mult( df.get('M1'), df.get('M2') )
  * ```
-*/
+ */
 
 /**
  * Multiply series between them, item component  by item component.
@@ -40,7 +40,7 @@ import { Serie } from '@youwol/dataframe'
  *          c: createSerie(new Array(20).fill(3), 3))
  *      }
  * })
- * 
+ *
  * const a = mult( df.series['b'], df.series['c'] )
  * ```
  * @example
@@ -53,7 +53,7 @@ import { Serie } from '@youwol/dataframe'
  *          c: createSerie(new Array(20).fill(4), 3))
  *      }
  * })
- * 
+ *
  * const a = add(
  *     mult( df.series['b'], 0.1),
  *     mult( df.series['c'], 0.3),
@@ -62,21 +62,26 @@ import { Serie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
-export const mult = (s: Serie, ...args: (Serie|number)[]) => {
-    if (s === undefined) {return undefined}
-    if (!args) {throw new Error('cannot multiply undefined to s')}
+export const mult = (s: Serie, ...args: (Serie | number)[]) => {
+    if (s === undefined) {
+        return undefined
+    }
+    if (!args) {
+        throw new Error('cannot multiply undefined to s')
+    }
 
     const r = s.clone()
 
-    args.forEach (o => {
-        if (typeof(o) === 'number') {
-            r.array.forEach( (_,i) => r.array[i] *= o )
-        }
-        else {
+    args.forEach((o) => {
+        if (typeof o === 'number') {
+            r.array.forEach((_, i) => (r.array[i] *= o))
+        } else {
             if (o.length !== s.length) {
-                throw new Error(`size mistmatch. Cannot multiply 2 Series of different sizes (${o.length} != ${s.length})`)
+                throw new Error(
+                    `size mistmatch. Cannot multiply 2 Series of different sizes (${o.length} != ${s.length})`,
+                )
             }
-            o.array.forEach( (v,i) => r.array[i] *= v )
+            o.array.forEach((v, i) => (r.array[i] *= v))
         }
     })
 

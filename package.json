@@ -54,7 +54,7 @@
         }
     },
     "dependencies": {},
-  "prettier": "@youwol/prettier-config",
+    "prettier": "@youwol/prettier-config",
     "eslintConfig": {
         "extends": [
             "@youwol"

@@ -15,14 +15,15 @@ export const getNaN = (a: Serie) => {
     const r: Array<number> = []
 
     if (a.itemSize === 1) {
-        a.forEach( (item, i) => {
-            if (Number.isNaN(item)) {r.push(i)}
+        a.forEach((item, i) => {
+            if (Number.isNaN(item)) {
+                r.push(i)
+            }
         })
-    }
-    else {
+    } else {
         const n = a.itemSize
-        a.forEach( (item, i) => {
-            for (let j=0; j<n; ++j) {
+        a.forEach((item, i) => {
+            for (let j = 0; j < n; ++j) {
                 if (Number.isNaN(item[j])) {
                     r.push(i)
                     break

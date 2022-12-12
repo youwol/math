@@ -1,6 +1,6 @@
 import { Serie } from '@youwol/dataframe'
-import { add } from "./add"
-import { mult } from "./mult"
+import { add } from './add'
+import { mult } from './mult'
 
 /**
  * Return a weighted sum of [[Serie]]s
@@ -12,10 +12,10 @@ import { mult } from "./mult"
  *     createSerie( {data: createArray(18, i => i+1), itemSize: 6}), // S2
  *     createSerie( {data: createArray(18, i => i+2), itemSize: 6})  // S3
  * ]
- * 
+ *
  * const r = weightedSum(S, [1,2,3])
  * console.log(r.array)
- * 
+ *
  * // [ 8, 14, 20, 26,  32,  38,
  * //  44, 50, 56, 62,  68,  74,
  * //  80, 86, 92, 98, 104, 110 ]
@@ -23,6 +23,10 @@ import { mult } from "./mult"
  * @category Dataframe
  */
 export const weightedSum = (data: Serie[], alpha: number[]): Serie => {
-    if (alpha.length !== data.length) {throw new Error(`data length (${data.length}) should be equal to alpha length (${alpha.length})`)}
-    return add( data.map( (d,i) => mult(d, alpha[i])) )
+    if (alpha.length !== data.length) {
+        throw new Error(
+            `data length (${data.length}) should be equal to alpha length (${alpha.length})`,
+        )
+    }
+    return add(data.map((d, i) => mult(d, alpha[i])))
 }
