@@ -13,4 +13,3 @@ jobs:
     uses: youwol/nestor/.github/workflows/typescript-ci.yml@v1
     with:
       pipeline: false
-      skip: 'eslint'
