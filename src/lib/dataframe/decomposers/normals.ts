@@ -16,7 +16,7 @@ export class NormalsDecomposer implements Decomposer {
     /**
      * @hidden
      */
-    names(df: DataFrame, itemSize: number, serie: Serie, name: string) {
+    names(df: DataFrame, itemSize: number, _serie: Serie, _name: string) {
         if (itemSize !== 3) {
             return []
         }

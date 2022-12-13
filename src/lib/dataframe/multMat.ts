@@ -35,7 +35,7 @@ export const multMat = (s1: Serie, s2: Serie | number): Serie => {
     }
 
     if (typeof s2 === 'number') {
-        const s = s2
+        // const s = s2
         return mult(s1, s2) //s1.map( v => v*s)
     }
     if (s2.itemSize === 1) {

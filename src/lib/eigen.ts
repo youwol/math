@@ -241,7 +241,7 @@ export class Eigen {
     /**
      * @see eigen()
      */
-    compute(mat: Array<number>): any {
+    compute(mat: Array<number>): { values: number[]; vectors: number[] } {
         const r = eigen(mat)
         this.eigenValues = r.values
         this.eigenVectors = r.vectors

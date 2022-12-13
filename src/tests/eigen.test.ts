@@ -39,13 +39,13 @@ test('Eigen test-1 3D', () => {
 
 test('Eigen test-2 3D', () => {
     {
-        const { values, vectors } = eigen([0.5, 0, 0, 0, 0.75, 0, 0, 0, 1])
+        const { values } = eigen([0.5, 0, 0, 0, 0.75, 0, 0, 0, 1])
         expect(values[0]).toBeCloseTo(1)
         expect(values[1]).toBeCloseTo(0.75)
         expect(values[2]).toBeCloseTo(0.5)
     }
     {
-        const { values, vectors } = eigen([0.5, 0, 0, 0.75, 0, 1])
+        const { values } = eigen([0.5, 0, 0, 0.75, 0, 1])
         expect(values[0]).toBeCloseTo(1)
         expect(values[1]).toBeCloseTo(0.75)
         expect(values[2]).toBeCloseTo(0.5)

@@ -12,9 +12,9 @@ import { Serie } from '@youwol/dataframe'
 export const rand = (a: Serie, min = 0, max = 1) => {
     const delta = max - min
     if (a.itemSize === 1) {
-        return a.map((v) => min + delta * Math.random())
+        return a.map(() => min + delta * Math.random())
     }
-    return a.map((v) =>
-        new Array(a.itemSize).fill(0).map((v) => min + delta * Math.random()),
+    return a.map(() =>
+        new Array(a.itemSize).fill(0).map(() => min + delta * Math.random()),
     )
 }

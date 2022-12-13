@@ -12,7 +12,9 @@ export const eigenValue = (s: Serie) => {
 
     const dim = s.dimension
     if (s.dimension === 2 && (s.itemSize === 3 || s.itemSize === 4)) {
+        /* everything's fine */
     } else if (s.dimension === 3 && (s.itemSize === 6 || s.itemSize === 9)) {
+        /* everything's fine */
     } else {
         throw new Error(
             `Series does not have itemSize = 3, 4, 6 or 9 ([xx,xy,yy], [xx,xy,xz,yy,yz,zz], [xx, xy, yx, yy] or [xx,xy,xz,yx,yy,yz,zx,zy,zz]). Got ${s.itemSize}`,
@@ -46,7 +48,9 @@ export const eigenVector = (s: Serie) => {
 
     const dim = s.dimension
     if (s.dimension === 2 && (s.itemSize === 3 || s.itemSize === 4)) {
+        /* everything's fine */
     } else if (s.dimension === 3 && (s.itemSize === 6 || s.itemSize === 9)) {
+        /* everything's fine */
     } else {
         throw new Error(
             `Series does not have itemSize = 3, 4, 6 or 9 ([xx,xy,yy], [xx,xy,xz,yy,yz,zz], [xx, xy, yx, yy] or [xx,xy,xz,yx,yy,yz,zx,zy,zz]). Got ${s.itemSize}`,

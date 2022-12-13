@@ -13,7 +13,7 @@ export class Fringes implements Decomposer {
     /**
      * @hidden
      */
-    names(df: DataFrame, itemSize: number, serie: Serie, name: string) {
+    names(df: DataFrame, itemSize: number, _serie: Serie, _name: string) {
         if (itemSize !== 1) {
             return []
         }

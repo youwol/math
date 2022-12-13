@@ -16,4 +16,5 @@ function crossTest(v: vec.Vector3, w: vec.Vector3, result: vec.Vector3) {
 test('operation cross', () => {
     crossTest([2, 3, 4], [5, 6, 7], [-3, 6, -3])
     crossTest([5, 6, 7], [-1, 4, 2], [-16, -17, 26])
+    expect(1).toBe(1) // hack for eslint who cannot see that some tests are performed
 })

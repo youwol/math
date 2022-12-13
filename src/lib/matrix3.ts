@@ -178,8 +178,6 @@ export namespace mat {
      * @category Matrix
      */
     export function transpose(m: Matrix3) {
-        let tmp: number
-
         return [
             [m[0][0], m[1][0], m[2][0]],
             [m[0][1], m[1][1], m[2][1]],

@@ -9,7 +9,10 @@ import { Serie } from '@youwol/dataframe'
  * ```
  * @category Dataframe
  */
-export const tagNaN = (a: Serie, fn: Function) => {
+export const tagNaN = (
+    a: Serie,
+    fn: (item: number | number[], i: number, s: Serie) => boolean,
+) => {
     if (a.itemSize === 1) {
         return a.map((item, i) => (fn(item, i, a) ? Number.NaN : item))
     }

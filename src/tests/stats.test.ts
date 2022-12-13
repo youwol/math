@@ -81,8 +81,8 @@ test('stats quantile', () => {
         itemSize: 1,
     })
 
-    const Q1 = q25(s)
-    const Q3 = q75(s)
+    // const Q1 = q25(s)
+    // const Q3 = q75(s)
     expect(q25(s)).toBe(66)
     expect(q75(s)).toBe(75)
 })
