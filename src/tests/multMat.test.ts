@@ -2,14 +2,14 @@ import { Serie } from '@youwol/dataframe'
 import { multMat } from '../lib/dataframe'
 
 test('multMat vec3', () => {
-    let B, sol, R
+    let sol, R
     const A = Serie.create({ array: [9, 8, 7], itemSize: 3 })
 
     R = multMat(A, 2) // <------------------- scalar
     sol = [9 * 2, 8 * 2, 7 * 2]
     R.forEach((b) => b.forEach((v, i) => expect(v).toEqual(sol[i])))
 
-    B = Serie.create({ array: [1, 2, 3], itemSize: 3 })
+    const B = Serie.create({ array: [1, 2, 3], itemSize: 3 })
     sol = 9 + 8 * 2 + 7 * 3
     R = multMat(A, B)
     R.forEach((b) => expect(b).toEqual(sol))

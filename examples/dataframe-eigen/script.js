@@ -44,29 +44,29 @@ for (let i = 1; i <= 6; ++i) {
     check(stresses)
 }
 
+const stresses = math.weightedSum(
+    series,
+    new Array(6).fill(0).map(() => rand()),
+)
+// Other test from Romain's script in flux
+function get(name) {
+    const idx = name === 'S1' ? 0 : name === 'S2' ? 3 : 6
+    return math
+        .eigenVector(stresses)
+        .map((v) => [v[idx], v[idx + 1], v[idx + 2]])
+}
+
 // Testing for superposition multiple times
 {
     for (let i = 0; i < 100; ++i) {
         check(
             math.weightedSum(
                 series,
-                new Array(6).fill(0).map((v) => rand()),
+                new Array(6).fill(0).map(() => rand()),
             ),
         )
     }
 
-    // Other test from Romain's script in flux
-    function get(name) {
-        const idx = name === 'S1' ? 0 : name === 'S2' ? 3 : 6
-        return math
-            .eigenVector(stresses)
-            .map((v) => [v[idx], v[idx + 1], v[idx + 2]])
-    }
-
-    const stresses = math.weightedSum(
-        series,
-        new Array(6).fill(0).map((v) => rand()),
-    )
     const S1 = get('S1')
     const S2 = get('S2')
     const S3 = get('S3')
@@ -89,15 +89,15 @@ for (let i = 1; i <= 6; ++i) {
 // Data From flux
 {
     let S1json = fs.readFileSync('S1.json')
-    const sS1 = Object.entries(JSON.parse(S1json)).map(([key, val]) => val)
+    const sS1 = Object.entries(JSON.parse(S1json)).map(([_key, val]) => val)
     const S1 = df.Serie.create({ array: sS1, itemSize: 3 })
 
     let S2json = fs.readFileSync('S2.json')
-    const sS2 = Object.entries(JSON.parse(S2json)).map(([key, val]) => val)
+    const sS2 = Object.entries(JSON.parse(S2json)).map(([_key, val]) => val)
     const S2 = df.Serie.create({ array: sS2, itemSize: 3 })
 
     let S3json = fs.readFileSync('S3.json')
-    const sS3 = Object.entries(JSON.parse(S3json)).map(([key, val]) => val)
+    const sS3 = Object.entries(JSON.parse(S3json)).map(([_key, val]) => val)
     const S3 = df.Serie.create({ array: sS3, itemSize: 3 })
 
     for (let i = 0; i < S1.count; ++i) {

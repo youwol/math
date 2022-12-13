@@ -1,9 +1,12 @@
 export namespace vec {
     export interface IVector {
         [i: number]: number
-        reduce(cb: Function, init: number): any
-        map(cb: Function): IVector
-        forEach(cb: Function): void
+        reduce(
+            cb: (acc: number, cur: number, index?: number) => number,
+            init: number,
+        ): number
+        map(cb: (v: number, index: number) => number): IVector
+        forEach(cb: (v: number, index: number) => void): void
         [Symbol.iterator]()
         readonly length: number
     }

@@ -1,4 +1,4 @@
-import { array, IArray } from '@youwol/dataframe'
+import { IArray } from '@youwol/dataframe'
 
 export enum InterpolateDirection {
     INCREASING,
@@ -9,8 +9,8 @@ export function meshInterpolate({
     attribute,
     topology,
     size = 3,
-    direction = InterpolateDirection.INCREASING,
-}: {
+}: // direction = InterpolateDirection.INCREASING,
+{
     attribute: IArray
     topology: IArray
     size?: number
@@ -56,16 +56,16 @@ export function meshInterpolate({
 
     throw new Error('TODO')
 
-    switch (
-        direction
-        //case InterpolateDirection.INCREASING: return interpolateIncreasingCombels({from: attribute, topology: topo})
-        //case InterpolateDirection.DECREASING: return interpolateDecreasingCombels({from: attribute, topology: topo})
-    ) {
-    }
+    // switch (
+    //     direction
+    //     //case InterpolateDirection.INCREASING: return interpolateIncreasingCombels({from: attribute, topology: topo})
+    //     //case InterpolateDirection.DECREASING: return interpolateDecreasingCombels({from: attribute, topology: topo})
+    // ) {
+    // }
 }
 
 // P R I V A T E  starting from here
-
+/*
 function getMinMax(topology: Array<Array<number>>) {
     const minMax = [Infinity, -Infinity]
     topology.forEach((combel) => {
@@ -75,14 +75,16 @@ function getMinMax(topology: Array<Array<number>>) {
     })
     return minMax
 }
+*/
 
+/*
 function interpolateIncreasingCombels({
     from,
     topology,
 }: {
-    from: Array<any>
+    from: Array<number | number[]>
     topology: Array<Array<number>>
-}): Array<any> {
+}): Array<number | number[]> {
     const minMax = getMinMax(topology)
     if (minMax[0] < 0) {
         throw new Error(`Topology contains negatif indices`)
@@ -97,13 +99,17 @@ function interpolateIncreasingCombels({
 
     const to = new Array(topology.length).fill(a)
 
-    if (typeof a === 'number') {
+    if (!Array.isArray(a)) {
         topology.forEach((combel, index) => {
-            to[index] = combel.reduce((v, i) => v + from[i]) / combel.length
+            to[index] = combel.reduce((v, i) => {
+                const b = from[i] as number
+                return v + b
+            }) / combel.length
         })
     } else {
+        const aa = a as number[]
         topology.forEach((combel, index) => {
-            let sum = a.slice()
+            let sum = aa.slice()
             combel.forEach((index) => {
                 const b = from[index]
                 sum = sum.map((num: number, idx: number) => num + b[idx])
@@ -119,9 +125,9 @@ function interpolateDecreasingCombels({
     from,
     topology,
 }: {
-    from: Array<any>
+    from: Array<number | number[]>
     topology: Array<Array<number>>
-}): Array<any> {
+}): Array<number | number[]> {
     const minMax = getMinMax(topology)
 
     //const minMax = topology.reduce( combel => minMaxArray(combel) )
@@ -131,11 +137,12 @@ function interpolateDecreasingCombels({
 
     let a = from[0]
     let size = 1
-    let to: Array<any> = undefined
-    if (!(typeof a === 'number')) {
-        a = a.slice().fill(0)
+    let to: Array<number | number[]> = undefined
+
+    if (Array.isArray(a)) {
+        const aa = a.slice().fill(0)
         size = a.length
-        to = new Array(minMax[1] + 1).fill(undefined).map((_) => a.slice())
+        to = new Array(minMax[1] + 1).fill(undefined).map((_) => aa.slice())
     } else {
         a = 0
         to = new Array(minMax[1] + 1).fill(0)
@@ -143,19 +150,19 @@ function interpolateDecreasingCombels({
 
     const nbr = new Array(to.length).fill(0)
 
-    if (typeof a === 'number') {
+    if (!Array.isArray(a)) {
+        const too = to as number[]
         topology.forEach((idNodes, idFace) => {
-            const v = from[idFace]
+            const v = from[idFace] as number
             idNodes.forEach((id) => {
-                to[id] += v
+                too[id] += v
                 nbr[id]++
             })
         })
         for (let i = 0; i < to.length; ++i) {
-            to[i] /= nbr[i]
+            too[i] /= nbr[i]
         }
     } else {
-        //console.log(to)
         topology.forEach((idNodes, idFace) => {
             const v = from[idFace]
             idNodes.forEach((id) => {
@@ -164,7 +171,6 @@ function interpolateDecreasingCombels({
                     vv[i] += v[i]
                 }
                 nbr[id]++
-                //console.log(id, to)
             })
         })
         for (let j = 0; j < to.length; ++j) {
@@ -172,8 +178,8 @@ function interpolateDecreasingCombels({
                 to[j][i] /= nbr[j]
             }
         }
-        //console.log(to)
     }
 
     return to
 }
+*/

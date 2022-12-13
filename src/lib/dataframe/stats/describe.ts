@@ -7,7 +7,18 @@ import { std } from './std'
 /**
  * @category Dataframe/stats
  */
-export const describe = (s: Serie): any => {
+export const describe = (
+    s: Serie,
+): {
+    count: number
+    mean: number | number[]
+    std: number
+    min: number | number[]
+    max: number | number[]
+    q25: number
+    q50: number
+    q75: number
+} => {
     if (s === undefined) {
         throw new Error('serie is undefined')
     }

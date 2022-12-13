@@ -2,7 +2,7 @@ import { DataFrame, Serie } from '@youwol/dataframe'
 import { movingAverage } from '../lib'
 
 // import the extensions
-// This will auglent the module Serie with the necessary operations
+// This will <augment> the module Serie with the necessary operations
 import '../lib/dataframe/extensions'
 
 test('moving average', () => {
@@ -17,7 +17,7 @@ test('moving average', () => {
         series: {
             positions: Serie.create({ array: positions, itemSize: 3 }),
             attr: Serie.create({
-                array: new Array(100).fill(0).map((v) => Math.random()),
+                array: new Array(100).fill(0).map(() => Math.random()),
                 itemSize: 1,
             }),
         },
@@ -33,4 +33,8 @@ test('moving average', () => {
         name: 'attr',
     })
     // console.log(r)
+    expect(r['nx']).toBeDefined()
+    expect(r['ny']).toBeDefined()
+    expect(r['positions']).toBeDefined()
+    expect(r['solution']).toBeDefined()
 })

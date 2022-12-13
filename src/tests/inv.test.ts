@@ -7,7 +7,7 @@ test('testing inv', () => {
         const is = inv(s)
 
         const sol6 = [1, -3, 2, 3, -1, 0]
-        is.map((m) => (v, i) => expect(v).toBeCloseTo(sol6[i]))
+        is.map(() => (v, i) => expect(v).toBeCloseTo(sol6[i]))
     }
 
     {
@@ -28,6 +28,6 @@ test('testing inv', () => {
             -1 / 11,
             8 / 33,
         ]
-        is.map((m) => (v, i) => expect(v).toBeCloseTo(sol9[i]))
+        is.map(() => (v, i) => expect(v).toBeCloseTo(sol9[i]))
     }
 })

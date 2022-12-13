@@ -16,7 +16,7 @@
 export class MinMax {
     private m_ = [Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY]
 
-    constructor(values?: any) {
+    constructor(values?: number | number[]) {
         if (values !== undefined) {
             this.add(values)
         }
@@ -48,7 +48,7 @@ export class MinMax {
         return (v - this.min) / (this.max - this.min)
     }
 
-    add(values: any) {
+    add(values: number | number[]) {
         if (Array.isArray(values)) {
             values.forEach((v: number) => {
                 if (v < this.m_[0]) {

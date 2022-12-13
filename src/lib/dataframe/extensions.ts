@@ -72,7 +72,9 @@ declare module '@youwol/dataframe/src/lib/serie' {
         scale(t: number[] | number): Serie
         square(): Serie
         sub(...a: (number | Serie)[]): Serie
-        tagNaN(fn: Function): Serie
+        tagNaN(
+            fn: (item: number | number[], i: number, s: Serie) => boolean,
+        ): Serie
         trace(): Serie
         translate(t: number[]): Serie
         transpose(): Serie
@@ -153,7 +155,9 @@ Serie.prototype.square = function () {
 Serie.prototype.sub = function (...b: (number | Serie)[]) {
     return sub(this, ...b)
 }
-Serie.prototype.tagNaN = function (fn: Function) {
+Serie.prototype.tagNaN = function (
+    fn: (item: number | number[], i: number, s: Serie) => boolean,
+) {
     return tagNaN(this, fn)
 }
 Serie.prototype.trace = function () {

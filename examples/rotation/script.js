@@ -1,7 +1,7 @@
 const math = require('../../dist/@youwol/math')
 const df = require('../../../dataframe/dist/@youwol/dataframe')
 
-const s = 0.707
+const _s = 0.707
 const rot = math.getRotationAxis('z', 45)
 console.log(rot)
 

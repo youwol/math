@@ -167,7 +167,7 @@ test('1 on Manager with dimension=3', () => {
     const sizes = [1, 3, 6, 9]
     sizes.forEach((size, i) => expect(mng.names(size)).toEqual(sol[i]))
 
-    const names = mng.names(1)
+    // const names = mng.names(1)
     expect(mng.serie(1, 'x').array).toEqual([1, 4])
     expect(mng.serie(1, 'y').array).toEqual([2, 5])
     expect(mng.serie(1, 'z').array).toEqual([3, 6])

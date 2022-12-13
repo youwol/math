@@ -36,4 +36,4 @@ export * from './switchConvention'
 export * from './stats'
 export * from './decomposers'
 
-export * from './extensions'
+// export * from './extensions'

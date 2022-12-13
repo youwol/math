@@ -59,7 +59,7 @@ function perform(
 test('test1', () => {
     perform(
         '1',
-        (x) => 1,
+        () => 1,
         (x) => x,
     )
     perform(
@@ -72,6 +72,8 @@ test('test1', () => {
         (x) => 3 * x ** 2,
         (x) => Math.pow(x, 1.0 / 3.0),
     )
+
+    expect(1).toBe(1) // hack for eslint who cannot see that some tests are performed
 
     // console.log('---------------------------------- x^3 - 10x^2 + 5x + 11')
     // compare(TestPDFOnly( x => (x**3 - 10.0**2 + 5.0*x + 11.0) / 10.417 ))
