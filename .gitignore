@@ -1,5 +1,6 @@
 node_modules
 **/node_modules/**/*
+yarn-error.log
 coverage/
 junit.xml
 src/auto_generated.ts
